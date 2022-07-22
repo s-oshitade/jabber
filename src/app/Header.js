@@ -1,12 +1,23 @@
 import React from 'react';
+import styled from "styled-components";
 
 function Header () {
   return (
-    <div>
+    <HeaderContainer>
+      <HeaderLeft></HeaderLeft>
+        
 
 
-    </div>
+    </HeaderContainer>
   )
 }
 
 export default Header;
+
+const HeaderContainer = styled.div`
+
+`;
+
+const HeaderLeft = styled.div`
+
+`;
