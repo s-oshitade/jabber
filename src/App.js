@@ -10,7 +10,6 @@ import {
 function App() {
   return (
     <div className="App">
-    <h1>This is the beginning of Jabber!</h1>
     <Router>
       <>
         <Switch>
