@@ -10,6 +10,7 @@ import styled from "styled-components";
 
 
 import Header from "./components/Header"
+import Sidebar from "./components/Sidebar"
 
 function App() {
   return (
@@ -18,11 +19,12 @@ function App() {
       <>
       <Header />
         <AppBody>
-          <Switch>
-            <Route path="/">
-            
-            </Route>
-          </Switch>
+          <Sidebar />
+            <Switch>
+              <Route path="/">
+              
+              </Route>
+            </Switch>
         </AppBody>
       </>
     </Router>
