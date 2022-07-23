@@ -15,10 +15,10 @@ function App() {
     <div className="app">
     <Router>
       <>
+      <Header />
         <Switch>
           <Route path="/">
            
-            <Header />
           </Route>
         </Switch>
       </>
