@@ -6,6 +6,7 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import styled from "styled-components";
 
 
 import Header from "./components/Header"
@@ -16,11 +17,13 @@ function App() {
     <Router>
       <>
       <Header />
-        <Switch>
-          <Route path="/">
-           
-          </Route>
-        </Switch>
+        <AppBody>
+          <Switch>
+            <Route path="/">
+            
+            </Route>
+          </Switch>
+        </AppBody>
       </>
     </Router>
 
@@ -29,3 +32,7 @@ function App() {
 }
 
 export default App;
+
+const AppBody = styled.div`
+
+`;
