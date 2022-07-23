@@ -2,25 +2,25 @@ import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
-  // Switch,
-  Routes,
+  Switch,
   Route,
   // Link
 } from "react-router-dom";
 
 
-import Header from "./app/Header"
+import Header from "./components/Header"
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
     <Router>
       <>
-        <Routes>
-          <Route path="/" exact>
+        <Switch>
+          <Route path="/">
+           
             <Header />
           </Route>
-        </Routes>
+        </Switch>
       </>
     </Router>
 
