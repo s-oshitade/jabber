@@ -18,6 +18,10 @@ function Header () {
         <SearchIcon />
         <input placeholder="Search..." />
       </HeaderSearch>
+
+      <HeaderRight>
+        
+      </HeaderRight>
         
 
 
