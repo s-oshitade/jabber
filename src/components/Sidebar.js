@@ -38,6 +38,8 @@ function Sidebar() {
       <SidebarOption Icon={AppsIcon} title="Apps" />
       <SidebarOption Icon={FileCopyIcon} title="File Browser" />
       <SidebarOption Icon={ExpandLessIcon} title="Show Less" />
+      <hr />
+      <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
 
     </SidebarContainer>
   )
