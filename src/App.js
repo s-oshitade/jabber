@@ -22,7 +22,8 @@ function App() {
           <Sidebar />
             <Switch>
               <Route path="/">
-              
+              {/* Chat */}
+              <Chat />
               </Route>
             </Switch>
         </AppBody>
