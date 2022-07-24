@@ -3,7 +3,6 @@ import { fetchCount } from './counterAPI';
 
 const initialState = {
   roomId: null,
-  status: 'idle',
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
