@@ -1,15 +1,38 @@
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
-import React from 'react'
-
+import React, { useRef, useState } from 'react'
+import { db } from '../firebase';
+import firebase from 'firebase';
 function ChatInput({channelName, channelId}) {
 
+  // useRef is used to get the text from the input field (<input>)
+  const [input, setInput] = useState('');
+  
   const sendMessage = (e) => {
     e.preventDefault();
+
+    if (!channelId) {
+      return false;
+    }
+
+    // Access a specific room with the given channelId 
+    db.collection('rooms').doc(channelId).collection('messages')
+    .add({
+      message: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      user: 'John Doe',
+      userImage: 'https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9'
+    });
+
+    setInput('');
   }
   return <ChatInputContainer>
     <form>
-      <input placeholder={`Message #ROOM`}></input>
+      <input 
+        onChange={e => setInput(e.target.value)}
+        value={input}  
+        placeholder={`Message #ROOM`}>
+      </input>
       <Button hidden type='submit' onClick={sendMessage}>
         SEND
       </Button>
