@@ -1,10 +1,20 @@
-import { InfoOutlined, StarBorderOutlined} from '@material-ui/icons';
-import  StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
-import  InfoOutlinedIcon  from '@material-ui/icons/InfoOutlined';
 import React from 'react'
 import styled from 'styled-components'
+import  StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
+import  InfoOutlinedIcon  from '@material-ui/icons/InfoOutlined';
+import { useSelector } from 'react-redux';
+import { selectRoomId } from '../features/counter/appSlice';
+import ChatInput from './ChatInput';
+
 
 function Chat() {
+
+  /** hook to access the redux store's state. 
+  * This hook takes a selector function as an argument. 
+  * The selector is called with the store state. 
+  * roomId was pushed inside the redux store**/
+  const roomId = useSelector(selectRoomId)
+
   return (
     <ChatContainer>
       <>
@@ -23,6 +33,16 @@ function Chat() {
           </RightHeader>
         </Header>
 
+        <ChatMessages>
+          {/* Fetch All messages */}
+
+        </ChatMessages>
+
+        <ChatInput
+          //ChannelName
+          ChannelId={roomId}
+        />
+
       </>
       </ChatContainer>
     
@@ -38,6 +58,8 @@ const Header = styled.div`
   border-bottom: 1px solid lightgrey`
 ;
 
+const ChatMessages = styled.div``;
+
 const LeftHeader = styled.div`
   display: flex;
   align-items: center;
@@ -52,6 +74,7 @@ const LeftHeader = styled.div`
     font-size: 18px;
   }
 `;
+
 const RightHeader = styled.div`
   > p {
     display: flex;
