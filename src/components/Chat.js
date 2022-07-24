@@ -23,9 +23,6 @@ function Chat() {
           </RightHeader>
         </Header>
 
-        <ChatMessages>
-          
-        </ChatMessages>
       </>
       </ChatContainer>
     
