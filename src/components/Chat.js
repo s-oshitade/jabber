@@ -40,7 +40,7 @@ function Chat() {
 
         <ChatInput
           //ChannelName
-          ChannelId={roomId}
+          channelId={roomId}
         />
 
       </>

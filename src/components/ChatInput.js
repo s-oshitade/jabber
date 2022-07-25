@@ -7,10 +7,11 @@ function ChatInput({channelName, channelId}) {
 
   // useRef is used to get the text from the input field (<input>)
   const [input, setInput] = useState('');
+  console.log(channelId);
   
   const sendMessage = (e) => {
     e.preventDefault();
-
+    
     if (!channelId) {
       return false;
     }
@@ -25,6 +26,7 @@ function ChatInput({channelName, channelId}) {
     });
 
     setInput('');
+    
   }
   return <ChatInputContainer>
     <form>
