@@ -18,7 +18,7 @@ function ChatInput({channelName, channelId, chatRef}) {
     if (!channelId) {
       return false;
     }
-
+  
     // Access a specific room with the given channelId 
     db.collection('rooms').doc(channelId).collection('messages')
     .add({
