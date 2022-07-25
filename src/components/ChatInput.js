@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import React, { useRef, useState } from 'react'
 import { db } from '../firebase';
 import firebase from 'firebase';
-function ChatInput({channelName, channelId}) {
+function ChatInput({channelName, channelId, chatRef}) {
 
   // useRef is used to get the text from the input field (<input>)
   const [input, setInput] = useState('');
@@ -24,6 +24,11 @@ function ChatInput({channelName, channelId}) {
       user: 'John Doe',
       userImage: 'https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9'
     });
+
+    // scroll into view after sending a message
+    chatRef.current.scrollIntoView({
+      behavior: "smooth"
+    })
 
     setInput('');
     
