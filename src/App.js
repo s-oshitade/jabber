@@ -15,6 +15,8 @@ import { auth } from "./firebase";
 import Login from "./components/Login";
 import Spinner from "react-spinkit";
 
+import RightSidebar from './components/RightSidebar';
+
 function App() {
   const [user, loading] = useAuthState(auth);
 
@@ -54,6 +56,7 @@ function App() {
                 </Route>
                 <Route path="/">
                   <Chat />
+                  <RightSidebar />
                 </Route>
               </Switch>
             </AppBody>
