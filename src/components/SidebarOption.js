@@ -4,6 +4,8 @@ import { db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 
+
+
 function SidebarOption ({ Icon, title, addChannelOption, id }) {
   const dispatch = useDispatch();
  
@@ -36,8 +38,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
         <h3>{title}</h3>
       ): (
         <SidebarOptionChannel>
-          <span>#</span> {title}
-
+           <span>#</span> {title} 
         </SidebarOptionChannel>
       )}
 
