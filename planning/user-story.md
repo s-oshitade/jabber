@@ -14,4 +14,3 @@
 12. As a user, I can transfer files to other user(s) - STRETCH
 13. As a user, I can right-click and calendarize project list items (STRETCH)
 
-**
