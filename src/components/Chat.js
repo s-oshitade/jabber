@@ -8,6 +8,7 @@ import ChatInput from './ChatInput';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { db } from '../firebase';
 import Message from './Message';
+import LockIcon from '@material-ui/icons/Lock';
 
 
 function Chat() {
@@ -56,7 +57,7 @@ function Chat() {
  
            <RightHeader>
              <p>
-             <InfoOutlinedIcon /> Details
+             <LockIcon /> Make this channel private
              </p>
            </RightHeader>
          </Header>
