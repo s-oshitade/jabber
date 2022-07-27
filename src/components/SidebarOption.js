@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { db } from "../firebase";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 
 
 function SidebarOption ({ Icon, title, addChannelOption, id }) {
   const dispatch = useDispatch();
+
+  const [roomDetails] = useDocument(
+    id && db.collection('rooms').doc(id)
+  )
  
   const addChannel = () => {
+
+
     const channelName = prompt('Please enter the channel name');
 
     if (channelName){
       db.collection("rooms").add({
         name: channelName,
+        password: null
       });
     }
+
   };
 
 
 
   const selectChannel = () => {
+    const isPrivate = roomDetails?.data().password
+
     if (id) {
+
+      if (isPrivate) {
+        const userInput = prompt('This channel is private. Please enter a password');
+
+        if (userInput === isPrivate) {
+          dispatch(enterRoom({
+            roomId: id
+          }))
+        } else {
+          alert('Wrong password!');
+        }
+      } else {
       dispatch(enterRoom({
         roomId: id
       }))
+    }
     }
   };
 
@@ -41,7 +65,6 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
            <span>#</span> {title} 
         </SidebarOptionChannel>
       )}
-
     </SidebarOptionContainer>
   )
 }

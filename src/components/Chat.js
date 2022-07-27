@@ -41,6 +41,14 @@ function Chat() {
     });
   }, [roomId, loading])
 
+  const makeChannelPrivate = () => {
+    const channelPassword = prompt('Please enter a password')
+
+    db.collection("rooms").doc(roomId).update({
+      password: channelPassword
+    });
+  }
+
   console.log(roomDetails?.data());
   console.log(roomMessages);
   return (
@@ -57,7 +65,7 @@ function Chat() {
  
            <RightHeader>
              <p>
-             <LockIcon /> Make this channel private
+             <LockIcon onClick={makeChannelPrivate}/> Make this channel private
              </p>
            </RightHeader>
          </Header>
@@ -135,6 +143,7 @@ const RightHeader = styled.div`
   > p > .MuiSvgIcon-root {
     margin-right: 5px !important;
     font-size: 16px;
+    cursor: pointer;
   }
 `;
 
