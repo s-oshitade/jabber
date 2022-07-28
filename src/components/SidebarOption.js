@@ -5,10 +5,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import PublicIcon from '@material-ui/icons/Public';
+import VpnLockIcon from '@material-ui/icons/VpnLock';
 
 
 
-function SidebarOption ({ Icon, title, addChannelOption, id }) {
+function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic}) {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
@@ -64,15 +66,20 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
   return (
     <SidebarOptionContainer
       onClick={addChannelOption ? addChannel : selectChannel}
+      className={id && "channel"}
     >   
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
       ): (
-        <SidebarOptionChannel>
+        <SidebarOptionChannel
+        className={userState} >
            <span>#</span> {title} 
+           {isPublic? <PublicIcon fontSize='small' style={{ padding: 10 }}/> : <VpnLockIcon fontSize='small' style={{ padding: 10 }} />}
+           
         </SidebarOptionChannel>
       )}
+
     </SidebarOptionContainer>
   )
 }
@@ -98,10 +105,21 @@ const SidebarOptionContainer = styled.div`
   > h3 > span {
     padding: 15px; 
   }
+
+  > .owner {
+    color: lightgreen;
+  }
+
+  > .guest {
+    color: white;
+  }
 `;
 
 const SidebarOptionChannel = styled.h3`
   padding: 10px 0;
   font-weight: 300;
-  
+  display: flex;
+  align-items: center;
+
+
 `;

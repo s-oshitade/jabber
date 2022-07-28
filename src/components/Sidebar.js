@@ -50,7 +50,7 @@ function Sidebar() {
       <hr />
       <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
-        <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} />
+        <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
       ))}
     </SidebarContainer>
   )
@@ -73,6 +73,11 @@ const SidebarContainer = styled.div`
     margin-bottom: 10px;
     border: 1px solid #154c79;
   }
+
+  > .channel {
+    height: 30px;
+  }
+
 `;
 
 const SidebarHeader = styled.div`
