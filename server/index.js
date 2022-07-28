@@ -25,29 +25,29 @@ const app = express();
 
 //request user authorization by getting an Authorization Code.
 //redirect the user to a web page where they can choose to grant our application access to their premium account
-// app.get('/auth/login', (req, res) => {
+app.get('/auth/login', (req, res) => {
 
-//   // allow permission for streaming, user-read-email and user-read-private
-//   const scope = "streaming user-read-email user-read-private"
-//   const state = generateRandomString(16); // //randomly generated string to protect against attacks such as cross-site request forgery.
+  // allow permission for streaming, user-read-email and user-read-private
+  const scope = "streaming user-read-email user-read-private"
+  const state = generateRandomString(16); // //randomly generated string to protect against attacks such as cross-site request forgery.
 
-//   var auth_query_parameters = new URLSearchParams({
-//     response_type: "code",
-//     client_id: spotify_client_id,
-//     scope: scope,
-//     redirect_uri: spotify_redirect_uri,
-//     state: state
-//   })
+  var auth_query_parameters = new URLSearchParams({
+    response_type: "code",
+    client_id: spotify_client_id,
+    scope: scope,
+    redirect_uri: spotify_redirect_uri,
+    state: state
+  })
 
-//   /** 
-//    * Once the user approves the application request, the user is redirected back to the application using the redirect_uri
-//    *  The callback contains two query parameters:
-//    *  1. An authorization code that will be exchanged for an access token.
-//    *  2. The same state supplied in the request.
-//   */ 
-//   res.redirect('https://accounts.spotify.com/authorize/?' + auth_query_parameters.toString());
+  /** 
+   * Once the user approves the application request, the user is redirected back to the application using the redirect_uri
+   *  The callback contains two query parameters:
+   *  1. An authorization code that will be exchanged for an access token.
+   *  2. The same state supplied in the request.
+  */ 
+  res.redirect('https://accounts.spotify.com/authorize/?' + auth_query_parameters.toString());
 
-// });
+});
 
 
 
