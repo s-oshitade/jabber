@@ -74,6 +74,10 @@ const SidebarContainer = styled.div`
     border: 1px solid #154c79;
   }
 
+  > .channel {
+    height: 30px;
+  }
+
 `;
 
 const SidebarHeader = styled.div`
