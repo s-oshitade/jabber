@@ -78,11 +78,11 @@ function Chat() {
 
               {/* user is NOT owner of channel and a password has been set */}
              {user.email !== roomDetails?.data().owner && roomDetails?.data().password && <LockIcon />}
-             {user.email !== roomDetails?.data().owner && roomDetails?.data().password && <span>The owner of this chanel has made it private</span>}
+             {user.email !== roomDetails?.data().owner && roomDetails?.data().password && <span>The owner of this channel has made it private</span>}
 
               {/* user is NOT owner of channel and NO password has been set */}
              {user.email !== roomDetails?.data().owner && !roomDetails?.data().password && <LockOpenIcon />}
-             {user.email !== roomDetails?.data().owner && !roomDetails?.data().password && <span>The owner of this chanel has made it public</span>}
+             {user.email !== roomDetails?.data().owner && !roomDetails?.data().password && <span>The owner of this channel has made it public</span>}
              </p>
            </RightHeader>
          </Header>
