@@ -37,22 +37,27 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     const isPrivate = roomDetails?.data().password
 
     if (id) {
+      if (user.email === roomDetails?.data().owner){
+        dispatch(enterRoom({
+          roomId: id
+        }))
+      } else {
+          if (isPrivate) {
+            const userInput = prompt('This channel is private. Please enter a password');
 
-      if (isPrivate) {
-        const userInput = prompt('This channel is private. Please enter a password');
-
-        if (userInput === isPrivate) {
+            if (userInput === isPrivate) {
+              dispatch(enterRoom({
+                roomId: id
+              }))
+            } else {
+              alert('Wrong password!');
+            }
+          } else {
           dispatch(enterRoom({
             roomId: id
           }))
-        } else {
-          alert('Wrong password!');
         }
-      } else {
-      dispatch(enterRoom({
-        roomId: id
-      }))
-    }
+        }
     }
   };
 
