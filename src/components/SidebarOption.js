@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
@@ -8,6 +9,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 
 function SidebarOption ({ Icon, title, addChannelOption, id }) {
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
