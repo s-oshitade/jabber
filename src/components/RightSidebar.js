@@ -5,8 +5,7 @@ import { selectRoomId } from '../features/counter/appSlice';
 import { db } from '../firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import AddIcon from "@material-ui/icons/Add";
-import PowerItem from './PowerItem';
-import PowerInput from './PowerInput';
+import PowerListApp from './PowerListApp';
 
 function RightSidebar () {
   const roomId = useSelector(selectRoomId)
@@ -25,11 +24,9 @@ function RightSidebar () {
 
       </RightSidebarUpper>
       <hr />
+      
       <PowerListContainer>
-
-      <h4>#Username's Powerlist</h4>
-        <PowerItem />
-        <PowerInput />
+        <PowerListApp />
       </PowerListContainer>
 
     </RightSidebarContainer>
@@ -53,11 +50,12 @@ const RightSidebarContainer = styled.div`
 
 const RightSidebarUpper = styled.div`
   height: 50%;
-
 `;
 
 const PowerListContainer = styled.div`
+  font-size: small;
   height: 50%;
+  
   :hover {
     background: black;
   }
