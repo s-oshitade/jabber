@@ -6,12 +6,15 @@ import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/counter/appSlice';
 import ChatInput from './ChatInput';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
 import Message from './Message';
 import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 
 function Chat() {
+  const [user] = useAuthState(auth);
 
   const chatRef = useRef(null);
   /** hook to access the redux store's state. 
@@ -65,7 +68,21 @@ function Chat() {
  
            <RightHeader>
              <p>
-             <LockIcon onClick={makeChannelPrivate}/> Make this channel private
+              {/* user is OWNER of channel and NO password is set */}
+             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <LockOpenIcon onClick={makeChannelPrivate}/>}
+             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <span>Make your channel private</span>}
+
+              {/* user is OWNER of channel and has set a password */}
+             {user.email === roomDetails?.data().owner && roomDetails?.data().password && <LockIcon />}
+             {user.email === roomDetails?.data().owner && roomDetails?.data().password && <span>You have set this channel to private</span>}
+
+              {/* user is NOT owner of channel and a password has been set */}
+             {user.email !== roomDetails?.data().owner && roomDetails?.data().password && <LockIcon />}
+             {user.email !== roomDetails?.data().owner && roomDetails?.data().password && <span>The owner of this chanel has made it private</span>}
+
+              {/* user is NOT owner of channel and NO password has been set */}
+             {user.email !== roomDetails?.data().owner && !roomDetails?.data().password && <LockOpenIcon />}
+             {user.email !== roomDetails?.data().owner && !roomDetails?.data().password && <span>The owner of this chanel has made it public</span>}
              </p>
            </RightHeader>
          </Header>
@@ -137,7 +154,10 @@ const RightHeader = styled.div`
   > p {
     display: flex;
     align-items: center;
-    font-size: 14px;
+  }
+
+  > p > span {
+    font-size: 12px;
   }
 
   > p > .MuiSvgIcon-root {
