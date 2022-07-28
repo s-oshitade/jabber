@@ -79,6 +79,11 @@ app.get('auth/callback', (req, res) => {
   
 })
 
+app.get('/auth/token', (req, res) => {
+  res.json({ access_token: access_token})
+})
+
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
 })
