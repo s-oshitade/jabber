@@ -5,8 +5,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import PublicIcon from '@material-ui/icons/Public';
-import VpnLockIcon from '@material-ui/icons/VpnLock';
+import ForumIcon from '@material-ui/icons/Forum';
+import LockIcon from '@material-ui/icons/Lock';
+
 
 
 
@@ -52,7 +53,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 roomId: id
               }))
             } else {
+              if (userInput) {
               alert('Wrong password!');
+              }
             }
           } else {
           dispatch(enterRoom({
@@ -74,8 +77,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       ): (
         <SidebarOptionChannel
         className={userState} >
-           <span>#</span> {title} 
-           {isPublic? <PublicIcon fontSize='small' style={{ padding: 10 }}/> : <VpnLockIcon fontSize='small' style={{ padding: 10 }} />}
+           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
+           
            
         </SidebarOptionChannel>
       )}

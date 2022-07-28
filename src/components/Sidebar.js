@@ -75,7 +75,7 @@ const SidebarContainer = styled.div`
   }
 
   > .channel {
-    height: 30px;
+    height: 40px;
   }
 
 `;
