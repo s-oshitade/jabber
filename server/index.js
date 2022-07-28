@@ -69,6 +69,8 @@ app.get('auth/callback', (req, res) => {
     json: true
   };
 
+  //Now that we have the authorization code, we must exchange it for tokens. Using the code from the previous step,
+  //we need to make a POST request to the /api/token endpoint.
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       access_token = body.access_token;
@@ -79,6 +81,7 @@ app.get('auth/callback', (req, res) => {
   
 })
 
+//This access token will be used to instantiate the Web Playback SDK.
 app.get('/auth/token', (req, res) => {
   res.json({ access_token: access_token})
 })
