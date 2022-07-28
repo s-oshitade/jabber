@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
@@ -8,6 +9,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 
 function SidebarOption ({ Icon, title, addChannelOption, id }) {
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -22,7 +24,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     if (channelName){
       db.collection("rooms").add({
         name: channelName,
-        password: null
+        password: null,
+        owner: user.email
       });
     }
 
@@ -34,22 +37,27 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     const isPrivate = roomDetails?.data().password
 
     if (id) {
+      if (user.email === roomDetails?.data().owner){
+        dispatch(enterRoom({
+          roomId: id
+        }))
+      } else {
+          if (isPrivate) {
+            const userInput = prompt('This channel is private. Please enter a password');
 
-      if (isPrivate) {
-        const userInput = prompt('This channel is private. Please enter a password');
-
-        if (userInput === isPrivate) {
+            if (userInput === isPrivate) {
+              dispatch(enterRoom({
+                roomId: id
+              }))
+            } else {
+              alert('Wrong password!');
+            }
+          } else {
           dispatch(enterRoom({
             roomId: id
           }))
-        } else {
-          alert('Wrong password!');
         }
-      } else {
-      dispatch(enterRoom({
-        roomId: id
-      }))
-    }
+        }
     }
   };
 
