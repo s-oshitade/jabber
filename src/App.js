@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -19,6 +19,17 @@ import RightSidebar from './components/RightSidebar';
 
 function App() {
   const [user, loading] = useAuthState(auth);
+
+  const [token, setToken] = useState('');
+
+  useEffect (() => {
+    async function getToken() {
+      const response = await fetch('/auth/token');
+      const json = await response.json();
+      setToken(json.access_token)
+    }
+    getToken();
+  }, [])
 
   if (loading) {
     return (
@@ -49,7 +60,7 @@ function App() {
           <>
             <Header />
             <AppBody>
-              <Sidebar />
+              <Sidebar token={token} setToken={setToken}/>
               <Switch>
                 <Route path="/room/:roomId">
                   <Chat />
