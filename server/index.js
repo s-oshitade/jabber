@@ -11,15 +11,15 @@ const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
 // const spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
-// const generateRandomString = function (length) {
-//   const text = '';
-//   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const generateRandomString = function (length) {
+  const text = '';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-//   for (const i = 0; i < length; i++) {
-//     text += possible.charAt(Math.floor(Math.random() * possible.length));
-//   }
-//   return text;
-// };
+  for (const i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
 
 const app = express();
 
