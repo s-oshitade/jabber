@@ -24,7 +24,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     if (channelName){
       db.collection("rooms").add({
         name: channelName,
-        password: null
+        password: null,
+        owner: user.email
       });
     }
 
