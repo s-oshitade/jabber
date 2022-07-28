@@ -17,10 +17,11 @@ import { auth, db } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getFirestore, collection } from 'firebase/firestore';
+import SpotifyLogin from './SpotifyLogin';
 
 
 
-function Sidebar() {
+function Sidebar({token, setToken}) {
   const [user] = useAuthState(auth);
   const [channels, loading, error] = useCollection(db.collection("rooms"));
   return (
@@ -52,6 +53,9 @@ function Sidebar() {
       {channels?.docs.map((doc) => (
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} />
       ))}
+     
+      { (token === '') && <SpotifyLogin /> }
+
     </SidebarContainer>
   )
 }
