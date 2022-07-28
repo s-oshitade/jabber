@@ -1,7 +1,10 @@
 const express = require('express');
+const request = require('request')
 const dotenv = require('dotenv')
 
 const port = 5001;
+
+global.access_token = ''
 
 //Loads .env file contents into process.env.
 dotenv.config();
@@ -9,13 +12,13 @@ dotenv.config();
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
-// const spotify_redirect_uri = 'http://localhost:3000/auth/callback'
+const spotify_redirect_uri = 'http://localhost:3000/auth/callback'
 
 const generateRandomString = function (length) {
-  const text = '';
+  let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (const i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
@@ -31,7 +34,7 @@ app.get('/auth/login', (req, res) => {
   const scope = "streaming user-read-email user-read-private"
   const state = generateRandomString(16); // //randomly generated string to protect against attacks such as cross-site request forgery.
 
-  var auth_query_parameters = new URLSearchParams({
+  const auth_query_parameters = new URLSearchParams({
     response_type: "code",
     client_id: spotify_client_id,
     scope: scope,
@@ -52,7 +55,7 @@ app.get('/auth/login', (req, res) => {
 
 
 // request the Access Token using the Authorization Code requested in the previous step.
-app.get('auth/callback', (req, res) => {
+app.get('/auth/callback', (req, res) => {
   const code = req.query.code;
 
   const authOptions = {
