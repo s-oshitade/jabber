@@ -5,10 +5,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 
 
-function SidebarOption ({ Icon, title, addChannelOption, id }) {
+function SidebarOption ({ Icon, title, addChannelOption, id, userState}) {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
@@ -69,7 +71,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
       {Icon ? (
         <h3>{title}</h3>
       ): (
-        <SidebarOptionChannel>
+        <SidebarOptionChannel
+        className={userState} >
            <span>#</span> {title} 
         </SidebarOptionChannel>
       )}
@@ -98,10 +101,19 @@ const SidebarOptionContainer = styled.div`
   > h3 > span {
     padding: 15px; 
   }
+
+  > .owner {
+    color: lightgreen;
+  }
+
+  > .guest {
+    color: pink;
+  }
 `;
 
 const SidebarOptionChannel = styled.h3`
   padding: 10px 0;
   font-weight: 300;
   
+
 `;
