@@ -51,26 +51,26 @@ app.get('/auth/login', (req, res) => {
 
 
 
-// // request the Access Token using the Authorization Code requested in the previous step.
-// app.get('auth/callback', (req, res) => {
-//   const code = req.query.code;
+// request the Access Token using the Authorization Code requested in the previous step.
+app.get('auth/callback', (req, res) => {
+  const code = req.query.code;
 
-//   const authOptions = {
-//     url: 'https://accounts.spotify.com/api/token',
-//     form: {
-//       code: code, //authorization code returned on the previous step
-//       redirect_uri: spotify_redirect_uri,
-//       grant_type: 'authorization_code'
-//     },
-//     headers: {
-//       'Authorization': 'Basic ' + (Buffer.from(spotify_client_id + ':' + spotify_client_secret).toString('base64')),
-//       'Content-Type' : 'application/x-www-form-urlencoded'
-//     },
-//     json: true
-//   };
+  const authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    form: {
+      code: code, //authorization code returned on the previous step
+      redirect_uri: spotify_redirect_uri,
+      grant_type: 'authorization_code'
+    },
+    headers: {
+      'Authorization': 'Basic ' + (Buffer.from(spotify_client_id + ':' + spotify_client_secret).toString('base64')),
+      'Content-Type' : 'application/x-www-form-urlencoded'
+    },
+    json: true
+  };
 
   
-// })
+})
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
