@@ -43,7 +43,8 @@ function RightSidebar () {
       <RightSidebarUpper>
       <ProgressBar 
         projectName={roomDetails?.data().name}
-        progress={"50"}
+        goalTotal={projectPlan?.docs.length}
+        completed={finishedGoals?.docs.length}
       />
         <RightSidebarOption
         onClick={addProjectGoal}
