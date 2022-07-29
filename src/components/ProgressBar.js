@@ -1,9 +1,19 @@
+import { GolfCourseSharp } from '@material-ui/icons';
 import React from 'react';
 import styled from "styled-components";
 
 function ProgressBar ({ projectName, goalTotal, completed }) {
-  const progress = (completed / goalTotal).toString();
-  
+  let progress;
+
+  if (goalTotal === completed && goalTotal !== 0) {
+    progress = "100";
+  } else if (goalTotal === 0 && completed === 0) {
+    progress = "0"
+  } else {
+    progress = ((completed / goalTotal) * 100).toString();
+  }
+
+
   return (
     <ProgressBarContainer>
     <label for="project">{projectName} progress:</label>
