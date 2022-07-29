@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import ForumIcon from '@material-ui/icons/Forum';
+import LockIcon from '@material-ui/icons/Lock';
 
 
 
-function SidebarOption ({ Icon, title, addChannelOption, id }) {
+
+function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic}) {
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -22,7 +27,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     if (channelName){
       db.collection("rooms").add({
         name: channelName,
-        password: null
+        password: null,
+        owner: user.email
       });
     }
 
@@ -34,37 +40,49 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     const isPrivate = roomDetails?.data().password
 
     if (id) {
+      if (user.email === roomDetails?.data().owner){
+        dispatch(enterRoom({
+          roomId: id
+        }))
+      } else {
+          if (isPrivate) {
+            const userInput = prompt('This channel is private. Please enter a password');
 
-      if (isPrivate) {
-        const userInput = prompt('This channel is private. Please enter a password');
-
-        if (userInput === isPrivate) {
+            if (userInput === isPrivate) {
+              dispatch(enterRoom({
+                roomId: id
+              }))
+            } else {
+              if (userInput) {
+              alert('Wrong password!');
+              }
+            }
+          } else {
           dispatch(enterRoom({
             roomId: id
           }))
-        } else {
-          alert('Wrong password!');
         }
-      } else {
-      dispatch(enterRoom({
-        roomId: id
-      }))
-    }
+        }
     }
   };
 
   return (
     <SidebarOptionContainer
       onClick={addChannelOption ? addChannel : selectChannel}
+      className={id && "channel"}
     >   
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
       ): (
-        <SidebarOptionChannel>
-           <span>#</span> {title} 
+        <SidebarOptionChannel
+        className={userState} >
+           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
+           
+           
         </SidebarOptionChannel>
       )}
+
     </SidebarOptionContainer>
   )
 }
@@ -90,10 +108,21 @@ const SidebarOptionContainer = styled.div`
   > h3 > span {
     padding: 15px; 
   }
+
+  > .owner {
+    color: lightgreen;
+  }
+
+  > .guest {
+    color: white;
+  }
 `;
 
 const SidebarOptionChannel = styled.h3`
   padding: 10px 0;
   font-weight: 300;
-  
+  display: flex;
+  align-items: center;
+
+
 `;
