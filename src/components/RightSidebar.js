@@ -36,6 +36,13 @@ function RightSidebar () {
       })
     }
   }
+
+  const updateGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        complete: true
+      })
+  
+  }
   
 
   return (
@@ -43,7 +50,8 @@ function RightSidebar () {
       <RightSidebarUpper>
       <ProgressBar 
         projectName={roomDetails?.data().name}
-        progress={"50"}
+        goalTotal={projectPlan?.docs.length}
+        completed={finishedGoals?.docs.length}
       />
         <RightSidebarOption
         onClick={addProjectGoal}
@@ -53,14 +61,16 @@ function RightSidebar () {
 
 
         {projectPlan?.docs.map(doc => {
-          const { goal, status } = doc.data();
+          const { goal, complete } = doc.data();
 
           return (
             <ProjectGoal
               key={doc.id}
               id={doc.id}
-              status={status}
+              status={complete}
               goal={goal}
+              roomId={roomId}
+              onClick={() => {updateGoal(doc.id)}}
             />
           )
         })}
@@ -98,7 +108,7 @@ const RightSidebarUpper = styled.div`
   height: 50%;
 
   > .incomplete {
-    color: pink;
+    color: white;
   }
 
   > .complete {
