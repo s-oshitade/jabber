@@ -13,10 +13,16 @@ function NewTaskForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
     //send post request to datastore at the appropriate route, with the inputted data
+    const info = db.collection('users').doc('KrpJ8Q2woz1cosLoCEwH').collection('todos');
+    console.log(info?.data())
     // Render updated items on screen: props.addTask, to include {todo: {task: task}}
     //handle this asynchronously and run props.addTask(res.data);
+    if(!task){
+      alert("Task cannot be empty.");
+      return;
+    }
 
-
+    
    setTask('');
   }
   
