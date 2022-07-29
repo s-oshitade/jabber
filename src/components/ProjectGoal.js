@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import CheckIcon from '@material-ui/icons/Check';
 
-function ProjectGoal ({goal, status, id}) {
+function ProjectGoal ({goal, status, id, onClick}) {
+
   return(
     <ProjectGoalContainer
-      className={status ? "complete" : "incomplete"}
+      onClick={onClick}
     >
-      <ArrowRightAltIcon /> {goal}
+      {status ? <CheckIcon fontsize="small" className="complete" /> : <ArrowRightIcon fontsize="small" className="incomplete" /> } {goal}
+
     </ ProjectGoalContainer>
   )
 }
@@ -18,4 +21,19 @@ const ProjectGoalContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 5px;
+  cursor: pointer;
+
+:hover {
+  opacity: 0.9;
+  background-color: #154c79;
+}
+
+> .complete {
+  color: lightgreen;
+}
+
+> .incomplete {
+  color: white;
+}
+
 `;
