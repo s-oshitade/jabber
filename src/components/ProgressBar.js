@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 
-function ProgressBar ({ projectName, progress }) {
+function ProgressBar ({ projectName, goalTotal, completed }) {
+  const progress = (completed / goalTotal).toString();
+  
   return (
     <ProgressBarContainer>
     <label for="project">{projectName} progress:</label>
