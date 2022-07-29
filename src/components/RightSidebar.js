@@ -7,6 +7,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import AddIcon from "@material-ui/icons/Add";
 import PowerListApp from './PowerListApp';
 import ProgressBar from './ProgressBar';
+import ProjectGoal from './ProjectGoal';
 
 
 
@@ -17,17 +18,53 @@ function RightSidebar () {
     roomId && db.collection('rooms').doc(roomId)
   )
 
+  const [projectPlan] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection("project")
+  )
+
+  const [finishedGoals] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection("project").where("complete", "==", true)
+  )
+
+  const addProjectGoal = () => {
+    const goal = prompt('Please enter a project goal')
+
+    if (goal) {
+      db.collection("rooms").doc(roomId).collection("project").add({
+        goal: goal,
+        complete: false
+      })
+    }
+  }
+  
 
   return (
     <RightSidebarContainer>
       <RightSidebarUpper>
       <ProgressBar 
         projectName={roomDetails?.data().name}
-        progress={"90"}
+        progress={"50"}
       />
-        <RightSidebarOption>
-          <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project plan</span>
+        <RightSidebarOption
+        onClick={addProjectGoal}
+        >
+          <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
+
+
+        {projectPlan?.docs.map(doc => {
+          const { goal, status } = doc.data();
+
+          return (
+            <ProjectGoal
+              key={doc.id}
+              id={doc.id}
+              status={status}
+              goal={goal}
+            />
+          )
+        })}
+
 
 
       </RightSidebarUpper>
@@ -54,10 +91,19 @@ const RightSidebarContainer = styled.div`
   > hr {
     border: 0.01px dotted #dceefe;
   }
+
 `;
 
 const RightSidebarUpper = styled.div`
   height: 50%;
+
+  > .incomplete {
+    color: pink;
+  }
+
+  > .complete {
+    color: lightgreen;
+  }
 `;
 
 const PowerListContainer = styled.div`
@@ -85,4 +131,6 @@ const RightSidebarOption = styled.div`
     opacity: 0.9;
     background-color: #154c79;
   }
+
+
 `;
