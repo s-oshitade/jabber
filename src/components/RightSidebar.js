@@ -6,6 +6,9 @@ import { db } from '../firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import AddIcon from "@material-ui/icons/Add";
 import PowerListApp from './PowerListApp';
+import ProgressBar from './ProgressBar';
+
+
 
 function RightSidebar () {
   const roomId = useSelector(selectRoomId)
@@ -14,13 +17,18 @@ function RightSidebar () {
     roomId && db.collection('rooms').doc(roomId)
   )
 
+
   return (
     <RightSidebarContainer>
       <RightSidebarUpper>
-
+      <ProgressBar 
+        projectName={roomDetails?.data().name}
+        progress={"90"}
+      />
         <RightSidebarOption>
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project plan</span>
         </RightSidebarOption>
+
 
       </RightSidebarUpper>
       <hr />
