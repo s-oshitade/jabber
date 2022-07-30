@@ -43,6 +43,13 @@ function RightSidebar () {
       })
   
   }
+
+  const resetGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        complete: false
+      })
+  
+  }
   
 
   return (
@@ -70,6 +77,7 @@ function RightSidebar () {
               status={complete}
               goal={goal}
               update={updateGoal}
+              reset={resetGoal}
             />
           )
         })}
