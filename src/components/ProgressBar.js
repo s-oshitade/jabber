@@ -25,5 +25,5 @@ function ProgressBar ({ projectName, goalTotal, completed }) {
 export default ProgressBar;
 
 const ProgressBarContainer = styled.div`
-  padding-left: 5px;
+  padding-left: 10px;
 `;
