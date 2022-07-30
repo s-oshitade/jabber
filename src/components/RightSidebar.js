@@ -76,8 +76,7 @@ function RightSidebar () {
               id={doc.id}
               status={complete}
               goal={goal}
-              update={updateGoal}
-              reset={resetGoal}
+              update={complete === false ? updateGoal : resetGoal}
             />
           )
         })}
