@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
 
-function ProjectGoal ({goal, status, id, update}) {
+function ProjectGoal ({goal, status, id, update, reset}) {
 
   return(
     <ProjectGoalContainer
