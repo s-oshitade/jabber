@@ -69,8 +69,7 @@ function RightSidebar () {
               id={doc.id}
               status={complete}
               goal={goal}
-              roomId={roomId}
-              onClick={() => {updateGoal(doc.id)}}
+              update={updateGoal}
             />
           )
         })}
