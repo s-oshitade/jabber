@@ -43,21 +43,31 @@ function RightSidebar () {
       })
   
   }
+
+  const resetGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        complete: false
+      })
+  
+  }
   
 
   return (
     <RightSidebarContainer>
       <RightSidebarUpper>
+
       <ProgressBar 
         projectName={roomDetails?.data().name}
         goalTotal={projectPlan?.docs.length}
         completed={finishedGoals?.docs.length}
       />
+      <hr />
         <RightSidebarOption
         onClick={addProjectGoal}
         >
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
+        <hr />
 
 
         {projectPlan?.docs.map(doc => {
@@ -69,8 +79,7 @@ function RightSidebar () {
               id={doc.id}
               status={complete}
               goal={goal}
-              roomId={roomId}
-              onClick={() => {updateGoal(doc.id)}}
+              update={complete === false ? updateGoal : resetGoal}
             />
           )
         })}
@@ -106,6 +115,15 @@ const RightSidebarContainer = styled.div`
 
 const RightSidebarUpper = styled.div`
   height: 50%;
+  font-size: 14px;
+  font-weight: 500;
+
+  > hr {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border: 1px solid #154c79;
+  }
+
 
   > .incomplete {
     color: white;

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
 
-function ProjectGoal ({goal, status, id, onClick}) {
+function ProjectGoal ({goal, status, id, update}) {
 
   return(
     <ProjectGoalContainer
-      onClick={onClick}
+      onClick={() => {update(id)}}
     >
       {status ? <CheckIcon fontsize="small" className="complete" /> : <ArrowRightIcon fontsize="small" className="incomplete" /> } {goal}
 
