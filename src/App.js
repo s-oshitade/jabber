@@ -22,14 +22,14 @@ function App() {
 
   const [token, setToken] = useState('');
 
-  // useEffect (() => {
-  //   async function getToken() {
-  //     const response = await fetch('/auth/token');
-  //     const json = await response.json();
-  //     setToken(json.access_token)
-  //   }
-  //   getToken();
-  // }, [])
+  useEffect (() => {
+    async function getToken() {
+      const response = await fetch('/auth/token');
+      const json = await response.json();
+      setToken(json.access_token)
+    }
+    getToken();
+  }, [])
 
   if (loading) {
     return (
