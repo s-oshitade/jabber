@@ -20,18 +20,16 @@ function NewTaskForm(props) {
       return;
     }
 
-    //1. Submit task to firebease store with a default "done" state being false
+    //Submit task to firebease store with a default "done" state being false
+    setDone(false)
     db.collection("users").doc("todoLists").collection(userEmail).add({
       task: task,
       done: done
     }) 
 
-    //2. Render updated items on screen: props.addTask, to include {todo: {task: task}}
-    //handle this asynchronously and run props.addTask(res.data);
- 
-
-    
-   setTask('');
+    //2. Update the onscreen tasklist
+    props.addTask(task);
+    setTask('');
   }
   
 
