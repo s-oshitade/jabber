@@ -31,7 +31,7 @@ const app = express();
 app.get('/auth/login', (req, res) => {
 
   // allow permission for streaming, user-read-email and user-read-private
-  const scope = "streaming user-read-email user-read-private"
+  const scope = "streaming user-read-email user-read-private user-read-playback-state user-library-read user-library-modify"
   const state = generateRandomString(16); // //randomly generated string to protect against attacks such as cross-site request forgery.
 
   const auth_query_parameters = new URLSearchParams({
