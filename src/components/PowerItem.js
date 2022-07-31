@@ -25,7 +25,8 @@ function PowerItem({id, task, done}) {
   }
 
   function handleRemove(e) {
-    //...
+    console.log("Removal attempted")
+    db.collection("users").doc("todoLists").collection(userEmail).doc(id).delete();
   }
 
   return (
