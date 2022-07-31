@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 
-function WebPlayback({token}) {
+function MusicPlayer({token}) {
 console.log(token);
 return (
   <SpotifyPlayer
@@ -12,4 +12,4 @@ return (
     
   }
 
-export default WebPlayback
+export default MusicPlayer
