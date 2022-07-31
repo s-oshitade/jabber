@@ -2,7 +2,6 @@ import React from 'react';
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import styled from "styled-components";
 
 import PowerItem from "./PowerItem";
 import NewTaskForm from "./NewTaskForm";

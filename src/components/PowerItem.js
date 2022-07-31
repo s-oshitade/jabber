@@ -33,7 +33,7 @@ function PowerItem({id, task, done}) {
     <li>
       <input type="checkbox" checked={done} onChange={handleFinish}/>
       {task}
-      <a href="#" onClick={handleRemove} ><DeleteIcon /></a>
+      <a href="#" onClick={handleRemove} ><DeleteIcon id="thrash-can"/></a>
     </li>
   )
 }
