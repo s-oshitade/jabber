@@ -18,7 +18,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getFirestore, collection } from 'firebase/firestore';
 import SpotifyLogin from './SpotifyLogin';
-import WebPlayback from './WebPlayback';
+import MusicPlayer from './MusicPlayer';
 
 
 
@@ -55,7 +55,7 @@ function Sidebar({token}) {
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} />
       ))}
      
-      { (token === '') ? <SpotifyLogin /> : <WebPlayback /> }
+      { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
 
     </SidebarContainer>
   )
