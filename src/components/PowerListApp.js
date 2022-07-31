@@ -1,36 +1,27 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 import PowerItem from "./PowerItem";
 import NewTaskForm from "./NewTaskForm";
-import data from './data';
-
 
 function PowerListApp() {
-  const [tasks, setTasks] = useState([]);
   const [user] = useAuthState(auth);
-  
-  useEffect(() => {
-    // Insert line of code for get request to data store
-    // const info = db.collection('users').doc('KrpJ8Q2woz1cosLoCEwH').collection('todos');
-    // console.log(info);
-
-    setTasks(data)
-
-  }, []);
-
-  function addTask(task) {
-    setTasks([...tasks, task])
-  }
+  const userEmail = user?.email
+  const[todos] = useCollection(db.collection("users").doc("todoLists").collection(userEmail))
 
   return (
     <div className="PowerListApp">
-      <h4>{user.displayName} List</h4>
-      <NewTaskForm addTask={addTask} />
+      <h4>{user.displayName}'s List</h4>
+      <NewTaskForm />
       <ul>
-        {tasks.map(task => <PowerItem key={task.id} {...task}>{task.task}</PowerItem>)}
+        {todos?.docs.map((doc) => (
+          <PowerItem key={doc.id} 
+            id={doc.id}
+            task={doc.data().task}
+            done={doc.data().done}></PowerItem>
+          ))}
       </ul>
     </div>
   )
