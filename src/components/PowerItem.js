@@ -13,7 +13,7 @@ function PowerItem({id, task, done}) {
    console.log("I got clicked!")
    console.log(id)
     //Update the database wrt the state of done
-    if (done === false){
+    if (!done){
       db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
         done: true
       });
