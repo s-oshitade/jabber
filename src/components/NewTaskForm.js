@@ -14,7 +14,12 @@ function NewTaskForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+    //Handle empty submisison
+    if(!task){
+      alert("Task cannot be empty.");
+      return;
+    }
+
     //1. Submit task to firebease store with a default "done" state being false
     db.collection("users").doc("todoLists").collection(userEmail).add({
       task: task,
@@ -23,10 +28,7 @@ function NewTaskForm(props) {
 
     //2. Render updated items on screen: props.addTask, to include {todo: {task: task}}
     //handle this asynchronously and run props.addTask(res.data);
-    if(!task){
-      alert("Task cannot be empty.");
-      return;
-    }
+ 
 
     
    setTask('');
