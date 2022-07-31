@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-
+import  SpotifyLogin  from './SpotifyLogin'
 
 
 function SidebarOption ({ Icon, title, addChannelOption, id }) {
@@ -62,9 +62,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
   };
 
   return (
+    
     <SidebarOptionContainer
       onClick={addChannelOption ? addChannel : selectChannel}
     >   
+    
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>

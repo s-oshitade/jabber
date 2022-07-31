@@ -3,10 +3,24 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 
 
 function MusicPlayer({token}) {
-console.log(token);
+
+
 return (
   <SpotifyPlayer
+  uris={["spotify:artist:3TVXtAsR1Inumwj472S9r4"]}
   token={token}
+  persistDeviceSelection={true}
+  showSaveIcon={true}
+  syncExternalDevice={true}
+  styles={{
+    activeColor: '#fff',
+    bgColor: '#333',
+    color: '#fff',
+    loaderColor: '#fff',
+    sliderColor: '#1cb954',
+    trackArtistColor: '#ccc',
+    trackNameColor: '#fff',
+  }}
 />
 );
     
