@@ -8,14 +8,20 @@ import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
 function NewTaskForm(props) {
   const [task, setTask] = useState('');
+  const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
+  const userEmail = user?.email
 
   function handleSubmit(e) {
     e.preventDefault();
-    //send post request to datastore at the appropriate route, with the inputted data
-    const info = db.collection('users').doc('KrpJ8Q2woz1cosLoCEwH').collection('todos');
-    console.log(info?.data())
-    // Render updated items on screen: props.addTask, to include {todo: {task: task}}
+    
+    //1. Submit task to firebease store with a default "done" state being false
+    db.collection("users").doc("todoLists").collection(userEmail).add({
+      task: task,
+      done: done
+    }) 
+
+    //2. Render updated items on screen: props.addTask, to include {todo: {task: task}}
     //handle this asynchronously and run props.addTask(res.data);
     if(!task){
       alert("Task cannot be empty.");
