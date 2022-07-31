@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from 'firebase';
-import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
-
-function NewTaskForm(props) {
+function NewTaskForm() {
   const [task, setTask] = useState('');
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
@@ -27,12 +24,10 @@ function NewTaskForm(props) {
       done: done
     }) 
 
-    //2. Update the onscreen tasklist
-    props.addTask(task);
+    //Clear newtask input
     setTask('');
   }
   
-
   return (
     <Input>
     <form onSubmit={handleSubmit}>
