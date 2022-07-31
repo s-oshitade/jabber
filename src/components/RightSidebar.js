@@ -141,9 +141,10 @@ const PowerListContainer = styled.div`
   :hover {
     background: black;
   }
-  >h4 {
+  >div >h4 {
     padding-left: 10px;
     padding-top: 5px;
+    padding-bottom: 5px;
   }
 
 `;
