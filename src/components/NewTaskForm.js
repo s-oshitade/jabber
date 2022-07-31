@@ -2,31 +2,32 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from 'firebase';
-import ControlPointIcon from "@material-ui/icons/ControlPoint";
 
-
-function NewTaskForm(props) {
+function NewTaskForm() {
   const [task, setTask] = useState('');
+  const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
+  const userEmail = user?.email
 
   function handleSubmit(e) {
     e.preventDefault();
-    //send post request to datastore at the appropriate route, with the inputted data
-    const info = db.collection('users').doc('KrpJ8Q2woz1cosLoCEwH').collection('todos');
-    console.log(info?.data())
-    // Render updated items on screen: props.addTask, to include {todo: {task: task}}
-    //handle this asynchronously and run props.addTask(res.data);
+    //Handle empty submisison
     if(!task){
       alert("Task cannot be empty.");
       return;
     }
 
-    
-   setTask('');
+    //Submit task to firebease store with a default "done" state being false
+    setDone(false)
+    db.collection("users").doc("todoLists").collection(userEmail).add({
+      task: task,
+      done: done
+    }) 
+
+    //Clear newtask input
+    setTask('');
   }
   
-
   return (
     <Input>
     <form onSubmit={handleSubmit}>
