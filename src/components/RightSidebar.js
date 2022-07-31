@@ -160,6 +160,7 @@ const PowerListContainer = styled.div`
 
   #thrash-can{
     color: pink;
+    cursor: pointer;
     :hover {
       color: tomato;
     }
