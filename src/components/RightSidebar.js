@@ -137,16 +137,33 @@ const RightSidebarUpper = styled.div`
 const PowerListContainer = styled.div`
   font-size: small;
   height: 50%;
-  
-  :hover {
-    background: black;
-  }
+
   >div >h4 {
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
   }
 
+  >div >ul {
+    list-style: none;
+    padding-inline-start: 10px;
+     
+  }
+
+  >div >ul >li {
+    margin-left: 2px;
+    :hover {
+      opacity: 0.9;
+      background-color: #154c79;
+    }
+  }
+
+  #thrash-can{
+    color: pink;
+    :hover {
+      color: tomato;
+    }
+  }
 `;
 
 const RightSidebarOption = styled.div`
