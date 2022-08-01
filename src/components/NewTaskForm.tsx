@@ -3,11 +3,27 @@ import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
 function NewTaskForm() {
   const [task, setTask] = useState('');
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
   const userEmail = user?.email
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,15 +46,27 @@ function NewTaskForm() {
   
   return (
     <Input>
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text" 
-        value={task}  
-        onChange={e => setTask(e.target.value)}
-        placeholder="Enter todo">
-      </input>
-     <button>Add</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text" 
+          value={task}  
+          onChange={e => setTask(e.target.value)}
+          placeholder="Enter todo">
+        </input>
+        {!task && <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+        }}
+      >
+        <Typography sx={{ p: 2 }}>Please add a task.</Typography>
+      </Popover>}
+      <button onClick={handleClick}>Add</button>
+      </form>
     </Input>
   )
 }

@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 import PowerItem from "./PowerItem";
-import NewTaskForm from "./NewTaskForm";
+import NewTaskForm from "./NewTaskForm.tsx";
 
 function PowerListApp() {
   const [user] = useAuthState(auth);
