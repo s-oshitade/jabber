@@ -78,6 +78,11 @@ const Input = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
+      > button {
+      background-color: darkgray;
+      color: white;
+      font-weight: 600;
+    }
   }
 
   > form > input {
@@ -88,7 +93,13 @@ const Input = styled.div`
     border-radius: 3px;
     padding: 10px;
     outline: none;
+    background-color: #154c79;
+    color: gray;
   }
+
+  /* > form > button {
+    background-color: black;
+  } */
 
   margin-left: 10px;
   width: 90%;
