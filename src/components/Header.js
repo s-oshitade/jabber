@@ -6,8 +6,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import SpotifyLogin from './SpotifyLogin';
+import MusicPlayer from './MusicPlayer';
 
-function Header () {
+function Header ({token}) {
   const [user] = useAuthState(auth);
 
   return (
@@ -19,14 +21,16 @@ function Header () {
          alt={user?.displayName}
         />
         <AccessTimeIcon />
+        
       </HeaderLeft>
-
+     
       <HeaderSearch>
         <SearchIcon />
         <input placeholder="Search..." />
       </HeaderSearch>
 
-      <HeaderRight>
+      <HeaderRight token={token}>
+      { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
         <HelpOutlineIcon />
       </HeaderRight>
         

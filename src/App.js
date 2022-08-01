@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -22,6 +22,17 @@ import RightSidebar from './components/RightSidebar';
 function App() {
   const [user, loading] = useAuthState(auth);
   const roomId = useSelector(selectRoomId)
+
+  const [token, setToken] = useState('');
+
+  useEffect (() => {
+    async function getToken() {
+      const response = await fetch('/auth/token');
+      const json = await response.json();
+      setToken(json.access_token)
+    }
+    getToken();
+  }, [])
 
   if (loading) {
     return (
@@ -50,7 +61,7 @@ function App() {
           <Login />
         ) : (
           <>
-            <Header />
+            <Header token={token}/>
             <AppBody>
               <Sidebar />
               <Switch>
