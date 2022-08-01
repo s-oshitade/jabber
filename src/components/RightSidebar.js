@@ -126,7 +126,9 @@ const RightSidebarContainer = styled.div`
   margin-top: 60px;
  
   > hr {
-    border: 0.01px dotted #dceefe;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border: 0.5px solid #154c79;
   }
 
 `;
@@ -139,7 +141,7 @@ const RightSidebarUpper = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 1px solid #154c79;
+    border: 0.5px solid #154c79;
   }
 
 
@@ -156,15 +158,23 @@ const PowerListContainer = styled.div`
   font-size: small;
   height: 50%;
 
-  >div >h4 {
+  >div {
+    margin-bottom: 10px;
+  }
+
+  >div >span {
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
   }
 
   >div >ul {
     list-style: none;
     padding-inline-start: 10px;
+    vertical-align: middle;
      
   }
 
@@ -173,15 +183,19 @@ const PowerListContainer = styled.div`
     :hover {
       opacity: 0.9;
       background-color: #154c79;
+      >#cancel-icon {
+        visibility: visible;
+      }
     }
   }
 
-  #thrash-can{
-    color: pink;
+  #cancel-icon{
+    color: red;
     cursor: pointer;
-    :hover {
-      color: tomato;
-    }
+    visibility: toggle;
+    /* :hover {
+      visibility: visible;
+    } */
   }
 `;
 
