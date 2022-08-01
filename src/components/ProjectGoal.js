@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import ClearIcon from '@material-ui/icons/Clear';
+
 
 function ProjectGoal ({goal, status, id, update}) {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  }
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  }
 
   return(
     <ProjectGoalContainer
-      onClick={() => {update(id)}}
+      onMouseOver={handleMouseOver} 
+      onMouseOut={handleMouseOut}
     >
-      {status ? <CheckIcon fontsize="small" className="complete" /> : <ArrowRightIcon fontsize="small" className="incomplete" /> } {goal}
+      {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
+
+      <ProjectGoalIcons>
+        {isHovering && <> <EditIcon style={{color: "lightgreen" }} /> <ClearIcon style={{color: "red"}} /> </>}
+      </ProjectGoalIcons>
 
     </ ProjectGoalContainer>
   )
@@ -36,4 +53,10 @@ const ProjectGoalContainer = styled.div`
   color: white;
 }
 
+`;
+
+const ProjectGoalIcons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 5px;
 `;
