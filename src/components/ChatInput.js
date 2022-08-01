@@ -57,12 +57,6 @@ function ChatInput({channelName, channelId, chatRef}) {
 }
 
 export default ChatInput
-const ChatInputRight = styled.div`
-
-`
-const ChatInputRightIcons = styled.div`
-
-`
 
 const ChatInputContainer = styled.div`
   border-radius: 15px;
@@ -76,11 +70,6 @@ const ChatInputContainer = styled.div`
   justify-content: space-between;
   padding: 20px;
   width: 55%;
-
-// input 
-//border: none;
-//outline: none;
-
 
   /* > form {
     position: relative;
