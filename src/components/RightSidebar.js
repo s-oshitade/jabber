@@ -167,11 +167,14 @@ const PowerListContainer = styled.div`
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
   }
 
   >div >ul {
     list-style: none;
     padding-inline-start: 10px;
+    vertical-align: middle;
      
   }
 
@@ -180,15 +183,19 @@ const PowerListContainer = styled.div`
     :hover {
       opacity: 0.9;
       background-color: #154c79;
+      >#cancel-icon {
+        visibility: visible;
+      }
     }
   }
 
-  #thrash-can{
-    color: pink;
+  #cancel-icon{
+    color: red;
     cursor: pointer;
-    :hover {
-      color: tomato;
-    }
+    visibility: toggle;
+    /* :hover {
+      visibility: visible;
+    } */
   }
 `;
 
