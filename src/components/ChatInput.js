@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { auth, db } from '../firebase';
 import firebase from 'firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
 function ChatInput({channelName, channelId, chatRef}) {
 
@@ -37,41 +38,76 @@ function ChatInput({channelName, channelId, chatRef}) {
     
   }
   return <ChatInputContainer>
+    
     <form>
       <input 
         onChange={e => setInput(e.target.value)}
         value={input}  
         placeholder={`Message #${channelName}`}>
       </input>
+      
       <Button hidden type='submit' onClick={sendMessage}>
         SEND
       </Button>
+      
     </form>
+    <EmojiEmotionsIcon className='emoji-icon'/>
   </ChatInputContainer>
+  
 }
 
 export default ChatInput
+const ChatInputRight = styled.div`
+
+`
+const ChatInputRightIcons = styled.div`
+
+`
 
 const ChatInputContainer = styled.div`
-  border-radius: 20px;
+  border-radius: 15px;
 
-  > form {
+  //outermost div  
+  display: flex;
+  position: fixed;
+  bottom: 30px;
+  border: 1px solid gray;
+  margin-left: 2em;
+  justify-content: space-between;
+  padding: 20px;
+  width: 55%;
+
+// input 
+//border: none;
+//outline: none;
+
+
+  /* > form {
     position: relative;
     display: flex;
     justify-content: center;
-  }
+  } */
 
   > form > input {
-    position: fixed;
+    /* position: fixed;
     bottom: 30px;
-    width: 50%;
-    border: 1px solid gray;
+    width: 50%; */
+    /* border: 1px solid ;
     border-radius: 3px;
     padding: 20px;
+    outline: none; */
+
+    border: none;
     outline: none;
+    width: 300px;
   }
 
   > form > button {
     display: none !important;
+  }
+
+  > .emoji-icon {
+    display: flex;
+    align-items: center;
   }
 `;

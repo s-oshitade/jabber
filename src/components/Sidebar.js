@@ -48,7 +48,7 @@ function Sidebar({token}) {
       </SidebarHeader>
       
        <a className="btn-spotify" href="/auth/login"> 
-       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" />
+       <SidebarOption Icon={LibraryMusicIcon} title="Music Player"/>
       </a> 
       
       <SidebarOption Icon={InsertCommentIcon} title="Threads" />
