@@ -1,6 +1,8 @@
 const express = require('express');
 const request = require('request')
 const dotenv = require('dotenv')
+const morgan = require('morgan');
+const fetch = require('node-fetch');
 
 const port = 5001;
 
@@ -25,7 +27,7 @@ const generateRandomString = function (length) {
 };
 
 const app = express();
-
+app.use(morgan("dev"));
 //request user authorization by getting an Authorization Code.
 //redirect the user to a web page where they can choose to grant our application access to their premium account
 app.get('/auth/login', (req, res) => {
