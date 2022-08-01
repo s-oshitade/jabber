@@ -14,7 +14,7 @@ return (
   syncExternalDevice={true}
   styles={{
     activeColor: '#fff',
-    bgColor: '#333',
+    bgColor: 'none',
     color: '#fff',
     loaderColor: '#fff',
     sliderColor: '#1cb954',

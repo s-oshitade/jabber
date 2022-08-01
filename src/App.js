@@ -58,9 +58,9 @@ function App() {
           <Login />
         ) : (
           <>
-            <Header />
+            <Header token={token}/>
             <AppBody>
-              <Sidebar token={token}/>
+              <Sidebar />
               <Switch>
                 <Route path="/room/:roomId">
                   <Chat />

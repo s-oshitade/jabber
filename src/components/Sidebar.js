@@ -50,7 +50,7 @@ function Sidebar({token}) {
        <a className="btn-spotify" href="/auth/login"> 
        <SidebarOption Icon={LibraryMusicIcon} title="Music Player" />
       </a> 
-      { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
+      
       <SidebarOption Icon={InsertCommentIcon} title="Threads" />
       <SidebarOption Icon={InboxIcon} title="Mentions & Reactions" />
       <SidebarOption Icon={DraftsIcon} title="Saved Items" />
