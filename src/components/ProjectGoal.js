@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
+import EditIcon from '@material-ui/icons/Edit';
+import ClearIcon from '@material-ui/icons/Clear';
 
-function ProjectGoal ({goal, status, id, update}) {
+
+function ProjectGoal ({goal, status, id, update, edit, remove}) {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  }
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  }
 
   return(
     <ProjectGoalContainer
-      onClick={() => {update(id)}}
-    >
-      {status ? <CheckIcon fontsize="small" className="complete" /> : <ArrowRightIcon fontsize="small" className="incomplete" /> } {goal}
+      onMouseOver={handleMouseOver} 
+      onMouseOut={handleMouseOut}
+    > 
+    <ProjectGoalInfo>
+      {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
+      </ProjectGoalInfo>
+      <ProjectGoalIcons>
+        {isHovering && <> <EditIcon onClick={() => {edit(id)}} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
+      </ProjectGoalIcons>
 
     </ ProjectGoalContainer>
   )
@@ -19,7 +37,7 @@ export default ProjectGoal;
 
 const ProjectGoalContainer = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   padding-left: 5px;
   cursor: pointer;
 
@@ -28,12 +46,23 @@ const ProjectGoalContainer = styled.div`
   background-color: #154c79;
 }
 
-> .complete {
-  color: lightgreen;
+
+`;
+
+const ProjectGoalInfo = styled.div`
+  display: flex;
+  align-items: center;
+
+  > .complete {
+    color: lightgreen;
 }
 
-> .incomplete {
-  color: white;
-}
+  > .incomplete {
+    color: white;
+  }
+`;
+
+const ProjectGoalIcons = styled.div`
+
 
 `;
