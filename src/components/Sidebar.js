@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from "styled-components";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CreateIcon from "@material-ui/icons/Create";
@@ -12,17 +13,26 @@ import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import AppsIcon from "@material-ui/icons/Apps";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AddIcon from "@material-ui/icons/Add";
 import { auth, db } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getFirestore, collection } from 'firebase/firestore';
+import SpotifyLogin from './SpotifyLogin';
+import MusicPlayer from './MusicPlayer';
+import { DragHandle } from '@material-ui/icons';
 
 
 
-function Sidebar() {
+function Sidebar({token}) {
   const [user] = useAuthState(auth);
+  const [showPlayer, setShowPlayer] = useState(false);
   const [channels, loading, error] = useCollection(db.collection("rooms"));
+
+  // const handleClick = () => {
+  //   setShowPlayer(true);
+  // }
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -36,7 +46,11 @@ function Sidebar() {
         </SidebarInfo>
           <CreateIcon />
       </SidebarHeader>
-
+      
+       <a className="btn-spotify" href="/auth/login"> 
+       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" />
+      </a> 
+      
       <SidebarOption Icon={InsertCommentIcon} title="Threads" />
       <SidebarOption Icon={InboxIcon} title="Mentions & Reactions" />
       <SidebarOption Icon={DraftsIcon} title="Saved Items" />
@@ -52,6 +66,9 @@ function Sidebar() {
       {channels?.docs.map((doc) => (
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
       ))}
+     
+      
+
     </SidebarContainer>
   )
 }
