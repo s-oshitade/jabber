@@ -38,6 +38,7 @@ return (
       styles={{
         activeColor: '#fff',
         bgColor: 'none',
+        height: '2em',
         color: '#fff',
         loaderColor: '#fff',
         sliderColor: '#1cb954',

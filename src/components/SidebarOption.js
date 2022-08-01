@@ -5,10 +5,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import  SpotifyLogin  from './SpotifyLogin'
+import ForumIcon from '@material-ui/icons/Forum';
+import LockIcon from '@material-ui/icons/Lock';
 
 
-function SidebarOption ({ Icon, title, addChannelOption, id }) {
+
+
+function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic}) {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
@@ -50,7 +53,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
                 roomId: id
               }))
             } else {
+              if (userInput) {
               alert('Wrong password!');
+              }
             }
           } else {
           dispatch(enterRoom({
@@ -65,16 +70,21 @@ function SidebarOption ({ Icon, title, addChannelOption, id }) {
     
     <SidebarOptionContainer
       onClick={addChannelOption ? addChannel : selectChannel}
+      className={id && "channel"}
     >   
     
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
       ): (
-        <SidebarOptionChannel>
-           <span>#</span> {title} 
+        <SidebarOptionChannel
+        className={userState} >
+           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
+           
+           
         </SidebarOptionChannel>
       )}
+
     </SidebarOptionContainer>
   )
 }
@@ -100,10 +110,21 @@ const SidebarOptionContainer = styled.div`
   > h3 > span {
     padding: 15px; 
   }
+
+  > .owner {
+    color: lightgreen;
+  }
+
+  > .guest {
+    color: white;
+  }
 `;
 
 const SidebarOptionChannel = styled.h3`
   padding: 10px 0;
   font-weight: 300;
-  
+  display: flex;
+  align-items: center;
+
+
 `;

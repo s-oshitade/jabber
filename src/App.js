@@ -12,6 +12,8 @@ import Sidebar from "./components/Sidebar";
 import Chat from './components/Chat';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
+import { useSelector } from 'react-redux';
+import { selectRoomId } from './features/counter/appSlice';
 import Login from "./components/Login";
 import Spinner from "react-spinkit";
 
@@ -19,6 +21,7 @@ import RightSidebar from './components/RightSidebar';
 
 function App() {
   const [user, loading] = useAuthState(auth);
+  const roomId = useSelector(selectRoomId)
 
   const [token, setToken] = useState('');
 
@@ -67,7 +70,7 @@ function App() {
                 </Route>
                 <Route path="/">
                   <Chat />
-                  <RightSidebar />
+                  {roomId && <RightSidebar />} 
                 </Route>
               </Switch>
             </AppBody>

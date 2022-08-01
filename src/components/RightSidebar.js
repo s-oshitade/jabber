@@ -5,8 +5,11 @@ import { selectRoomId } from '../features/counter/appSlice';
 import { db } from '../firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import AddIcon from "@material-ui/icons/Add";
-import PowerItem from './PowerItem';
-import PowerInput from './PowerInput';
+import PowerListApp from './PowerListApp';
+import ProgressBar from './ProgressBar';
+import ProjectGoal from './ProjectGoal';
+
+
 
 function RightSidebar () {
   const roomId = useSelector(selectRoomId)
@@ -15,21 +18,97 @@ function RightSidebar () {
     roomId && db.collection('rooms').doc(roomId)
   )
 
+  const [projectPlan] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection("project")
+  )
+
+  const [finishedGoals] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection("project").where("complete", "==", true)
+  )
+
+  const addProjectGoal = () => {
+    const goal = prompt('Please enter a project goal')
+
+    if (goal) {
+      db.collection("rooms").doc(roomId).collection("project").add({
+        goal: goal,
+        complete: false
+      })
+    }
+  }
+
+  const updateGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        complete: true
+      })
+  
+  }
+
+  const resetGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        complete: false
+      })
+  
+  }
+
+  const editGoal = (id) => {
+    const goal = prompt('Edit this goal:')
+
+    if (goal) {
+      db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        goal: goal,
+        complete: false
+      })
+    }
+
+  }
+
+  const removeGoal = (id) => {
+    db.collection("rooms").doc(roomId).collection("project").doc(id).delete();
+  }
+  
+
   return (
     <RightSidebarContainer>
       <RightSidebarUpper>
 
-        <RightSidebarOption>
-          <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project plan</span>
+      <ProgressBar 
+        projectName={roomDetails?.data().name}
+        goalTotal={projectPlan?.docs.length}
+        completed={finishedGoals?.docs.length}
+      />
+      <hr />
+        <RightSidebarOption
+        onClick={addProjectGoal}
+        >
+          <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
+        <hr />
+
+
+        {projectPlan?.docs.map(doc => {
+          const { goal, complete } = doc.data();
+
+          return (
+            <ProjectGoal
+              key={doc.id}
+              id={doc.id}
+              status={complete}
+              goal={goal}
+              update={complete === false ? updateGoal : resetGoal}
+              edit={editGoal}
+              remove={removeGoal}
+            />
+          )
+        })}
+
+
 
       </RightSidebarUpper>
       <hr />
+      
       <PowerListContainer>
-
-      <h4>#Username's Powerlist</h4>
-        <PowerItem />
-        <PowerInput />
+        <PowerListApp />
       </PowerListContainer>
 
     </RightSidebarContainer>
@@ -49,23 +128,61 @@ const RightSidebarContainer = styled.div`
   > hr {
     border: 0.01px dotted #dceefe;
   }
+
 `;
 
 const RightSidebarUpper = styled.div`
   height: 50%;
+  font-size: 14px;
+  font-weight: 500;
 
+  > hr {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border: 1px solid #154c79;
+  }
+
+
+  > .incomplete {
+    color: white;
+  }
+
+  > .complete {
+    color: lightgreen;
+  }
 `;
 
 const PowerListContainer = styled.div`
+  font-size: small;
   height: 50%;
-  :hover {
-    background: black;
-  }
-  >h4 {
+
+  >div >h4 {
     padding-left: 10px;
     padding-top: 5px;
+    padding-bottom: 5px;
   }
 
+  >div >ul {
+    list-style: none;
+    padding-inline-start: 10px;
+     
+  }
+
+  >div >ul >li {
+    margin-left: 2px;
+    :hover {
+      opacity: 0.9;
+      background-color: #154c79;
+    }
+  }
+
+  #thrash-can{
+    color: pink;
+    cursor: pointer;
+    :hover {
+      color: tomato;
+    }
+  }
 `;
 
 const RightSidebarOption = styled.div`
@@ -79,4 +196,6 @@ const RightSidebarOption = styled.div`
     opacity: 0.9;
     background-color: #154c79;
   }
+
+
 `;
