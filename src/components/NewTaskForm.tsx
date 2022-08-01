@@ -53,7 +53,7 @@ function NewTaskForm() {
           onChange={e => setTask(e.target.value)}
           placeholder="Enter todo">
         </input>
-        {!task && <Popover
+        {/* {!task && <Popover
           id={id}
           open={open}
           anchorEl={anchorEl}
@@ -64,7 +64,7 @@ function NewTaskForm() {
         }}
       >
         <Typography sx={{ p: 2 }}>Please add a task.</Typography>
-      </Popover>}
+      </Popover>} */}
       <button onClick={handleClick}>Add</button>
       </form>
     </Input>
