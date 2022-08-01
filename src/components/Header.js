@@ -21,8 +21,9 @@ function Header ({token}) {
          alt={user?.displayName}
         />
         <AccessTimeIcon />
+        
       </HeaderLeft>
-
+     
       <HeaderSearch>
         <SearchIcon />
         <input placeholder="Search..." />
