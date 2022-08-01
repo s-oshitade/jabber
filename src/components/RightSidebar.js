@@ -158,10 +158,15 @@ const PowerListContainer = styled.div`
   font-size: small;
   height: 50%;
 
-  >div >h4 {
+  >div {
+    margin-bottom: 10px;
+  }
+
+  >div >span {
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 5px;
   }
 
   >div >ul {

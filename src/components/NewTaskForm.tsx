@@ -97,10 +97,6 @@ const Input = styled.div`
     color: gray;
   }
 
-  /* > form > button {
-    background-color: black;
-  } */
-
   margin-left: 10px;
   width: 90%;
 `

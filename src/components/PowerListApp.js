@@ -13,7 +13,7 @@ function PowerListApp() {
 
   return (
     <div className="PowerListApp">
-      <h4>{user.displayName}'s List</h4>
+      <span>{user.displayName}'s List</span>
       <NewTaskForm />
       <ul>
         {todos?.docs.map((doc) => (
