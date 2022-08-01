@@ -27,4 +27,4 @@ function PowerListApp() {
   )
 }
 
-export default PowerListApp
+export default PowerListApp;
