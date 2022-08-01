@@ -18,9 +18,12 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [roomDetails] = useDocument(
     id && db.collection('rooms').doc(id)
   )
+
+
  
   const addChannel = () => {
 
+    
 
     const channelName = prompt('Please enter the channel name');
 
