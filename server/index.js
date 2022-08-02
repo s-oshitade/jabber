@@ -30,34 +30,35 @@ app.use(morgan("dev"));
 
 const API_KEY ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjU5Mzc5ODY4LCJvcmdhbml6YXRpb25JZCI6MTY1ODIwLCJqdGkiOiJhMjRmMjg3NS1mYzI4LTQwMDEtYmQyYi0xNDg3OTlmNGViMzMifQ.N5fr9tRlxwnWvXQDRxY2wSLE2JkOJkSRp4Ub5Y04YJ0"
 
-const data = {
+const wherebyData = {
   endDate: "2099-02-18T14:23:00.000Z",
   fields: ["hostRoomUrl"],
 };
 
-function getResponse() {
-return fetch("https://api.whereby.dev/v1/meetings", {
-    method: "POST",
-    headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-});
-}
+  function getResponse() {
+  return fetch("https://api.whereby.dev/v1/meetings", {
+      method: "POST",
+      headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(wherebyData),
+  });
+  }
 
-app.get('/whereby/meeting', (req, res) => {
-  getResponse().then(async res => {
+  app.get('/whereby/meeting', async (req, res) => {
+    getResponse().then(async result => {
       console.log("Status code:", res.status);
-      const data = await res.json();
+      const data = await result.json();
+      res.send(data);
       console.log("Room URL:", data.roomUrl);
       console.log("Host room URL:", data.hostRoomUrl);
-  })
+    });
+    })
 
-  })
 
-  // console.log("Room URL:", data.roomUrl);
-  // console.log("Host room URL:", data.hostRoomUrl);
+
+
   
 
 // getResponse().then(async res => {
