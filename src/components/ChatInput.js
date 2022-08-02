@@ -40,7 +40,7 @@ function ChatInput({channelName, channelId, chatRef}) {
   return <ChatInputContainer>
     
     <form>
-      <input 
+      <input type="text"
         onChange={e => setInput(e.target.value)}
         value={input}  
         placeholder={`Message #${channelName}`}>
@@ -66,7 +66,7 @@ const ChatInputContainer = styled.div`
   position: fixed;
   bottom: 30px;
   border: 1px solid gray;
-  margin-left: 2em;
+  margin-left: 1.5em;
   justify-content: space-between;
   padding: 20px;
   width: 55%;
@@ -88,7 +88,7 @@ const ChatInputContainer = styled.div`
 
     border: none;
     outline: none;
-    width: 300px;
+    width: 600px;
   }
 
   > form > button {
