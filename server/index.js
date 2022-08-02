@@ -46,6 +46,20 @@ return fetch("https://api.whereby.dev/v1/meetings", {
 });
 }
 
+app.get('/whereby/meeting', (req, res) => {
+  getResponse().then(async res => {
+      console.log("Status code:", res.status);
+      const data = await res.json();
+      console.log("Room URL:", data.roomUrl);
+      console.log("Host room URL:", data.hostRoomUrl);
+  })
+
+  })
+
+  // console.log("Room URL:", data.roomUrl);
+  // console.log("Host room URL:", data.hostRoomUrl);
+  
+
 // getResponse().then(async res => {
 //   console.log("Status code:", res.status);
 //   const data = await res.json();
