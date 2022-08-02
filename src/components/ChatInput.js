@@ -5,6 +5,7 @@ import { auth, db } from '../firebase';
 import firebase from 'firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Picker from 'emoji-picker-react';
 function ChatInput({channelName, channelId, chatRef}) {
 
@@ -12,15 +13,21 @@ function ChatInput({channelName, channelId, chatRef}) {
   const [input, setInput] = useState('');
   const [user] = useAuthState(auth);
   const [chosenEmoji, setChosenEmoji] = useState(null);
-  const [showPicker, setShowPicker] = useState(true);
+  const [showPicker, setShowPicker] = useState(false);
   console.log(channelId);
 
   const onEmojiClick = (e, emojiObject) => {
     e.preventDefault();
     setInput(prevInput => prevInput + emojiObject.emoji)
     setChosenEmoji(false);
+    setShowPicker(false);
     //setChosenEmoji(emojiObject);
   };
+
+  const handleEmojiButtonClick = (e) => {
+    e.preventDefault();
+    setShowPicker(val => !val)
+  }
   
   const sendMessage = (e) => {
     e.preventDefault();
@@ -44,36 +51,51 @@ function ChatInput({channelName, channelId, chatRef}) {
     })
 
     setInput('');
+    setShowPicker(false);
     
   }
   return(
-    
-  <ChatInputContainer>
-    <form>
-      <input type="text"
-        onChange={e => setInput(e.target.value)}
-        value={input}  
-        placeholder={`Message #${channelName}`}>
-      </input>
-      { showPicker && 
+  <ChatContainer>
+     { showPicker && 
       <Picker 
-        pickerStyle={{width: '100%'}}
+        pickerStyle={{
+          position: 'absolute',
+          // top: '-220px',
+          width: '350px',
+          // right:' 0'
+          bottom: '105px',
+          left: '350px'
+      }}
         onEmojiClick={onEmojiClick} 
-      />} 
-      <Button hidden type='submit' onClick={sendMessage}>
-        SEND
-      </Button>
-    </form>
-    
-    <EmojiEmotionsIcon className='emoji-icon'
-      onClick={() => setShowPicker(val => !val)}
-    />
-    
-  </ChatInputContainer>
+    />} 
+    <ChatInputContainer>
+      <form>
+        <input type="text"
+          onChange={e => setInput(e.target.value)}
+          value={input}  
+          placeholder={`Message #${channelName}`}>
+        </input>
+        
+        <Button hidden type='submit' onClick={sendMessage}>
+          SEND
+        </Button>
+      </form>
+      < VideoCallIcon fontSize='medium'/>
+      <EmojiEmotionsIcon className='emoji-icon'
+        onClick={handleEmojiButtonClick}
+      />
+    </ChatInputContainer>
+  </ChatContainer>
   )
 }
 
 export default ChatInput
+
+const ChatContainer = styled.div`
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+`
 
 const ChatInputContainer = styled.div`
   border-radius: 15px;
