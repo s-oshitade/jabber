@@ -5,13 +5,22 @@ import { auth, db } from '../firebase';
 import firebase from 'firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-
+import Picker from 'emoji-picker-react';
 function ChatInput({channelName, channelId, chatRef}) {
 
   // useRef is used to get the text from the input field (<input>)
   const [input, setInput] = useState('');
   const [user] = useAuthState(auth);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [showPicker, setShowPicker] = useState(true);
   console.log(channelId);
+
+  // const onEmojiClick = (e, emojiObject) => {
+  //   e.preventDefault();
+  //   setInput(prevInput => prevInput + emojiObject.emoji)
+  //   setChosenEmoji(false);
+  //   //setChosenEmoji(emojiObject);
+  // };
   
   const sendMessage = (e) => {
     e.preventDefault();
@@ -37,23 +46,31 @@ function ChatInput({channelName, channelId, chatRef}) {
     setInput('');
     
   }
-  return <ChatInputContainer>
+  return(
     
+  <ChatInputContainer>
     <form>
       <input type="text"
         onChange={e => setInput(e.target.value)}
         value={input}  
         placeholder={`Message #${channelName}`}>
       </input>
-      
+      { showPicker && 
+      <Picker 
+        // pickerStyle={{width: '100%'}}
+        // onEmojiClick={onEmojiClick} 
+      />} 
       <Button hidden type='submit' onClick={sendMessage}>
         SEND
       </Button>
-      
     </form>
-    <EmojiEmotionsIcon className='emoji-icon'/>
+    
+    {/* <EmojiEmotionsIcon className='emoji-icon'
+      onClick={() => setShowPicker(val => !val)}
+    /> */}
+    
   </ChatInputContainer>
-  
+  )
 }
 
 export default ChatInput
