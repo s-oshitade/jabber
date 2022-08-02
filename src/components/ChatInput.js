@@ -60,9 +60,7 @@ function ChatInput({channelName, channelId, chatRef}) {
       <Picker 
         pickerStyle={{
           position: 'absolute',
-          // top: '-220px',
           width: '350px',
-          // right:' 0'
           bottom: '105px',
           left: '350px'
       }}
