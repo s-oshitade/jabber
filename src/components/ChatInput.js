@@ -15,12 +15,12 @@ function ChatInput({channelName, channelId, chatRef}) {
   const [showPicker, setShowPicker] = useState(true);
   console.log(channelId);
 
-  // const onEmojiClick = (e, emojiObject) => {
-  //   e.preventDefault();
-  //   setInput(prevInput => prevInput + emojiObject.emoji)
-  //   setChosenEmoji(false);
-  //   //setChosenEmoji(emojiObject);
-  // };
+  const onEmojiClick = (e, emojiObject) => {
+    e.preventDefault();
+    setInput(prevInput => prevInput + emojiObject.emoji)
+    setChosenEmoji(false);
+    //setChosenEmoji(emojiObject);
+  };
   
   const sendMessage = (e) => {
     e.preventDefault();
@@ -57,8 +57,8 @@ function ChatInput({channelName, channelId, chatRef}) {
       </input>
       { showPicker && 
       <Picker 
-        // pickerStyle={{width: '100%'}}
-        // onEmojiClick={onEmojiClick} 
+        pickerStyle={{width: '100%'}}
+        onEmojiClick={onEmojiClick} 
       />} 
       <Button hidden type='submit' onClick={sendMessage}>
         SEND
