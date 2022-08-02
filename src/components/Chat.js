@@ -133,7 +133,9 @@ const ChatBottom = styled.div`
   padding-bottom: 200px;
 `
 
-const ChatMessages = styled.div``;
+const ChatMessages = styled.div`
+  //position: relative;
+`;
 
 const LeftHeader = styled.div`
   display: flex;
