@@ -65,9 +65,9 @@ function ChatInput({channelName, channelId, chatRef}) {
       </Button>
     </form>
     
-    {/* <EmojiEmotionsIcon className='emoji-icon'
+    <EmojiEmotionsIcon className='emoji-icon'
       onClick={() => setShowPicker(val => !val)}
-    /> */}
+    />
     
   </ChatInputContainer>
   )
