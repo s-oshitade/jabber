@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import DeleteIcon from "@material-ui/icons/Delete";
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 function PowerItem({id, task, done}) {
@@ -30,15 +31,44 @@ function PowerItem({id, task, done}) {
   }
 
   return (
-    <li>
-      <input type="checkbox" checked={done} onChange={handleFinish}/>
-      {task}
-      <a href="#" onClick={handleRemove} ><DeleteIcon id="thrash-can"/></a>
-    </li>
+    <PowerListContainer>
+      <PowerListInfo>
+        <input type="checkbox" checked={done} onChange={handleFinish}/>
+        {task}
+        <a href="#" onClick={handleRemove} >
+        <ClearIcon id="clear-icon"/></a>
+      </PowerListInfo>
+    </PowerListContainer>
   )
 }
 
-export default PowerItem
+export default PowerItem;
 
+const PowerListContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2px;
+  cursor: pointer;
 
+  :hover {
+  opacity: 0.9;
+  background-color: #154c79;
+}
+`
+
+const PowerListInfo = styled.div`
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  >a {
+    color: red;
+    visibility: hidden;
+
+  }
+  :hover {
+      >a {
+        visibility: visible;
+    }
+  }
+`
 

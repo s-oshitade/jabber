@@ -88,7 +88,7 @@ const SidebarContainer = styled.div`
   > hr {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px solid #154c79;
+    border: 0.5px solid #154c79;
   }
 
   > .channel {

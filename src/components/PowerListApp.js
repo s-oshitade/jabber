@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 import PowerItem from "./PowerItem";
-import NewTaskForm from "./NewTaskForm";
+import NewTaskForm from "./NewTaskForm.tsx";
 
 function PowerListApp() {
   const [user] = useAuthState(auth);
@@ -13,7 +13,7 @@ function PowerListApp() {
 
   return (
     <div className="PowerListApp">
-      <h4>{user.displayName}'s List</h4>
+      <span>{user.displayName}'s List</span>
       <NewTaskForm />
       <ul>
         {todos?.docs.map((doc) => (
@@ -27,4 +27,4 @@ function PowerListApp() {
   )
 }
 
-export default PowerListApp
+export default PowerListApp;
