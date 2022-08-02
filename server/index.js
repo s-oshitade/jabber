@@ -1,7 +1,8 @@
 const express = require('express');
 const request = require('request')
 const dotenv = require('dotenv')
-
+const morgan = require('morgan');
+const fetch = require('cross-fetch');
 const port = 5001;
 
 global.access_token = ''
@@ -25,10 +26,52 @@ const generateRandomString = function (length) {
 };
 
 const app = express();
+app.use(morgan("dev"));
+
+const API_KEY ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjU5Mzc5ODY4LCJvcmdhbml6YXRpb25JZCI6MTY1ODIwLCJqdGkiOiJhMjRmMjg3NS1mYzI4LTQwMDEtYmQyYi0xNDg3OTlmNGViMzMifQ.N5fr9tRlxwnWvXQDRxY2wSLE2JkOJkSRp4Ub5Y04YJ0"
+
+const wherebyData = {
+  endDate: "2099-02-18T14:23:00.000Z",
+  fields: ["hostRoomUrl"],
+};
+
+  function getResponse() {
+  return fetch("https://api.whereby.dev/v1/meetings", {
+      method: "POST",
+      headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(wherebyData),
+  });
+  }
+
+  app.get('/whereby/meeting', async (req, res) => {
+    getResponse().then(async result => {
+      console.log("Status code:", res.status);
+      const data = await result.json();
+      res.send(data);
+      console.log("Room URL:", data.roomUrl);
+      console.log("Host room URL:", data.hostRoomUrl);
+    });
+    })
+
+
+
+
+  
+
+// getResponse().then(async res => {
+//   console.log("Status code:", res.status);
+//   const data = await res.json();
+//   console.log("Room URL:", data.roomUrl);
+//   console.log("Host room URL:", data.hostRoomUrl);
+// });
 
 //request user authorization by getting an Authorization Code.
 //redirect the user to a web page where they can choose to grant our application access to their premium account
 app.get('/auth/login', (req, res) => {
+
 
   // allow permission for streaming, user-read-email and user-read-private
   const scope = "streaming user-read-email user-read-private user-read-playback-state user-library-read user-library-modify user-top-read"
@@ -87,6 +130,7 @@ app.get('/auth/callback', (req, res) => {
 //This access token will be used to instantiate the Web Playback SDK.
 app.get('/auth/token', (req, res) => {
   res.json({ access_token: access_token})
+
 })
 
 
