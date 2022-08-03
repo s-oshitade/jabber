@@ -30,9 +30,10 @@ function Sidebar({token}) {
   const [showPlayer, setShowPlayer] = useState(false);
   const [channels, loading, error] = useCollection(db.collection("rooms"));
 
-  // const handleClick = () => {
-  //   setShowPlayer(true);
-  // }
+  const openSpotifyLogin = url => () => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+  
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -47,9 +48,11 @@ function Sidebar({token}) {
           <CreateIcon />
       </SidebarHeader>
       
-       <a className="btn-spotify" href="/auth/login"> 
-       <SidebarOption Icon={LibraryMusicIcon} title="Music Player"/>
-      </a> 
+
+       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
+
+
+      
       
       <SidebarOption Icon={InsertCommentIcon} title="Threads" />
       <SidebarOption Icon={InboxIcon} title="Mentions & Reactions" />

@@ -11,7 +11,7 @@ import LockIcon from '@material-ui/icons/Lock';
 
 
 
-function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic}) {
+function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic, openSpotifyLogin}) {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
@@ -76,7 +76,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   return (
     
     <SidebarOptionContainer
-      onClick={addChannelOption ? addChannel : selectChannel}
+      
+      onClick={openSpotifyLogin || (addChannelOption ? addChannel : selectChannel)}
       className={id && "channel"}
     >   
     
