@@ -32,6 +32,18 @@ function ChatInput({channelName, channelId, chatRef}) {
     setShowPicker(val => !val)
   }
   
+  const openVideoCall = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+
+    db.collection('rooms').doc(channelId).collection('messages')
+    .add({
+      message: "I've joined a video call!",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      user: user.displayName,
+      userImage: user.photoURL,
+    });
+  }
+
   const sendMessage = (e) => {
     e.preventDefault();
     
@@ -81,7 +93,7 @@ function ChatInput({channelName, channelId, chatRef}) {
           SEND
         </Button>
       </form>
-      < VideoCallIcon fontSize='medium'/>
+      < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
       <EmojiEmotionsIcon className='emoji-icon'
         onClick={handleEmojiButtonClick}
       />
@@ -138,6 +150,10 @@ const ChatInputContainer = styled.div`
   > .emoji-icon {
     display: flex;
     align-items: center;
+    cursor: pointer;
+  }
+
+  > .video-icon {
     cursor: pointer;
   }
 `;
