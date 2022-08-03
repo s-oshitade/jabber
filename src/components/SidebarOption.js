@@ -22,11 +22,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
  
   const addChannel = async () => {
-    // const response = await fetch('/whereby/meeting');
+    const response = await fetch('/whereby/meeting');
     
-    // const body = await response.json();
+    const body = await response.json();
 
-    // console.log(body);
+    console.log(body);
 
 
     const channelName = prompt('Please enter the channel name');
