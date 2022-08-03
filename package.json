@@ -22,6 +22,7 @@
     "react-scripts": "5.0.1",
     "react-spinkit": "^3.0.0",
     "react-spotify-web-playback": "^0.10.0",
+    "react-uploader": "^1.8.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

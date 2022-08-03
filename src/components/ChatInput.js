@@ -6,9 +6,15 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+
 import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
 import VideoCamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
+
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Picker from 'emoji-picker-react';
+
+import { Uploader } from "uploader";
+import { UploadButton } from "react-uploader";
 function ChatInput({channelName, channelId, chatRef}) {
 
   // useRef is used to get the text from the input field (<input>)
@@ -28,7 +34,7 @@ function ChatInput({channelName, channelId, chatRef}) {
     //setChosenEmoji(emojiObject);
   };
 
-  const handleEmojiButtonClick = (e) => {
+    const handleEmojiButtonClick = (e) => {
     e.preventDefault();
     setShowPicker(val => !val)
   }
@@ -44,6 +50,17 @@ function ChatInput({channelName, channelId, chatRef}) {
       userImage: user.photoURL,
     });
   }
+
+  const uploader = new Uploader({
+    // Get production API keys from Upload.io
+    apiKey: "free"
+  });
+
+ const handleFilePickerSubmit = (e) => {
+  console.log("handling filepickersubmit", e)
+  const file = e[0].originalFile.suggestedOptimization.transformationUrl;
+  setInput(prevInput => prevInput + file)
+ }
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -99,6 +116,16 @@ function ChatInput({channelName, channelId, chatRef}) {
 
         < VideoCamOutlinedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
         <EmojiEmotionsOutlinedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+        {/* < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} /> */}
+      <UploadButton uploader={uploader} 
+                    options={{multi: true}}
+                    onComplete={e => {handleFilePickerSubmit(e)}}>
+                    {({onClick}) =>
+
+                      <AddPhotoAlternateIcon onClick={onClick}></AddPhotoAlternateIcon>
+                    }
+      </UploadButton>
       </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
