@@ -22,20 +22,20 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
  
   const addChannel = async () => {
-    const response = await fetch('/whereby/meeting');
-    
-    const body = await response.json();
-
-    console.log(body);
-
-
     const channelName = prompt('Please enter the channel name');
 
     if (channelName){
+      const response = await fetch('/whereby/meeting');
+    
+      const body = await response.json();
+  
+
       db.collection("rooms").add({
         name: channelName,
         password: null,
-        owner: user.email
+        owner: user.email,
+        roomUrl: body.roomUrl,
+        hostUrl: body.hostRoomUrl
       });
     }
 
