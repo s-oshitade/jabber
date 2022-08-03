@@ -74,10 +74,10 @@ function ChatInput({channelName, channelId, chatRef}) {
      { showPicker && 
       <Picker 
         pickerStyle={{
-          position: 'absolute',
+          position: 'fixed',
           width: '350px',
-          bottom: '105px',
-          left: '350px'
+          bottom: '100px',
+          right: '355px'
       }}
         onEmojiClick={onEmojiClick} 
     />} 
@@ -108,6 +108,7 @@ const IconsContainer = styled.div`
   display: flex;
 
   > .emoji-icon {
+    font-size: 30px;
     color: rgb(185,187,190);
     display: flex;
     align-items: center;
@@ -115,6 +116,7 @@ const IconsContainer = styled.div`
   }
 
   > .video-icon {
+    font-size: 30px;
     color: rgb(185,187,190);
     cursor: pointer;
   }
@@ -136,6 +138,7 @@ const ChatInputContainer = styled.div`
   border: 1px solid gray;
   margin-left: 1.5em;
   justify-content: space-between;
+  align-items: center;
   padding: 15px;
   width: 55%;
 
@@ -149,7 +152,7 @@ const ChatInputContainer = styled.div`
 
   > form > input::placeholder {
     color: rgb(114,118,125);
-    font-size: smaller;
+    font-size: small;
     width: 400px;
   }
 
