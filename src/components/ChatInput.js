@@ -93,6 +93,7 @@ function ChatInput({channelName, channelId, chatRef}) {
           SEND
         </Button>
       </form>
+      
       < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
       <EmojiEmotionsIcon className='emoji-icon'
         onClick={handleEmojiButtonClick}
@@ -104,6 +105,8 @@ function ChatInput({channelName, channelId, chatRef}) {
 
 export default ChatInput
 
+
+
 const ChatContainer = styled.div`
   position: relative;
   /* display: flex;
@@ -111,8 +114,8 @@ const ChatContainer = styled.div`
 `
 
 const ChatInputContainer = styled.div`
-  border-radius: 15px;
-
+  border-radius: 12px;
+  background: rgb(64,68,75);
   //outermost div  
   display: flex;
   position: fixed;
@@ -120,24 +123,11 @@ const ChatInputContainer = styled.div`
   border: 1px solid gray;
   margin-left: 1.5em;
   justify-content: space-between;
-  padding: 20px;
+  padding: 15px;
   width: 55%;
 
-  /* > form {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  } */
-
   > form > input {
-    /* position: fixed;
-    bottom: 30px;
-    width: 50%; */
-    /* border: 1px solid ;
-    border-radius: 3px;
-    padding: 20px;
-    outline: none; */
-
+    background-color: rgb(64,68,75);
     border: none;
     outline: none;
     width: 600px;
@@ -148,12 +138,14 @@ const ChatInputContainer = styled.div`
   }
 
   > .emoji-icon {
+    color: rgb(185,187,190);
     display: flex;
     align-items: center;
     cursor: pointer;
   }
 
   > .video-icon {
+    color: rgb(185,187,190);
     cursor: pointer;
   }
 `;
