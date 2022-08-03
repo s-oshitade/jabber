@@ -8,6 +8,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Picker from 'emoji-picker-react';
+
+import { Uploader } from "uploader";
+import { UploadButton } from "react-uploader";
 function ChatInput({channelName, channelId, chatRef}) {
 
   // useRef is used to get the text from the input field (<input>)
@@ -27,7 +30,7 @@ function ChatInput({channelName, channelId, chatRef}) {
     //setChosenEmoji(emojiObject);
   };
 
-  const handleEmojiButtonClick = (e) => {
+    const handleEmojiButtonClick = (e) => {
     e.preventDefault();
     setShowPicker(val => !val)
   }
@@ -43,6 +46,17 @@ function ChatInput({channelName, channelId, chatRef}) {
       userImage: user.photoURL,
     });
   }
+
+  const uploader = new Uploader({
+    // Get production API keys from Upload.io
+    apiKey: "free"
+  });
+
+ const handleFilePickerSubmit = (e) => {
+  console.log("handling filepickersubmit", e)
+  const file = e[0].originalFile.suggestedOptimization.transformationUrl;
+  setInput(prevInput => prevInput + file)
+ }
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -97,6 +111,15 @@ function ChatInput({channelName, channelId, chatRef}) {
       <EmojiEmotionsIcon className='emoji-icon'
         onClick={handleEmojiButtonClick}
       />
+      <UploadButton uploader={uploader} 
+                    options={{multi: true}}
+                    onComplete={e => {handleFilePickerSubmit(e)}}>
+                    {({onClick}) =>
+                      <button onClick={onClick}>
+                        Upload a file...
+                      </button>
+                    }
+      </UploadButton>
     </ChatInputContainer>
   </ChatContainer>
   )
