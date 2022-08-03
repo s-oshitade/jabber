@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Message({message, timestamp, user, userImage}) {
+  let formattedMessage = message;
+  if (message.includes("upcdn.io")){
+    formattedMessage = <img src={message} alt="" width="200px"/>
+  }
+
+
   return (
     <MessageContainer>
       <img src={userImage} alt="" />
@@ -12,7 +18,7 @@ function Message({message, timestamp, user, userImage}) {
             {new Date(timestamp?.toDate()).toUTCString()}
           </span>
         </h4>
-        <p>{message}</p>
+        <p>{formattedMessage}</p>
       </MessageInfo>
     </MessageContainer>
   );
