@@ -6,7 +6,8 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-import VideoCallIcon from '@material-ui/icons/VideoCall';
+import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
+import VideoCamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
 import Picker from 'emoji-picker-react';
 function ChatInput({channelName, channelId, chatRef}) {
 
@@ -95,8 +96,9 @@ function ChatInput({channelName, channelId, chatRef}) {
         </Button>
       </form>
       <IconsContainer>
-        < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+
+        < VideoCamOutlinedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionsOutlinedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
