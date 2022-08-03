@@ -93,11 +93,10 @@ function ChatInput({channelName, channelId, chatRef}) {
           SEND
         </Button>
       </form>
-      
-      < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-      <EmojiEmotionsIcon className='emoji-icon'
-        onClick={handleEmojiButtonClick}
-      />
+      <IconsContainer>
+        < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+      </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
   )
@@ -105,7 +104,21 @@ function ChatInput({channelName, channelId, chatRef}) {
 
 export default ChatInput
 
+const IconsContainer = styled.div`
+  display: flex;
 
+  > .emoji-icon {
+    color: rgb(185,187,190);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  > .video-icon {
+    color: rgb(185,187,190);
+    cursor: pointer;
+  }
+`
 
 const ChatContainer = styled.div`
   position: relative;
@@ -130,22 +143,18 @@ const ChatInputContainer = styled.div`
     background-color: rgb(64,68,75);
     border: none;
     outline: none;
-    width: 600px;
+    color: rgb(220,221,222);
+    width: 50vw; 
+  }
+
+  > form > input::placeholder {
+    color: rgb(114,118,125);
+    font-size: smaller;
+    width: 400px;
   }
 
   > form > button {
     display: none !important;
   }
 
-  > .emoji-icon {
-    color: rgb(185,187,190);
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  > .video-icon {
-    color: rgb(185,187,190);
-    cursor: pointer;
-  }
 `;
