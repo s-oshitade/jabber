@@ -17,3 +17,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.emoji-picker-react .emoji-group:before {
+  background: rgb(64 68 75);
+}
+
+.emoji-picker-react input.emoji-search {
+  background: rgb(64 68 75);
+  color: rgb(161, 158, 158);
+}
+

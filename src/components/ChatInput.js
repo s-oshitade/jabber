@@ -74,6 +74,7 @@ function ChatInput({channelName, channelId, chatRef}) {
      { showPicker && 
       <Picker 
         pickerStyle={{
+          background: '#2F3136',
           position: 'fixed',
           width: '350px',
           bottom: '100px',
@@ -124,8 +125,8 @@ const IconsContainer = styled.div`
 
 const ChatContainer = styled.div`
   position: relative;
-  /* display: flex;
-  flex-direction: column; */
+  
+  
 `
 
 const ChatInputContainer = styled.div`
