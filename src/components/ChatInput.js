@@ -89,10 +89,11 @@ function ChatInput({channelName, channelId, chatRef}) {
      { showPicker && 
       <Picker 
         pickerStyle={{
-          position: 'absolute',
+          background: '#2F3136',
+          position: 'fixed',
           width: '350px',
-          bottom: '105px',
-          left: '350px'
+          bottom: '100px',
+          right: '355px'
       }}
         onEmojiClick={onEmojiClick} 
     />} 
@@ -108,10 +109,9 @@ function ChatInput({channelName, channelId, chatRef}) {
           SEND
         </Button>
       </form>
-      < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-      <EmojiEmotionsIcon className='emoji-icon'
-        onClick={handleEmojiButtonClick}
-      />
+      <IconsContainer>
+        < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       <UploadButton uploader={uploader} 
                     options={{multi: true}}
                     onComplete={e => {handleFilePickerSubmit(e)}}>
@@ -120,6 +120,7 @@ function ChatInput({channelName, channelId, chatRef}) {
                       <AddPhotoAlternateIcon onClick={onClick}></AddPhotoAlternateIcon>
                     }
       </UploadButton>
+      </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
   )
@@ -127,15 +128,33 @@ function ChatInput({channelName, channelId, chatRef}) {
 
 export default ChatInput
 
+const IconsContainer = styled.div`
+  display: flex;
+
+  > .emoji-icon {
+    font-size: 30px;
+    color: rgb(185,187,190);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  > .video-icon {
+    font-size: 30px;
+    color: rgb(185,187,190);
+    cursor: pointer;
+  }
+`
+
 const ChatContainer = styled.div`
   position: relative;
-  /* display: flex;
-  flex-direction: column; */
+  
+  
 `
 
 const ChatInputContainer = styled.div`
-  border-radius: 15px;
-
+  border-radius: 12px;
+  background: rgb(64,68,75);
   //outermost div  
   display: flex;
   position: fixed;
@@ -143,40 +162,26 @@ const ChatInputContainer = styled.div`
   border: 1px solid gray;
   margin-left: 1.5em;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 15px;
   width: 55%;
 
-  /* > form {
-    position: relative;
-    display: flex;
-    justify-content: center;
-  } */
-
   > form > input {
-    /* position: fixed;
-    bottom: 30px;
-    width: 50%; */
-    /* border: 1px solid ;
-    border-radius: 3px;
-    padding: 20px;
-    outline: none; */
-
+    background-color: rgb(64,68,75);
     border: none;
     outline: none;
-    width: 600px;
+    color: rgb(220,221,222);
+    width: 50vw; 
+  }
+
+  > form > input::placeholder {
+    color: rgb(114,118,125);
+    font-size: small;
+    width: 400px;
   }
 
   > form > button {
     display: none !important;
   }
 
-  > .emoji-icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  > .video-icon {
-    cursor: pointer;
-  }
 `;
