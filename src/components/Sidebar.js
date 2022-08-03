@@ -31,7 +31,7 @@ function Sidebar({token}) {
   const [channels, loading, error] = useCollection(db.collection("rooms"));
 
   const openSpotifyLogin = url => () => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, '_self', 'noopener,noreferrer');
   }
   
   return (
