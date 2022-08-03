@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Picker from 'emoji-picker-react';
 
@@ -115,9 +116,8 @@ function ChatInput({channelName, channelId, chatRef}) {
                     options={{multi: true}}
                     onComplete={e => {handleFilePickerSubmit(e)}}>
                     {({onClick}) =>
-                      <button onClick={onClick}>
-                        Upload a file...
-                      </button>
+
+                      <AddPhotoAlternateIcon onClick={onClick}></AddPhotoAlternateIcon>
                     }
       </UploadButton>
     </ChatInputContainer>
