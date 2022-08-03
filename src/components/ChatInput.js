@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import React, { useRef, useState } from 'react'
 import { auth, db } from '../firebase';
 import firebase from 'firebase';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
@@ -14,7 +15,9 @@ function ChatInput({channelName, channelId, chatRef}) {
   const [user] = useAuthState(auth);
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [showPicker, setShowPicker] = useState(false);
-  console.log(channelId);
+  const [roomDetails] = useDocument(
+    channelId && db.collection('rooms').doc(channelId)
+  )
 
   const onEmojiClick = (e, emojiObject) => {
     e.preventDefault();
@@ -135,5 +138,6 @@ const ChatInputContainer = styled.div`
   > .emoji-icon {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 `;
