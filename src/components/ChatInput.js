@@ -99,8 +99,16 @@ function ChatInput({channelName, channelId, chatRef}) {
           right: '355px'
       }}
         onEmojiClick={onEmojiClick} 
-    />} 
+      />} 
     <ChatInputContainer>
+      <UploadButton 
+        uploader={uploader} 
+        options={{multi: true}}
+        onComplete={e => {handleFilePickerSubmit(e)}}>
+        {({onClick}) =>
+          <AddPhotoAlternateIcon className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
+        }
+      </UploadButton>
       <form>
         <input type="text"
           onChange={e => setInput(e.target.value)}
@@ -113,19 +121,8 @@ function ChatInput({channelName, channelId, chatRef}) {
         </Button>
       </form>
       <IconsContainer>
-
-        < VideoCamOutlinedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <VideoCamOutlinedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
         <EmojiEmotionsOutlinedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
-        {/* < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} /> */}
-      <UploadButton uploader={uploader} 
-                    options={{multi: true}}
-                    onComplete={e => {handleFilePickerSubmit(e)}}>
-                    {({onClick}) =>
-
-                      <AddPhotoAlternateIcon onClick={onClick}></AddPhotoAlternateIcon>
-                    }
-      </UploadButton>
       </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
@@ -153,15 +150,12 @@ const IconsContainer = styled.div`
 `
 
 const ChatContainer = styled.div`
-  position: relative;
-  
-  
+  position: relative;  
 `
 
 const ChatInputContainer = styled.div`
   border-radius: 12px;
-  background: rgb(64,68,75);
-  //outermost div  
+  background: rgb(64,68,75); 
   display: flex;
   position: fixed;
   bottom: 30px;
@@ -177,7 +171,7 @@ const ChatInputContainer = styled.div`
     border: none;
     outline: none;
     color: rgb(220,221,222);
-    width: 50vw; 
+    width: 40vw; 
   }
 
   > form > input::placeholder {
@@ -190,4 +184,7 @@ const ChatInputContainer = styled.div`
     display: none !important;
   }
 
+  > .add-photo-icon {
+    color: rgb(185,187,190);
+  }
 `;
