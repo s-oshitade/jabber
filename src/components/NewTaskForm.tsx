@@ -65,7 +65,7 @@ function NewTaskForm() {
       >
         <Typography sx={{ p: 2 }}>Please add a task.</Typography>
       </Popover>} */}
-      <button onClick={handleClick}>Add</button>
+      <button onClick={handleClick}></button>
       </form>
     </Input>
   )
@@ -82,6 +82,7 @@ const Input = styled.div`
       background-color: darkgray;
       color: white;
       font-weight: 600;
+      visibility: hidden;
     }
   }
 
