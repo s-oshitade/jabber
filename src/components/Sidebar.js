@@ -79,16 +79,16 @@ function Sidebar({token}) {
 export default Sidebar;
 
 const SidebarContainer = styled.div`
-  /* background-color: var(--main-color1); */
   background-color: #2F3136;
   color: white;
   flex: 0.3;
+
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 60px;
+  margin-top: 63px; 
   overflow: auto;
-  margin-top: 83px;
-  height: inherit;
+  /* margin-top: 83px; */
+  //height: 100%;
 
 
   > hr {
@@ -108,6 +108,7 @@ const SidebarHeader = styled.div`
   border-bottom: 1px solid #154c79;
   padding-bottom: 10px;
   padding: 13px;
+  margin-top: 1em;
 
   > .MuiSvgIcon-root {
     margin-top: 1em;

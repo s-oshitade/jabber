@@ -37,7 +37,7 @@ return (
       showSaveIcon={true}
       syncExternalDevice={true}
       styles={{
-        activeColor: '#fff',
+        activeColor: '#1cb954',
         bgColor: 'none',
         color: 'rgb(185,187,190)',
         loaderColor: '#fff',
