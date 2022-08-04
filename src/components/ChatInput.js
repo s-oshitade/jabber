@@ -8,8 +8,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 
 import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
-import VideoCamOutlinedIcon from '@material-ui/icons/VideocamOutlined';
-
+import VideoCallRoundedIcon from '@material-ui/icons/VideoCallRounded'
+import EmojiEmotionRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Picker from 'emoji-picker-react';
 
@@ -106,7 +106,7 @@ function ChatInput({channelName, channelId, chatRef}) {
         options={{multi: true}}
         onComplete={e => {handleFilePickerSubmit(e)}}>
         {({onClick}) =>
-          <AddPhotoAlternateIcon className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
+          <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
         }
       </UploadButton>
       <form>
@@ -121,8 +121,8 @@ function ChatInput({channelName, channelId, chatRef}) {
         </Button>
       </form>
       <IconsContainer>
-        <VideoCamOutlinedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-        <EmojiEmotionsOutlinedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+        <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
@@ -137,7 +137,7 @@ const IconsContainer = styled.div`
   > .emoji-icon {
     font-size: 30px;
     color: rgb(185,187,190);
-    display: flex;
+    //display: flex;
     align-items: center;
     cursor: pointer;
   }
@@ -186,5 +186,6 @@ const ChatInputContainer = styled.div`
 
   > .add-photo-icon {
     color: rgb(185,187,190);
+    cursor: pointer;
   }
 `;
