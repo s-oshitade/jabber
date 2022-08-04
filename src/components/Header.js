@@ -20,7 +20,7 @@ function Header ({token}) {
          src={user?.photoURL}
          alt={user?.displayName}
         />
-        <AccessTimeIcon />
+        {/* <AccessTimeIcon /> */}
         
       </HeaderLeft>
       { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
@@ -30,7 +30,6 @@ function Header ({token}) {
       </HeaderSearch> */}
 
       <HeaderRight token={token}>
-      
         <HelpOutlineIcon />
       </HeaderRight>
         
@@ -49,8 +48,9 @@ const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  background-color: var(--main-color1);
+  background-color: #2F3136;
   color: white;
+  border-bottom: 1px solid #202225;
 
 `;
 

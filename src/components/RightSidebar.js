@@ -118,7 +118,8 @@ function RightSidebar () {
 export default RightSidebar;
 
 const RightSidebarContainer = styled.div`
-  background-color: var(--main-color1);
+  /* background-color: var(--main-color1); */
+  background-color: #2F3136;
   color: white;
   flex: 0.3;
   border-top: 1px solid #154c79;
@@ -128,12 +129,13 @@ const RightSidebarContainer = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 0.5px solid #154c79;
+    border: 1px solid #202225;
   }
 
 `;
 
 const RightSidebarUpper = styled.div`
+  margin-top: 1em;
   height: 50%;
   font-size: 14px;
   font-weight: 500;
@@ -141,7 +143,7 @@ const RightSidebarUpper = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 0.5px solid #154c79;
+    border: 1px solid #202225;
   }
 
 

@@ -40,9 +40,14 @@ padding: 20px;
 
 const MessageInfo = styled.div`
   padding-left: 10px;
-
+  > p {
+    color: #D5D6D8;
+  }
+  > h4 {
+    color: #FFFFFF;
+  }
   > h4 > span {
-    color: gray;
+    color: #A1A4A8;
     font-weight: 300;
     margin-left: 4px;
     font-size: 10px;

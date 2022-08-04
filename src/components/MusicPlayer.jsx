@@ -32,13 +32,14 @@ return (
     <SpotifyPlayer
       uris={playBackUris}
       token={token}
+      magnifySliderOnHover={true}
       persistDeviceSelection={true}
       showSaveIcon={true}
       syncExternalDevice={true}
       styles={{
-        activeColor: '#fff',
+        activeColor: '#1cb954',
         bgColor: 'none',
-        color: '#fff',
+        color: 'rgb(185,187,190)',
         loaderColor: '#fff',
         sliderColor: '#1cb954',
         trackArtistColor: '#ccc',
@@ -50,8 +51,13 @@ return (
 }
 
 const SpotifyPlayerContainer = styled.div`
-/* margin-left: 1em;
-margin-right: 1em; */
+flex: 0.7;
+flex-grow: 1.6;
+margin-right: 6em;
+margin-left: 4.8em;
+/* position: relative;
+width: 860px;
+margin-right: 1.2em; */
 `
 
 

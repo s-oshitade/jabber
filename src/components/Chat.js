@@ -55,7 +55,7 @@ function Chat() {
   console.log(roomDetails?.data());
   console.log(roomMessages);
   return (
-    <ChatContainer>
+    <ChatContainer className='scroller'>
       {roomDetails && roomMessages && (
          <>
          <Header>
@@ -121,10 +121,12 @@ function Chat() {
 export default Chat
 
 const Header = styled.div`
+  color: #FFFFFF;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid #202225;
+  margin-top: 2.3em;
   `;
   
 ;
@@ -134,7 +136,7 @@ const ChatBottom = styled.div`
 `
 
 const ChatMessages = styled.div`
-  //position: relative;
+  background-color: #36393F;
 `;
 
 const LeftHeader = styled.div`
@@ -162,6 +164,7 @@ const RightHeader = styled.div`
     font-size: 12px;
   }
 
+
   > p > .MuiSvgIcon-root {
     margin-right: 5px !important;
     font-size: 16px;
@@ -170,9 +173,15 @@ const RightHeader = styled.div`
 `;
 
 const ChatContainer = styled.div`
+  background-color: #36393F;
   flex: 0.7;
   flex-grow: 1;
   overflow-y: scroll;
   margin-top: 60px;
+
+  > .scroller {
+    scrollbar-color: red;
+  }
 `;
+
 
