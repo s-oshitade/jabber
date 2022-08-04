@@ -89,9 +89,9 @@ const Input = styled.div`
   > form > input {
     /* position: fixed; */
     bottom: 30px;
-    width: 90%;
+    width: 100%;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 10px;
     outline: none;
     background-color: #154c79;
