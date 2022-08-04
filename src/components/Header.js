@@ -20,7 +20,7 @@ function Header ({token}) {
          src={user?.photoURL}
          alt={user?.displayName}
         />
-        <AccessTimeIcon />
+        {/* <AccessTimeIcon /> */}
         
       </HeaderLeft>
       { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
@@ -30,7 +30,6 @@ function Header ({token}) {
       </HeaderSearch> */}
 
       <HeaderRight token={token}>
-      
         <HelpOutlineIcon />
       </HeaderRight>
         
