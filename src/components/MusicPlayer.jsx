@@ -39,7 +39,7 @@ return (
       styles={{
         activeColor: '#fff',
         bgColor: 'none',
-        color: '#fff',
+        color: 'rgb(185,187,190)',
         loaderColor: '#fff',
         sliderColor: '#1cb954',
         trackArtistColor: '#ccc',
@@ -52,7 +52,6 @@ return (
 
 const SpotifyPlayerContainer = styled.div`
 flex: 0.7;
-/* border: 1px solid; */
 flex-grow: 1.6;
 margin-right: 6em;
 margin-left: 4.8em;
