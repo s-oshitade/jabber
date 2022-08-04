@@ -87,6 +87,8 @@ const SidebarContainer = styled.div`
   max-width: 260px;
   margin-top: 60px;
   overflow: auto;
+  margin-top: 83px;
+  height: inherit;
 
 
   > hr {
