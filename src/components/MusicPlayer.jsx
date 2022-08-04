@@ -32,6 +32,7 @@ return (
     <SpotifyPlayer
       uris={playBackUris}
       token={token}
+      magnifySliderOnHover={true}
       persistDeviceSelection={true}
       showSaveIcon={true}
       syncExternalDevice={true}
@@ -50,8 +51,8 @@ return (
 }
 
 const SpotifyPlayerContainer = styled.div`
-/* margin-left: 1em;
-margin-right: 1em; */
+width: 63vw;
+margin-right: 1.2em;
 `
 
 
