@@ -23,14 +23,14 @@ function Header ({token}) {
         <AccessTimeIcon />
         
       </HeaderLeft>
-     
-      <HeaderSearch>
+      { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
+      {/* <HeaderSearch>
         <SearchIcon />
         <input placeholder="Search..." />
-      </HeaderSearch>
+      </HeaderSearch> */}
 
       <HeaderRight token={token}>
-      { (token === '') ? <SpotifyLogin /> : <MusicPlayer token={token}/> }
+      
         <HelpOutlineIcon />
       </HeaderRight>
         

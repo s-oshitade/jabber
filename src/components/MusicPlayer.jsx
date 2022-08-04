@@ -38,7 +38,6 @@ return (
       styles={{
         activeColor: '#fff',
         bgColor: 'none',
-        height: '2em',
         color: '#fff',
         loaderColor: '#fff',
         sliderColor: '#1cb954',
@@ -51,8 +50,8 @@ return (
 }
 
 const SpotifyPlayerContainer = styled.div`
-margin-left: 1em;
-margin-right: 1em;
+/* margin-left: 1em;
+margin-right: 1em; */
 `
 
 

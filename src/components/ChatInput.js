@@ -6,8 +6,11 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+
+import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
+import VideoCallRoundedIcon from '@material-ui/icons/VideoCallRounded'
+import EmojiEmotionRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Picker from 'emoji-picker-react';
 
 import { Uploader } from "uploader";
@@ -96,8 +99,16 @@ function ChatInput({channelName, channelId, chatRef}) {
           right: '355px'
       }}
         onEmojiClick={onEmojiClick} 
-    />} 
+      />} 
     <ChatInputContainer>
+      <UploadButton 
+        uploader={uploader} 
+        options={{multi: true}}
+        onComplete={e => {handleFilePickerSubmit(e)}}>
+        {({onClick}) =>
+          <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
+        }
+      </UploadButton>
       <form>
         <input type="text"
           onChange={e => setInput(e.target.value)}
@@ -110,16 +121,8 @@ function ChatInput({channelName, channelId, chatRef}) {
         </Button>
       </form>
       <IconsContainer>
-        < VideoCallIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
-        <EmojiEmotionsIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
-      <UploadButton uploader={uploader} 
-                    options={{multi: true}}
-                    onComplete={e => {handleFilePickerSubmit(e)}}>
-                    {({onClick}) =>
-
-                      <AddPhotoAlternateIcon onClick={onClick}></AddPhotoAlternateIcon>
-                    }
-      </UploadButton>
+        <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       </IconsContainer>
     </ChatInputContainer>
   </ChatContainer>
@@ -134,7 +137,7 @@ const IconsContainer = styled.div`
   > .emoji-icon {
     font-size: 30px;
     color: rgb(185,187,190);
-    display: flex;
+    //display: flex;
     align-items: center;
     cursor: pointer;
   }
@@ -147,15 +150,12 @@ const IconsContainer = styled.div`
 `
 
 const ChatContainer = styled.div`
-  position: relative;
-  
-  
+  position: relative;  
 `
 
 const ChatInputContainer = styled.div`
   border-radius: 12px;
-  background: rgb(64,68,75);
-  //outermost div  
+  background: rgb(64,68,75); 
   display: flex;
   position: fixed;
   bottom: 30px;
@@ -171,7 +171,7 @@ const ChatInputContainer = styled.div`
     border: none;
     outline: none;
     color: rgb(220,221,222);
-    width: 50vw; 
+    width: 40vw; 
   }
 
   > form > input::placeholder {
@@ -184,4 +184,8 @@ const ChatInputContainer = styled.div`
     display: none !important;
   }
 
+  > .add-photo-icon {
+    color: rgb(185,187,190);
+    cursor: pointer;
+  }
 `;
