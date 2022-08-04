@@ -35,8 +35,7 @@ function PowerItem({id, task, done}) {
       <PowerListInfo>
         <input type="checkbox" checked={done} onChange={handleFinish}/>
         {task}
-        <a href="#" onClick={handleRemove} >
-        <ClearIcon id="clear-icon"/></a>
+        <ClearIcon id="clear-icon" onClick={handleRemove}/>
       </PowerListInfo>
     </PowerListContainer>
   )
@@ -60,13 +59,13 @@ const PowerListInfo = styled.div`
   display: flex;
   align-items: center;
   vertical-align: middle;
-  >a {
+  > #clear-icon {
     color: red;
     visibility: hidden;
 
   }
   :hover {
-      >a {
+    #clear-icon {
         visibility: visible;
     }
   }
