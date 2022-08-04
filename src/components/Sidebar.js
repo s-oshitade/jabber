@@ -107,6 +107,7 @@ const SidebarHeader = styled.div`
   padding: 13px;
 
   > .MuiSvgIcon-root {
+    margin-top: 1em;
     padding: 8px;
     color: #154c79;
     font-size: 18px;
@@ -116,6 +117,7 @@ const SidebarHeader = styled.div`
 `;
 
 const SidebarInfo = styled.div`
+  margin-top: 1em;
   flex: 1;
 
   > h2 {
