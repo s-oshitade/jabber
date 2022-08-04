@@ -134,6 +134,7 @@ const RightSidebarContainer = styled.div`
 `;
 
 const RightSidebarUpper = styled.div`
+  margin-top: 2em;
   height: 50%;
   font-size: 14px;
   font-weight: 500;
