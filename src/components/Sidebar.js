@@ -85,7 +85,7 @@ const SidebarContainer = styled.div`
 
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 63px; 
+  margin-top: 60px; 
   overflow: auto;
   /* margin-top: 83px; */
   //height: 100%;
@@ -94,7 +94,7 @@ const SidebarContainer = styled.div`
   > hr {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 0.5px solid #154c79;
+    border: 0.5px solid #202225;
   }
 
   > .channel {
@@ -105,7 +105,7 @@ const SidebarContainer = styled.div`
 
 const SidebarHeader = styled.div`
   display: flex;
-  border-bottom: 1px solid #154c79;
+  border-bottom: 1px solid #202225;
   padding-bottom: 10px;
   padding: 13px;
   margin-top: 1em;

@@ -124,19 +124,18 @@ const RightSidebarContainer = styled.div`
   flex: 0.3;
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 93px;
-  //height: inherit;
+  margin-top: 60px;
  
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 0.5px solid #154c79;
+    border: 1px solid #202225;
   }
 
 `;
 
 const RightSidebarUpper = styled.div`
-  margin-top: 2em;
+  margin-top: 1em;
   height: 50%;
   font-size: 14px;
   font-weight: 500;
@@ -144,7 +143,7 @@ const RightSidebarUpper = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 0.5px solid #154c79;
+    border: 1px solid #202225;
   }
 
 
