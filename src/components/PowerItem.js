@@ -34,7 +34,7 @@ function PowerItem({id, task, done}) {
     <PowerListContainer>
       <PowerListInfo>
         <input type="checkbox" checked={done} onChange={handleFinish}/>
-        {task}
+          {task}
         <ClearIcon id="clear-icon" onClick={handleRemove}/>
       </PowerListInfo>
     </PowerListContainer>
