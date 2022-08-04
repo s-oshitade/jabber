@@ -42,13 +42,23 @@ function ChatInput({channelName, channelId, chatRef}) {
   const openVideoCall = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer')
 
-    db.collection('rooms').doc(channelId).collection('messages')
-    .add({
-      message: "I've joined a video call!",
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: user.displayName,
-      userImage: user.photoURL,
-    });
+    if (user?.email === roomDetails?.data().owner) {
+      db.collection('rooms').doc(channelId).collection('messages')
+      .add({
+        message: "I've joined a video call as the host!",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        user: user.displayName,
+        userImage: user.photoURL,
+      });
+    } else {
+      db.collection('rooms').doc(channelId).collection('messages')
+      .add({
+        message: "I've joined a video call!",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        user: user.displayName,
+        userImage: user.photoURL,
+      });
+    }
   }
 
   const uploader = new Uploader({
@@ -121,7 +131,7 @@ function ChatInput({channelName, channelId, chatRef}) {
         </Button>
       </form>
       <IconsContainer>
-        <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>
+        {user?.email === roomDetails?.data().owner ? <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().hostUrl)}/> : <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>}
         <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       </IconsContainer>
     </ChatInputContainer>
