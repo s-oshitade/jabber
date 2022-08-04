@@ -118,7 +118,8 @@ function RightSidebar () {
 export default RightSidebar;
 
 const RightSidebarContainer = styled.div`
-  background-color: var(--main-color1);
+  /* background-color: var(--main-color1); */
+  background-color: #2F3136;
   color: white;
   flex: 0.3;
   border-top: 1px solid #154c79;
