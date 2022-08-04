@@ -51,8 +51,14 @@ return (
 }
 
 const SpotifyPlayerContainer = styled.div`
-width: 63vw;
-margin-right: 1.2em;
+flex: 0.7;
+/* border: 1px solid; */
+flex-grow: 1.6;
+margin-right: 6em;
+margin-left: 4.8em;
+/* position: relative;
+width: 860px;
+margin-right: 1.2em; */
 `
 
 
