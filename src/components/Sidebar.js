@@ -79,19 +79,22 @@ function Sidebar({token}) {
 export default Sidebar;
 
 const SidebarContainer = styled.div`
-  background-color: var(--main-color1);
+  background-color: #2F3136;
   color: white;
   flex: 0.3;
+
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 60px;
+  margin-top: 60px; 
   overflow: auto;
+  /* margin-top: 83px; */
+  //height: 100%;
 
 
   > hr {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 0.5px solid #154c79;
+    border: 0.5px solid #202225;
   }
 
   > .channel {
@@ -102,11 +105,13 @@ const SidebarContainer = styled.div`
 
 const SidebarHeader = styled.div`
   display: flex;
-  border-bottom: 1px solid #154c79;
+  border-bottom: 1px solid #202225;
   padding-bottom: 10px;
   padding: 13px;
+  margin-top: 1em;
 
   > .MuiSvgIcon-root {
+    margin-top: 1em;
     padding: 8px;
     color: #154c79;
     font-size: 18px;
@@ -116,6 +121,7 @@ const SidebarHeader = styled.div`
 `;
 
 const SidebarInfo = styled.div`
+  margin-top: 1em;
   flex: 1;
 
   > h2 {
