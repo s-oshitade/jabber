@@ -94,7 +94,7 @@ const Input = styled.div`
     border-radius: 5px;
     padding: 10px;
     outline: none;
-    background-color: #154c79;
+    background-color: #40444a;
     color: gray;
   }
 
