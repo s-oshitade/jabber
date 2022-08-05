@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 body {
   --main-color1:#1456d3;

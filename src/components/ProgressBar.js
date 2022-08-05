@@ -26,4 +26,9 @@ export default ProgressBar;
 
 const ProgressBarContainer = styled.div`
   padding-left: 10px;
+
+  > progress {
+    height: 2em;
+    width: 95%;
+  }
 `;
