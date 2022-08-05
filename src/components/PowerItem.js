@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import ClearIcon from '@material-ui/icons/Clear';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
-// import CircleOutlinedIcon from '@material-ui/icons/CircleOutlined';
 import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 
 
@@ -36,8 +35,7 @@ function PowerItem({id, task, done}) {
   return (
     <PowerListContainer>
       <PowerListInfo>
-      {!done ? <LensOutlinedIcon onClick={handleFinish} size="small"/> : <CheckCircleOutlinedIcon onClick={handleFinish}/> }
-        {/* <input type="checkbox" checked={done} onChange={handleFinish}/> */}
+      {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
           {task}
         <ClearIcon id="clear-icon" onClick={handleRemove}/>
       </PowerListInfo>
@@ -67,6 +65,9 @@ const PowerListInfo = styled.div`
     color: red;
     visibility: hidden;
 
+  }
+  .checked {
+    color: lightgreen;
   }
   :hover {
     #clear-icon {
