@@ -13,6 +13,8 @@ import LockIcon from '@material-ui/icons/Lock';
 
 function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic, openSpotifyLogin}) {
   const [user] = useAuthState(auth);
+  const [addingChannel, setAddingChannel] = useState(false);
+  const [channelName, setChannelName] = useState('');
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -20,24 +22,32 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   )
 
 
+
  
-  const addChannel = async () => {
-    const channelName = prompt('Please enter the channel name');
+  const addChannel = async (event) => {
 
-    if (channelName){
-      const response = await fetch('/whereby/meeting');
+    console.log(channelName);
+
+    //const channelName = prompt('Please enter the channel name');
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      console.log(channelName);
+      if (channelName){
+        const response = await fetch('/whereby/meeting');
+      
+        const body = await response.json();
     
-      const body = await response.json();
   
-
-      db.collection("rooms").add({
-        name: channelName,
-        password: null,
-        owner: user.email,
-        roomUrl: body.roomUrl,
-        hostUrl: body.hostRoomUrl
-      });
+        db.collection("rooms").add({
+          name: channelName,
+          password: null,
+          owner: user.email,
+          roomUrl: body.roomUrl,
+          hostUrl: body.hostRoomUrl
+        });
+      }
     }
+
 
   };
 
@@ -77,10 +87,17 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     
     <SidebarOptionContainer
       
-      onClick={openSpotifyLogin || (addChannelOption ? addChannel : selectChannel)}
+      onClick={openSpotifyLogin || (addChannelOption ? () => {setAddingChannel(true)} : selectChannel)}
       className={id && "channel"}
     >   
-    
+      {addingChannel && 
+      <input 
+        type="text" 
+        placeholder="Channel name" 
+        value={channelName}
+        onChange={event => setChannelName(event.target.value)}
+        onKeyDown={addChannel}
+        />}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>

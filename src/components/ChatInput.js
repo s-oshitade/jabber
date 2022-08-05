@@ -110,6 +110,7 @@ function ChatInput({channelName, channelId, chatRef}) {
       }}
         onEmojiClick={onEmojiClick} 
       />} 
+    <ChatInputBackground>
     <ChatInputContainer>
       <UploadButton 
         uploader={uploader} 
@@ -135,6 +136,7 @@ function ChatInput({channelName, channelId, chatRef}) {
         <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
       </IconsContainer>
     </ChatInputContainer>
+    </ChatInputBackground>
   </ChatContainer>
   )
 }
@@ -162,6 +164,11 @@ const IconsContainer = styled.div`
 
 const ChatContainer = styled.div`
   position: relative;  
+`
+
+const ChatInputBackground = styled.div`
+  position: fixed;
+  bottom: 30px;
 `
 
 const ChatInputContainer = styled.div`
