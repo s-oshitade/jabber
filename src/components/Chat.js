@@ -126,7 +126,7 @@ const Header = styled.div`
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid #202225;
-  margin-top: 2.3em;
+  //margin-top: 2.3em;
   `;
   
 ;
