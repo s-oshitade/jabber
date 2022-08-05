@@ -7,7 +7,7 @@ import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import ForumIcon from '@material-ui/icons/Forum';
 import LockIcon from '@material-ui/icons/Lock';
-
+import  TextField  from '@material-ui/core/TextField/TextField';
 
 
 
@@ -29,10 +29,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       event.preventDefault();
       if (channelName){
         const response = await fetch('/whereby/meeting');
-      
         const body = await response.json();
-    
-  
         db.collection("rooms").add({
           name: channelName,
           password: null,
@@ -43,7 +40,6 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       }
       setAddingChannel(false);
     }
-
 
   };
 
@@ -87,9 +83,10 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       className={id && "channel"}
     >   
       {addingChannel && 
-      <input 
+      <TextField 
+        id="standard-basic"
+        label="Add Channel"
         type="text" 
-        placeholder="Channel name" 
         value={channelName}
         onChange={event => setChannelName(event.target.value)}
         onKeyDown={addChannel}
