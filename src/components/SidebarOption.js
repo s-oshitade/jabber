@@ -25,13 +25,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
  
   const addChannel = async (event) => {
-
-    console.log(channelName);
-
-    //const channelName = prompt('Please enter the channel name');
     if (event.key === 'Enter') {
       event.preventDefault();
-      console.log(channelName);
       if (channelName){
         const response = await fetch('/whereby/meeting');
       
@@ -46,6 +41,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           hostUrl: body.hostRoomUrl
         });
       }
+      setAddingChannel(false);
     }
 
 
