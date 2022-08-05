@@ -108,7 +108,7 @@ const SidebarHeader = styled.div`
   border-bottom: 1px solid #202225;
   padding-bottom: 10px;
   padding: 13px;
-  //margin-top: 1em;
+  margin-top: 1em;
 
   > .MuiSvgIcon-root {
     margin-top: 1em;
