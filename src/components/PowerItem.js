@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -11,6 +11,15 @@ import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 function PowerItem({id, task, done}) {
   const [user] = useAuthState(auth);
   const userEmail = user?.email;
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  }
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  }
 
   function handleFinish(e) {
    console.log("I got clicked!")
@@ -33,13 +42,16 @@ function PowerItem({id, task, done}) {
   }
 
   return (
-    <PowerListContainer>
+    <PowerListContainer
+      onMouseOver={handleMouseOver} 
+      onMouseOut={handleMouseOut}
+    >
       <PowerListInfo>
         {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
           {task}
       </PowerListInfo>
       <PowerListIcon>
-        <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
+        {isHovering && <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>}
       </PowerListIcon>
     </PowerListContainer>
   )
@@ -68,17 +80,9 @@ const PowerListInfo = styled.div`
     color: lightgreen;
   }
   
-    /* :hover {
-   > #clear-icon {
-        visibility: visible;
-    }
-  } */
 `
 
 const PowerListIcon = styled.div`
-   /* > #clear-icon {
-    visibility: hidden;
-  } */
 
 
 `;
