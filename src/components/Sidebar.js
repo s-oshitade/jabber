@@ -85,7 +85,7 @@ const SidebarContainer = styled.div`
 
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 60px; 
+  margin-top: 44px; 
   overflow: auto;
   /* margin-top: 83px; */
   //height: 100%;
@@ -108,7 +108,7 @@ const SidebarHeader = styled.div`
   border-bottom: 1px solid #202225;
   padding-bottom: 10px;
   padding: 13px;
-  margin-top: 1em;
+  //margin-top: 1em;
 
   > .MuiSvgIcon-root {
     margin-top: 1em;
