@@ -4,6 +4,7 @@ import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import ClearIcon from '@material-ui/icons/Clear';
+import EditIcon from '@material-ui/icons/Edit';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 
@@ -35,6 +36,16 @@ function PowerItem({id, task, done}) {
       });
     }
   }
+  
+  function handleEdit(e) {
+    console.log("Someone just clicked the edit button!")
+    const updatedTask = prompt('Update the selected task')
+    
+    db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
+      task: updatedTask,
+      done: false
+    });
+  }
 
   function handleRemove(e) {
     console.log("Removal attempted") //TODO: Prompt user to cofirm delete
@@ -50,9 +61,13 @@ function PowerItem({id, task, done}) {
         {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
           {task}
       </PowerListInfo>
-      <PowerListIcon>
-        {isHovering && <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>}
-      </PowerListIcon>
+      <PowerListIcons>
+        {isHovering && 
+        <>
+        <EditIcon onClick={handleEdit} />
+        <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
+        </>}
+      </PowerListIcons>
     </PowerListContainer>
   )
 }
@@ -82,7 +97,7 @@ const PowerListInfo = styled.div`
   
 `
 
-const PowerListIcon = styled.div`
+const PowerListIcons = styled.div`
 
 
 `;
