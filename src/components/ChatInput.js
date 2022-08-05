@@ -145,7 +145,7 @@ const IconsContainer = styled.div`
   display: flex;
 
   > .emoji-icon {
-    font-size: 30px;
+    font-size: 28px;
     color: rgb(185,187,190);
     //display: flex;
     align-items: center;
@@ -153,6 +153,7 @@ const IconsContainer = styled.div`
   }
 
   > .video-icon {
+    margin-right: 10px;
     font-size: 30px;
     color: rgb(185,187,190);
     cursor: pointer;
