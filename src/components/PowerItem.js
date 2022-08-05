@@ -41,6 +41,10 @@ function PowerItem({id, task, done}) {
     console.log("Someone just clicked the edit button!")
     const updatedTask = prompt('Update the selected task')
     
+    if(!updatedTask){
+      return alert("Updated task cannot be empty.")
+    }
+    
     db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
       task: updatedTask,
       done: false
