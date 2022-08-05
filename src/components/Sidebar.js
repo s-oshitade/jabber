@@ -85,7 +85,7 @@ const SidebarContainer = styled.div`
 
   border-top: 1px solid #154c79;
   max-width: 260px;
-  margin-top: 60px; 
+  margin-top: 44px; 
   overflow: auto;
   /* margin-top: 83px; */
   //height: 100%;

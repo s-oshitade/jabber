@@ -122,9 +122,9 @@ const RightSidebarContainer = styled.div`
   background-color: #2F3136;
   color: white;
   flex: 0.3;
-  border-top: 1px solid #154c79;
+  border-top: 1px solid #202225;
   max-width: 260px;
-  margin-top: 60px;
+  margin-top: 64px;
  
   > hr {
     margin-top: 1px;
@@ -135,7 +135,7 @@ const RightSidebarContainer = styled.div`
 `;
 
 const RightSidebarUpper = styled.div`
-  margin-top: 1em;
+  margin-top: 2em;
   height: 50%;
   font-size: 14px;
   font-weight: 500;
