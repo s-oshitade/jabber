@@ -35,10 +35,12 @@ function PowerItem({id, task, done}) {
   return (
     <PowerListContainer>
       <PowerListInfo>
-      {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
+        {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
           {task}
-        <ClearIcon id="clear-icon" onClick={handleRemove}/>
       </PowerListInfo>
+      <PowerListIcon>
+        <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
+      </PowerListIcon>
     </PowerListContainer>
   )
 }
@@ -59,20 +61,25 @@ const PowerListContainer = styled.div`
 
 const PowerListInfo = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  vertical-align: middle;
-  > #clear-icon {
-    color: red;
-    visibility: hidden;
 
-  }
   .checked {
     color: lightgreen;
   }
-  :hover {
-    #clear-icon {
+  
+    /* :hover {
+   > #clear-icon {
         visibility: visible;
     }
-  }
+  } */
 `
+
+const PowerListIcon = styled.div`
+   /* > #clear-icon {
+    visibility: hidden;
+  } */
+
+
+`;
 
