@@ -8,10 +8,6 @@ function NewTaskForm() {
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
   const userEmail = user?.email
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
   function handleSubmit(e) {
     e.preventDefault();
