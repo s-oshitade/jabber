@@ -1,30 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
-function NewTaskForm() {
-  const [task, setTask] = useState('');
+function NewTaskForm({editInput, id}) {
+  const [task, setTask] = useState("");
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
+  // const [inputState, setInputState] = useState(editInput)
   const userEmail = user?.email
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
-
+  console.log(editInput)
   function handleSubmit(e) {
     e.preventDefault();
     //Handle empty submisison
@@ -41,31 +27,38 @@ function NewTaskForm() {
     }) 
 
     //Clear newtask input
-    setTask('');
+    setTask("");
   }
+
+  useEffect(() => {
+    console.log("editInput just changed")//I need my cursor to go to the input box here, with the task as the default value.
+    setTask(editInput);
+  }, [editInput])
+
+  // function handleEdit() {
+  //   //fetch the value of the current task
+  //   //setTask to the that value
+  //   setTask(editInput)
+  //   setDone(false)
+  //   //allow user to make changes to the task in state
+  //   db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
+  //         // task: task,
+  //         done: false
+  //       });
+  // }
+
+  
   
   return (
     <Input>
       <form onSubmit={handleSubmit}>
         <input
           type="text" 
+          autoFocus={true}
           value={task}  
           onChange={e => setTask(e.target.value)}
-          placeholder="Enter todo">
+          placeholder={"Enter a todo"}>
         </input>
-        {/* {!task && <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-        }}
-      >
-        <Typography sx={{ p: 2 }}>Please add a task.</Typography>
-      </Popover>} */}
-      <button onClick={handleClick}></button>
       </form>
     </Input>
   )

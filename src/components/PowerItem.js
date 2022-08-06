@@ -9,7 +9,7 @@ import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 
 
-function PowerItem({id, task, done}) {
+function PowerItem({id, task, done, edit}) {
   const [user] = useAuthState(auth);
   const userEmail = user?.email;
   const [isHovering, setIsHovering] = useState(false);
@@ -36,20 +36,25 @@ function PowerItem({id, task, done}) {
       });
     }
   }
-  
-  function handleEdit(e) {
-    console.log("Someone just clicked the edit button!")
-    const updatedTask = prompt('Update the selected task')
-    
-    if(!updatedTask){
-      return alert("Updated task cannot be empty.")
-    }
-    
-    db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
-      task: updatedTask,
-      done: false
-    });
+
+  function editClicked() {
+    console.log("Someone clicked EditIcon")
+    edit(task, id)
+    handleRemove()
   }
+  // function handleEdit(e) {
+  //   console.log("Someone just clicked the edit button!")
+  //   const updatedTask = prompt('Update the selected task')
+    
+  //   if(!updatedTask){
+  //     return alert("Updated task cannot be empty.")
+  //   }
+    
+  //   db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
+  //     task: updatedTask,
+  //     done: false
+  //   });
+  // }
 
   function handleRemove(e) {
     console.log("Removal attempted") //TODO: Prompt user to cofirm delete
@@ -68,7 +73,7 @@ function PowerItem({id, task, done}) {
       <PowerListIcons>
         {isHovering && 
         <>
-        <EditIcon onClick={handleEdit} />
+        <EditIcon onClick={editClicked} />
         <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
         </>}
       </PowerListIcons>
