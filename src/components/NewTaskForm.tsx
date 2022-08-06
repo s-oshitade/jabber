@@ -3,10 +3,6 @@ import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
 function NewTaskForm() {
   const [task, setTask] = useState('');
   const [done, setDone] = useState(false);
