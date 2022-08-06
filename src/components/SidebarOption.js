@@ -7,12 +7,14 @@ import { enterRoom } from "../features/counter/appSlice";
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import ForumIcon from '@material-ui/icons/Forum';
 import LockIcon from '@material-ui/icons/Lock';
-
+import  TextField  from '@material-ui/core/TextField/TextField';
 
 
 
 function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic, openSpotifyLogin}) {
   const [user] = useAuthState(auth);
+  const [addingChannel, setAddingChannel] = useState(false);
+  const [channelName, setChannelName] = useState('');
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -20,25 +22,31 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   )
 
 
+
  
-  const addChannel = async () => {
-    const channelName = prompt('Please enter the channel name');
-
-    if (channelName){
-      const response = await fetch('/whereby/meeting');
-    
-      const body = await response.json();
-  
-
-      db.collection("rooms").add({
-        name: channelName,
-        password: null,
-        owner: user.email,
-        roomUrl: body.roomUrl,
-        hostUrl: body.hostRoomUrl
-      });
+  const addChannel = async (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (channelName){
+        const response = await fetch('/whereby/meeting');
+        const body = await response.json();
+        db.collection("rooms").add({
+          name: channelName,
+          password: null,
+          owner: user.email,
+          roomUrl: body.roomUrl,
+          hostUrl: body.hostRoomUrl
+        });
+      }
+      setChannelName('');
+      setAddingChannel(false);
     }
 
+    if(event.key === 'Escape'){
+      event.preventDefault();
+      setAddingChannel(false);
+      setChannelName('');
+    }
   };
 
 
@@ -77,10 +85,23 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     
     <SidebarOptionContainer
       
-      onClick={openSpotifyLogin || (addChannelOption ? addChannel : selectChannel)}
+      onClick={openSpotifyLogin || (addChannelOption ? () => {setAddingChannel(true)} : selectChannel)}
       className={id && "channel"}
     >   
-    
+      {addingChannel && 
+      <TextField 
+        className='text-field'
+        id="standard-basic"
+        label="Add Channel"
+        variant='standard'
+        inputProps={{style: {color: "white"}}}
+        autoFocus={true}
+        size='small'
+        type="text" 
+        value={channelName}
+        onChange={event => setChannelName(event.target.value)}
+        onKeyDown={addChannel}
+        />}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
@@ -126,6 +147,18 @@ const SidebarOptionContainer = styled.div`
   > .guest {
     color: white;
   }
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #90EE90;
+  }
+
 `;
 
 const SidebarOptionChannel = styled.h3`
