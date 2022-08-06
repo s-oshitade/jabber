@@ -128,7 +128,7 @@ const RightSidebarContainer = styled.div`
  
   > hr {
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 10px;
     border: 1px solid #202225;
   }
 
@@ -160,6 +160,13 @@ const PowerListContainer = styled.div`
   font-size: small;
   height: 50%;
 
+   >div >hr {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border: 1px #202225;
+    padding: 5px;
+  }
+
   >div {
     margin-bottom: 10px;
   }
@@ -167,6 +174,7 @@ const PowerListContainer = styled.div`
   >div >span {
     padding-left: 10px;
     padding-top: 5px;
+    margin-top: 20px;
     padding-bottom: 5px;
     margin-bottom: 5px;
     font-weight: 500;
