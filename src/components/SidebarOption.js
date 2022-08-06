@@ -41,6 +41,10 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       setAddingChannel(false);
     }
 
+    if(event.key === 'Escape'){
+      event.preventDefault();
+      setAddingChannel(false);
+    }
   };
 
 
@@ -84,8 +88,13 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     >   
       {addingChannel && 
       <TextField 
+        className='text-field'
         id="standard-basic"
         label="Add Channel"
+        variant='standard'
+        // inputProps={{style: {color: "white"}}}
+        autoFocus={true}
+        size='small'
         type="text" 
         value={channelName}
         onChange={event => setChannelName(event.target.value)}
@@ -136,6 +145,18 @@ const SidebarOptionContainer = styled.div`
   > .guest {
     color: white;
   }
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+  /* > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #90EE90;
+  } */
+
 `;
 
 const SidebarOptionChannel = styled.h3`
