@@ -92,7 +92,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         id="standard-basic"
         label="Add Channel"
         variant='standard'
-        // inputProps={{style: {color: "white"}}}
+        inputProps={{style: {color: "white"}}}
         autoFocus={true}
         size='small'
         type="text" 
