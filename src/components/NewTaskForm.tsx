@@ -10,14 +10,6 @@ function NewTaskForm() {
   const userEmail = user?.email
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -49,7 +41,6 @@ function NewTaskForm() {
           onChange={e => setTask(e.target.value)}
           placeholder="Enter todo">
         </input>
-      <button onClick={handleClick}></button>
       </form>
     </Input>
   )
