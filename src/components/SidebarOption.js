@@ -149,13 +149,13 @@ const SidebarOptionContainer = styled.div`
   > .text-field {
     min-width: -webkit-fill-available;
   }
-  /* > .text-field  > label{
+  > .text-field  > label{
     color: gray;
   }
 
   > .text-field > .MuiInput-underline:after{
     border-bottom: 2px solid #90EE90;
-  } */
+  }
 
 `;
 
