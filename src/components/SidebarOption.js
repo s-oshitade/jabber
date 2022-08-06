@@ -38,12 +38,14 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           hostUrl: body.hostRoomUrl
         });
       }
+      setChannelName('');
       setAddingChannel(false);
     }
 
     if(event.key === 'Escape'){
       event.preventDefault();
       setAddingChannel(false);
+      setChannelName('');
     }
   };
 
