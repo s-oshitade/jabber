@@ -77,6 +77,7 @@ const Input = styled.div`
  > form {
     position: relative;
     display: flex;
+    margin-bottom: 10px;
     justify-content: center;
       > button {
       background-color: darkgray;

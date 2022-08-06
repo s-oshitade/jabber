@@ -14,6 +14,7 @@ function PowerListApp() {
   return (
     <div className="PowerListApp">
       <span>{user.displayName}'s List</span>
+      <hr />
       <NewTaskForm />
       <ul>
         {todos?.docs.map((doc) => (
@@ -28,3 +29,4 @@ function PowerListApp() {
 }
 
 export default PowerListApp;
+
