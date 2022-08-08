@@ -47,6 +47,16 @@ function Chat() {
     });
   }, [roomId, loading])
 
+  const [menu, setMenu] = useState(null);
+
+  const openMenu = (event) => {
+    setMenu(event.currentTarget)
+  }
+
+  const closeMenu = () => {
+    setMenu(null)
+  }
+
   const makeChannelPrivate = () => {
     const channelPassword = prompt('Please enter a password')
 
