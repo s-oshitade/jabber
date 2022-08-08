@@ -10,14 +10,17 @@ import { auth, db } from '../firebase';
 import Message from './Message';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import MenuIcon from '@material-ui/icons/Menu';
 import { useAuthState } from "react-firebase-hooks/auth";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useDispatch } from "react-redux";
+import { enterRoom } from "../features/counter/appSlice";
 
 
 function Chat() {
   const [user] = useAuthState(auth);
+  const dispatch = useDispatch();
 
   const chatRef = useRef(null);
   /** hook to access the redux store's state. 
@@ -65,6 +68,15 @@ function Chat() {
     });
   }
 
+  const deleteChannel = () => {
+    closeMenu();
+    db.collection("rooms").doc(roomId).delete();
+
+    dispatch(enterRoom({
+      roomId: null
+    }));
+  }
+
 
   return (
     <ChatContainer className='scroller'>
@@ -72,17 +84,28 @@ function Chat() {
          <>
          <Header>
            <LeftHeader>
+            <MenuIcon onClick={openMenu}/>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={menu}
+                  keepMounted
+                  open={Boolean(menu)}
+                  onClose={closeMenu}
+                >
+                  <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>
+                  <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
+                </Menu>
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-             <MenuOpenIcon />
+
            </LeftHeader>
  
            <RightHeader>
              <p>
               {/* user is OWNER of channel and NO password is set */}
-             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <LockOpenIcon onClick={makeChannelPrivate}/>}
-             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <span>Make your channel private</span>}
+             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <LockOpenIcon />}
+             {user.email === roomDetails?.data().owner && !roomDetails?.data().password && <span>Your channel is public</span>}
 
               {/* user is OWNER of channel and has set a password */}
              {user.email === roomDetails?.data().owner && roomDetails?.data().password && <LockIcon />}
@@ -158,11 +181,13 @@ const LeftHeader = styled.div`
     display: flex;
     text-transform: lowercase;
     margin-right: 10px;
+    margin-left: 10px;
   }
 
   > h4 > .MuiSvgIcon-root {
     margin-left: 10px;
     font-size: 18px;
+    cursor: pointer;
   }
 
   > .MuiSvgIcon-root {
