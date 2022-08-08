@@ -46,9 +46,13 @@ function RightSidebar () {
       setProjectGoal('');
       setShowAddGoal(false);
     }
-    //const goal = prompt('Please enter a project goal')
 
-   
+    if(event.key === 'Escape' || !event.target){
+      event.preventDefault();
+      setShowAddGoal(false);
+      setProjectGoal('');
+    }
+
   }
 
   const updateGoal = (id) => {
