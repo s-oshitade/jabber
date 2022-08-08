@@ -86,17 +86,21 @@ function Chat() {
          <>
          <Header>
            <LeftHeader>
-            <MenuIcon onClick={openMenu}/>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={menu}
-                  keepMounted
-                  open={Boolean(menu)}
-                  onClose={closeMenu}
-                >
-                  <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>
-                  <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
-                </Menu>
+            {user.email === roomDetails?.data().owner &&
+            <>
+              <MenuIcon onClick={openMenu}/>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={menu}
+                    keepMounted
+                    open={Boolean(menu)}
+                    onClose={closeMenu}
+                  >
+                    <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>
+                    <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
+                  </Menu>
+                </>
+              }
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
