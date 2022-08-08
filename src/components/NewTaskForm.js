@@ -19,6 +19,16 @@ function NewTaskForm({editInput, id}) {
       return;
     }
 
+    if(task === editInput){
+      alert("No changes were made to the selected task");
+      db.collection("users").doc("todoLists").collection(userEmail).add({
+        task: task,
+        done: done
+      }) 
+      setTask("");
+      return;
+    }
+
     //Submit task to firebease store with a default "done" state being false
     setDone(false)
     db.collection("users").doc("todoLists").collection(userEmail).add({
