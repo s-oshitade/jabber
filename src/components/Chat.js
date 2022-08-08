@@ -61,7 +61,7 @@ function Chat() {
   }
 
   const makeChannelPrivate = () => {
-    closeMenu();
+
     const channelPassword = prompt('Please enter a password')
 
     db.collection("rooms").doc(roomId).update({
