@@ -17,6 +17,7 @@ import { ClickAwayListener } from '@material-ui/core';
 function RightSidebar () {
 
   const [showAddGoal, setShowAddGoal ] = useState(false); 
+  const [projectGoal, setProjectGoal ] = useState('');
   const roomId = useSelector(selectRoomId)
 
   const [roomDetails] = useDocument(
@@ -33,7 +34,7 @@ function RightSidebar () {
 
   const addProjectGoal = () => {
     setShowAddGoal(true);
-    const goal = prompt('Please enter a project goal')
+    //const goal = prompt('Please enter a project goal')
 
     if (goal) {
       db.collection("rooms").doc(roomId).collection("project").add({
@@ -85,8 +86,24 @@ function RightSidebar () {
       />
       <hr />
         <RightSidebarOption
-        onClick={addProjectGoal}
+        // onClick={addProjectGoal}
         >
+          { showAddGoal &&
+          <TextField 
+            className='text-field'
+            id="standard-basic"
+            label="Add Project Goal"
+            variant='standard'
+            inputProps={{style: {color: "white"}}}
+            autoFocus={true}
+            size='small'
+            type="text" 
+            value={projectGoal}
+            onChange={event => setProjectGoal(event.target.value)}
+            onKeyDown={addProjectGoal}
+
+            />
+          }
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
         <hr />
