@@ -8,6 +8,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import ForumIcon from '@material-ui/icons/Forum';
 import LockIcon from '@material-ui/icons/Lock';
 import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 
@@ -90,6 +91,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       className={id && "channel"}
     >   
       {addingChannel && 
+      <ClickAwayListener onClickAway={handleClickAway}>
       <TextField 
         className='text-field'
         id="standard-basic"
@@ -102,7 +104,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         value={channelName}
         onChange={event => setChannelName(event.target.value)}
         onKeyDown={addChannel}
-        />}
+
+        />
+        </ClickAwayListener>}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
