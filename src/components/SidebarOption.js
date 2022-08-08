@@ -22,6 +22,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     id && db.collection('rooms').doc(id)
   )
 
+  const handleClickAway = ( ) => {
+    setAddingChannel(false);
+  }
 
 
  
