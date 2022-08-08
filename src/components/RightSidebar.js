@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/counter/appSlice';
@@ -8,10 +8,16 @@ import AddIcon from "@material-ui/icons/Add";
 import PowerListApp from './PowerListApp';
 import ProgressBar from './ProgressBar';
 import ProjectGoal from './ProjectGoal';
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
+
 
 
 
 function RightSidebar () {
+
+  const [showAddGoal, setShowAddGoal ] = useState(false); 
+  const [projectGoal, setProjectGoal ] = useState('');
   const roomId = useSelector(selectRoomId)
 
   const [roomDetails] = useDocument(
@@ -26,16 +32,30 @@ function RightSidebar () {
     roomId && db.collection('rooms').doc(roomId).collection("project").where("complete", "==", true)
   )
 
-  const addProjectGoal = () => {
-    const goal = prompt('Please enter a project goal')
+  const addProjectGoal = async (event) => {
+    setShowAddGoal(true);
 
-    if (goal) {
-      db.collection("rooms").doc(roomId).collection("project").add({
-        goal: goal,
-        complete: false
-      })
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (projectGoal) {
+        db.collection("rooms").doc(roomId).collection("project").add({
+          goal: projectGoal,
+          complete: false
+        })
+      }
+      setProjectGoal('');
+      setShowAddGoal(false);
     }
+
+    if(event.key === 'Escape' || !event.target){
+      event.preventDefault();
+      setShowAddGoal(false);
+      setProjectGoal('');
+    }
+
   }
+
+  const handleClickAway = () => { setShowAddGoal(false);}
 
   const updateGoal = (id) => {
     db.collection("rooms").doc(roomId).collection("project").doc(id).update({
@@ -79,11 +99,30 @@ function RightSidebar () {
       />
       <hr />
         <RightSidebarOption
-        onClick={addProjectGoal}
+         onClick={addProjectGoal}
         >
+          
+            { showAddGoal &&
+              <ClickAwayListener onClickAway={handleClickAway} >
+                <TextField 
+                  className='text-field'
+                  id="standard-basic"
+                  label="Enter Project Goal"
+                  variant='standard'
+                  inputProps={{style: {color: "white"}}}
+                  autoFocus={true}
+                  size='small'
+                  type="text" 
+                  value={projectGoal}
+                  onChange={event => setProjectGoal(event.target.value)}
+                  onKeyDown={addProjectGoal}
+                />
+              </ClickAwayListener>
+            }
+          
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
-        <hr />
+        {/* <hr /> */}
 
 
         {projectPlan?.docs.map(doc => {
@@ -220,6 +259,18 @@ const RightSidebarOption = styled.div`
     opacity: 0.9;
     background-color: #154c79;
   }
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #0175FE;
+  }
+
 
 
 `;
