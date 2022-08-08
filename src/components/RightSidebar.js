@@ -107,7 +107,7 @@ function RightSidebar () {
                 <TextField 
                   className='text-field'
                   id="standard-basic"
-                  label="Add Project Goal"
+                  label="Enter Project Goal"
                   variant='standard'
                   inputProps={{style: {color: "white"}}}
                   autoFocus={true}
@@ -122,7 +122,7 @@ function RightSidebar () {
           
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
-        <hr />
+        {/* <hr /> */}
 
 
         {projectPlan?.docs.map(doc => {
@@ -268,7 +268,7 @@ const RightSidebarOption = styled.div`
   }
 
   > .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #90EE90;
+    border-bottom: 2px solid #0175FE;
   }
 
 
