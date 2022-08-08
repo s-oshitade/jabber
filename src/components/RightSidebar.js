@@ -8,6 +8,8 @@ import AddIcon from "@material-ui/icons/Add";
 import PowerListApp from './PowerListApp';
 import ProgressBar from './ProgressBar';
 import ProjectGoal from './ProjectGoal';
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 
