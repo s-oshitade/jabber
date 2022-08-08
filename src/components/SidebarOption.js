@@ -25,6 +25,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
  
   const addChannel = async (event) => {
+    
     if (event.key === 'Enter') {
       event.preventDefault();
       if (channelName){
@@ -37,12 +38,12 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           roomUrl: body.roomUrl,
           hostUrl: body.hostRoomUrl
         });
-      }
+      } 
       setChannelName('');
       setAddingChannel(false);
     }
 
-    if(event.key === 'Escape'){
+    if(event.key === 'Escape' || !event.target){
       event.preventDefault();
       setAddingChannel(false);
       setChannelName('');
