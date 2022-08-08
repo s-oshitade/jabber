@@ -55,6 +55,8 @@ function RightSidebar () {
 
   }
 
+  const handleClickAway = () => { setShowAddGoal(false);}
+
   const updateGoal = (id) => {
     db.collection("rooms").doc(roomId).collection("project").doc(id).update({
         complete: true
@@ -99,22 +101,25 @@ function RightSidebar () {
         <RightSidebarOption
          onClick={addProjectGoal}
         >
-          { showAddGoal &&
-          <TextField 
-            className='text-field'
-            id="standard-basic"
-            label="Add Project Goal"
-            variant='standard'
-            inputProps={{style: {color: "white"}}}
-            autoFocus={true}
-            size='small'
-            type="text" 
-            value={projectGoal}
-            onChange={event => setProjectGoal(event.target.value)}
-            onKeyDown={addProjectGoal}
-
-            />
-          }
+          
+            { showAddGoal &&
+              <ClickAwayListener onClickAway={handleClickAway} >
+                <TextField 
+                  className='text-field'
+                  id="standard-basic"
+                  label="Add Project Goal"
+                  variant='standard'
+                  inputProps={{style: {color: "white"}}}
+                  autoFocus={true}
+                  size='small'
+                  type="text" 
+                  value={projectGoal}
+                  onChange={event => setProjectGoal(event.target.value)}
+                  onKeyDown={addProjectGoal}
+                />
+              </ClickAwayListener>
+            }
+          
           <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
         </RightSidebarOption>
         <hr />
