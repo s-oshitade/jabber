@@ -23,6 +23,7 @@ function NewTaskForm({editInput, id}) {
       alert("No changes were made to the selected task");
       db.collection("users").doc("todoLists").collection(userEmail).add({
         task: task,
+        done: done
       }) 
       setTask("");
       return;
