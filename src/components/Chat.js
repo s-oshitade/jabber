@@ -66,6 +66,8 @@ function Chat() {
     db.collection("rooms").doc(roomId).update({
       password: channelPassword
     });
+
+    closeMenu();
   }
 
   const deleteChannel = () => {
