@@ -61,10 +61,20 @@ function Chat() {
   }
 
   const makeChannelPrivate = () => {
+    closeMenu();
     const channelPassword = prompt('Please enter a password')
 
     db.collection("rooms").doc(roomId).update({
       password: channelPassword
+    });
+
+    closeMenu();
+
+  }
+
+  const makeChannelPublic = () => {
+    db.collection("rooms").doc(roomId).update({
+      password: null
     });
 
     closeMenu();
@@ -96,7 +106,8 @@ function Chat() {
                     open={Boolean(menu)}
                     onClose={closeMenu}
                   >
-                    <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>
+                    {roomDetails?.data().password && <MenuItem onClick={makeChannelPublic}>Make Channel Public</MenuItem> }
+                    {!roomDetails?.data().password && <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>}
                     <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
                   </Menu>
                 </>
