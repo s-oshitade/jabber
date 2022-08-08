@@ -32,16 +32,23 @@ function RightSidebar () {
     roomId && db.collection('rooms').doc(roomId).collection("project").where("complete", "==", true)
   )
 
-  const addProjectGoal = () => {
+  const addProjectGoal = async (event) => {
     setShowAddGoal(true);
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (projectGoal) {
+        db.collection("rooms").doc(roomId).collection("project").add({
+          goal: projectGoal,
+          complete: false
+        })
+      }
+      setProjectGoal('');
+      setShowAddGoal(false);
+    }
     //const goal = prompt('Please enter a project goal')
 
-    if (goal) {
-      db.collection("rooms").doc(roomId).collection("project").add({
-        goal: goal,
-        complete: false
-      })
-    }
+   
   }
 
   const updateGoal = (id) => {
@@ -86,7 +93,7 @@ function RightSidebar () {
       />
       <hr />
         <RightSidebarOption
-        // onClick={addProjectGoal}
+         onClick={addProjectGoal}
         >
           { showAddGoal &&
           <TextField 
