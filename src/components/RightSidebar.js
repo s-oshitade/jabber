@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/counter/appSlice';
@@ -11,7 +11,10 @@ import ProjectGoal from './ProjectGoal';
 
 
 
+
 function RightSidebar () {
+
+  const [showAddGoal, setShowAddGoal ] = useState(false); 
   const roomId = useSelector(selectRoomId)
 
   const [roomDetails] = useDocument(
@@ -27,6 +30,7 @@ function RightSidebar () {
   )
 
   const addProjectGoal = () => {
+    setShowAddGoal(true);
     const goal = prompt('Please enter a project goal')
 
     if (goal) {
