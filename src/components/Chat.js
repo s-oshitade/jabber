@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import  StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import  InfoOutlinedIcon  from '@material-ui/icons/InfoOutlined';
@@ -10,7 +10,10 @@ import { auth, db } from '../firebase';
 import Message from './Message';
 import LockIcon from '@material-ui/icons/Lock';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import { useAuthState } from "react-firebase-hooks/auth";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 function Chat() {
@@ -52,8 +55,7 @@ function Chat() {
     });
   }
 
-  console.log(roomDetails?.data());
-  console.log(roomMessages);
+
   return (
     <ChatContainer className='scroller'>
       {roomDetails && roomMessages && (
@@ -63,7 +65,7 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-             <StarBorderOutlinedIcon />
+             <MenuOpenIcon />
            </LeftHeader>
  
            <RightHeader>
@@ -151,6 +153,10 @@ const LeftHeader = styled.div`
   > h4 > .MuiSvgIcon-root {
     margin-left: 10px;
     font-size: 18px;
+  }
+
+  > .MuiSvgIcon-root {
+    cursor: pointer;
   }
 `;
 
