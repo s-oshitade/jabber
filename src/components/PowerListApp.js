@@ -9,7 +9,7 @@ import NewTaskForm from "./NewTaskForm.js";
 function PowerListApp() {
   const [user] = useAuthState(auth);
   const userEmail = user?.email
-  const[todos] = useCollection(db.collection("users").doc("todoLists").collection(userEmail).orderBy('done'))
+  const[todos] = useCollection(db.collection("users").doc("todoLists").collection(userEmail).orderBy('done','asc'))
   const[editText, setEditText] = useState("");
   const[id, setId] = useState("");
 
