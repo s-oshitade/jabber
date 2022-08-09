@@ -100,6 +100,10 @@ function Chat() {
     setAddResource(false)
   }
 
+  const addResourceToDb = (event) => {
+
+  }
+
   return (
     <ChatContainer className='scroller'>
       {roomDetails && roomMessages && (
@@ -136,7 +140,10 @@ function Chat() {
                   inputProps={{style: {color: "white"}}}
                   autoFocus={true}
                   size='small'
-                  type="text" 
+                  type="text"
+                  value={resource}
+                  onChange={event => setResource(event.target.value)}
+                  onKeyDown={addResourceToDb}
                 />
               </ClickAwayListener>
               }
