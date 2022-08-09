@@ -101,7 +101,25 @@ function Chat() {
   }
 
   const addResourceToDb = (event) => {
+    
 
+    if (event.key === 'Enter') {
+      event.preventDefault()
+        if (resource) {
+          db.collection('rooms').doc(roomId).collection('resources').add({
+            name: '',
+            url: resource
+          })
+        }
+        setResource('')
+        closeTextField();
+    }
+
+    if (event.key === 'Escape' || !event.target) {
+      event.preventDefault()
+      setResource('')
+      closeTextField();
+    }
   }
 
   return (
