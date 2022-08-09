@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 function Chat() {
@@ -88,6 +89,8 @@ function Chat() {
       roomId: null
     }));
   }
+
+  const [addResource, setAddResource] = useState(false);
 
 
   return (
