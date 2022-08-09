@@ -45,7 +45,6 @@ function Sidebar({token}) {
        
       <hr />
       <SidebarOption Icon={DashboardIcon} title="Channels" />
-      <hr />
       <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
