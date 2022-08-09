@@ -106,9 +106,12 @@ function Chat() {
     if (event.key === 'Enter') {
       event.preventDefault()
         if (resource) {
+          const url = resource;
+          const formatted = (new URL(url))
+          const domain = formatted.hostname
           db.collection('rooms').doc(roomId).collection('resources').add({
-            name: '',
-            url: resource
+            name: domain,
+            url: url
           })
         }
         setResource('')
