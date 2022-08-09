@@ -91,7 +91,14 @@ function Chat() {
   }
 
   const [addResource, setAddResource] = useState(false);
+  const [resource, setResource] = useState('');
+  const openTextField = () => {
+    setAddResource(true)
+  }
 
+  const closeTextField = () => {
+    setAddResource(false)
+  }
 
   return (
     <ChatContainer className='scroller'>
@@ -118,7 +125,21 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-              <NoteAddIcon />
+              {!addResource && <NoteAddIcon onClick={openTextField}/>}
+              {addResource && 
+              <ClickAwayListener onClickAway={closeTextField} >
+                <TextField 
+                  className='text-field'
+                  id="standard-basic"
+                  label="Enter resource URL"
+                  variant='standard'
+                  inputProps={{style: {color: "white"}}}
+                  autoFocus={true}
+                  size='small'
+                  type="text" 
+                />
+              </ClickAwayListener>
+              }
            </LeftHeader>
  
            <RightHeader>
