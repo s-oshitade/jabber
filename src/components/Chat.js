@@ -150,6 +150,17 @@ function Chat() {
     }
   }
 
+  const clearResources = () => {
+    closeMenu();
+    db.collection('rooms').doc(roomId).collection('resources').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(snapshot => {
+          snapshot.ref.delete();
+      }) // runs through each document in resources collection and deletes each one
+  })
+  
+
+  }
+
   const openResourceLink = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -172,6 +183,7 @@ function Chat() {
                   >
                     {roomDetails?.data().password && <MenuItem onClick={makeChannelPublic}>Make Channel Public</MenuItem> }
                     {!roomDetails?.data().password && <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>}
+                    <MenuItem onClick={clearResources}>Clear Channel Resources</MenuItem>
                     <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
                   </Menu>
                 </>
@@ -196,13 +208,14 @@ function Chat() {
                     open={Boolean(viewResources)}
                     onClose={closeViewResources}
                   >
-
-                    {roomResources?.docs.map(resource => {
+                    {roomResources?.docs.length === 0 ? (<MenuItem>No Resources added</MenuItem>)
+                    : ( <> {roomResources?.docs.map(resource => {
                       const { name, url } = resource.data();
                       return (
                       <MenuItem onClick={() => openResourceLink(url)}>{name}</MenuItem>
                       )
-                    })}
+                    })} </>) }
+                  
                   </Menu>
                   </Menu>
               {addResource && 
