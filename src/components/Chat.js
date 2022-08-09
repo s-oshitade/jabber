@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import NoteIcon from '@material-ui/icons/Note';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
 
@@ -90,9 +91,20 @@ function Chat() {
     }));
   }
 
+  const [resourceMenu, setResourceMenu] =  useState(null);
   const [addResource, setAddResource] = useState(false);
   const [resource, setResource] = useState('');
+
+  const openResourceMenu = (event) => {
+    setResourceMenu(event.currentTarget)
+  }
+
+  const closeResourceMenu = () => {
+    setResourceMenu(null)
+  }
+
   const openTextField = () => {
+    setResourceMenu(null)
     setAddResource(true)
   }
 
@@ -150,7 +162,17 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-              {!addResource && <NoteAddIcon onClick={openTextField}/>}
+              {!addResource && <NoteAddIcon onClick={openResourceMenu}/>}
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={resourceMenu}
+                    keepMounted
+                    open={Boolean(resourceMenu)}
+                    onClose={closeResourceMenu}
+                  >
+                    <MenuItem onClick={openTextField}>Add Resource</MenuItem>
+                    <MenuItem>View Resources</MenuItem>
+                  </Menu>
               {addResource && 
               <ClickAwayListener onClickAway={closeTextField} >
                 <TextField 
