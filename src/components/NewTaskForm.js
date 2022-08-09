@@ -19,16 +19,6 @@ function NewTaskForm({editInput, id}) {
       return;
     }
 
-    if(task === editInput){
-      alert("No changes were made to the selected task");
-      db.collection("users").doc("todoLists").collection(userEmail).add({
-        task: task,
-        done: done
-      }) 
-      setTask("");
-      return;
-    }
-
     //Submit task to firebease store with a default "done" state being false
     setDone(false)
     db.collection("users").doc("todoLists").collection(userEmail).add({
@@ -41,24 +31,9 @@ function NewTaskForm({editInput, id}) {
   }
 
   useEffect(() => {
-    console.log("editInput just changed")//I need my cursor to go to the input box here, with the task as the default value.
     setTask(editInput);
   }, [editInput])
 
-  // function handleEdit() {
-  //   //fetch the value of the current task
-  //   //setTask to the that value
-  //   setTask(editInput)
-  //   setDone(false)
-  //   //allow user to make changes to the task in state
-  //   db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
-  //         // task: task,
-  //         done: false
-  //       });
-  // }
-
-  
-  
   return (
     <Input>
       <form onSubmit={handleSubmit}>
@@ -91,7 +66,6 @@ const Input = styled.div`
   }
 
   > form > input {
-    /* position: fixed; */
     bottom: 30px;
     width: 100%;
     border: 1px solid gray;
