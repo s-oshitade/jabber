@@ -15,7 +15,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
-import NoteIcon from '@material-ui/icons/Note';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
 
