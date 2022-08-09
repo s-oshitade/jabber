@@ -94,6 +94,7 @@ function Chat() {
   const [resourceMenu, setResourceMenu] =  useState(null);
   const [addResource, setAddResource] = useState(false);
   const [resource, setResource] = useState('');
+  const [viewReources, setViewResources] = useState(null);
 
   const openResourceMenu = (event) => {
     setResourceMenu(event.currentTarget)
@@ -110,6 +111,14 @@ function Chat() {
 
   const closeTextField = () => {
     setAddResource(false)
+  }
+
+  const openViewResources = (event) => {
+    setViewResources(event.currentTarget)
+  }
+
+  const closeViewResources = () => {
+    setViewResources(null)
   }
 
   const addResourceToDb = (event) => {
@@ -170,8 +179,16 @@ function Chat() {
                     open={Boolean(resourceMenu)}
                     onClose={closeResourceMenu}
                   >
-                    <MenuItem onClick={openTextField}>Add Resource</MenuItem>
-                    <MenuItem>View Resources</MenuItem>
+                    <MenuItem onClick={openTextField} >Add Resource</MenuItem>
+                    <MenuItem onClick={openViewResources} >View Resources</MenuItem>
+                    <Menu
+                    id="simple-menu"
+                    anchorEl={viewReources}
+                    keepMounted
+                    open={Boolean(viewReources)}
+                    onClose={closeViewResources}
+                  >
+                  </Menu>
                   </Menu>
               {addResource && 
               <ClickAwayListener onClickAway={closeTextField} >
