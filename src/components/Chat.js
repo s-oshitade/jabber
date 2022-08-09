@@ -34,6 +34,11 @@ function Chat() {
   const [roomDetails] = useDocument(
     roomId && db.collection('rooms').doc(roomId)
   )
+
+  // fetch channel resources
+  const [roomResources] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection('resources')
+  )
   // fetch room messages from a channel with roomId and order by timestamp(asc)
   const [roomMessages, loading] = useCollection(
     roomId &&
@@ -93,7 +98,7 @@ function Chat() {
   const [resourceMenu, setResourceMenu] =  useState(null);
   const [addResource, setAddResource] = useState(false);
   const [resource, setResource] = useState('');
-  const [viewReources, setViewResources] = useState(null);
+  const [viewResources, setViewResources] = useState(null);
 
   const openResourceMenu = (event) => {
     setResourceMenu(event.currentTarget)
@@ -182,11 +187,18 @@ function Chat() {
                     <MenuItem onClick={openViewResources} >View Resources</MenuItem>
                     <Menu
                     id="simple-menu"
-                    anchorEl={viewReources}
+                    anchorEl={viewResources}
                     keepMounted
-                    open={Boolean(viewReources)}
+                    open={Boolean(viewResources)}
                     onClose={closeViewResources}
                   >
+
+                    {roomResources?.docs.map(resource => {
+                      const { name, url } = resource.data();
+                      return (
+                      <MenuItem>{name}</MenuItem>
+                      )
+                    })}
                   </Menu>
                   </Menu>
               {addResource && 
