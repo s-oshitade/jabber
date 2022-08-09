@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import  StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
-import  InfoOutlinedIcon  from '@material-ui/icons/InfoOutlined';
 import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/counter/appSlice';
 import ChatInput from './ChatInput';
@@ -16,6 +14,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 function Chat() {
@@ -32,6 +33,11 @@ function Chat() {
   // fetch room details 
   const [roomDetails] = useDocument(
     roomId && db.collection('rooms').doc(roomId)
+  )
+
+  // fetch channel resources
+  const [roomResources] = useCollection(
+    roomId && db.collection('rooms').doc(roomId).collection('resources')
   )
   // fetch room messages from a channel with roomId and order by timestamp(asc)
   const [roomMessages, loading] = useCollection(
@@ -89,6 +95,75 @@ function Chat() {
     }));
   }
 
+  const [resourceMenu, setResourceMenu] =  useState(null);
+  const [addResource, setAddResource] = useState(false);
+  const [resource, setResource] = useState('');
+  const [viewResources, setViewResources] = useState(null);
+
+  const openResourceMenu = (event) => {
+    setResourceMenu(event.currentTarget)
+  }
+
+  const closeResourceMenu = () => {
+    setResourceMenu(null)
+  }
+
+  const openTextField = () => {
+    setResourceMenu(null)
+    setAddResource(true)
+  }
+
+  const closeTextField = () => {
+    setAddResource(false)
+  }
+
+  const openViewResources = (event) => {
+    setViewResources(event.currentTarget)
+  }
+
+  const closeViewResources = () => {
+    setViewResources(null)
+  }
+
+  const addResourceToDb = (event) => {
+    
+
+    if (event.key === 'Enter') {
+      event.preventDefault()
+        if (resource) {
+          const url = resource;
+          const formatted = (new URL(url))
+          const domain = formatted.hostname
+          db.collection('rooms').doc(roomId).collection('resources').add({
+            name: domain,
+            url: url
+          })
+        }
+        setResource('')
+        closeTextField();
+    }
+
+    if (event.key === 'Escape' || !event.target) {
+      event.preventDefault()
+      setResource('')
+      closeTextField();
+    }
+  }
+
+  const clearResources = () => {
+    closeMenu();
+    db.collection('rooms').doc(roomId).collection('resources').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(snapshot => {
+          snapshot.ref.delete();
+      }) // runs through each document in resources collection and deletes each one
+  })
+  
+
+  }
+
+  const openResourceLink = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
 
   return (
     <ChatContainer className='scroller'>
@@ -108,6 +183,7 @@ function Chat() {
                   >
                     {roomDetails?.data().password && <MenuItem onClick={makeChannelPublic}>Make Channel Public</MenuItem> }
                     {!roomDetails?.data().password && <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>}
+                    <MenuItem onClick={clearResources}>Clear Channel Resources</MenuItem>
                     <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
                   </Menu>
                 </>
@@ -115,7 +191,50 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-
+              {!addResource && <NoteAddIcon onClick={openResourceMenu}/>}
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={resourceMenu}
+                    keepMounted
+                    open={Boolean(resourceMenu)}
+                    onClose={closeResourceMenu}
+                  >
+                    <MenuItem onClick={openTextField} >Add Resource</MenuItem>
+                    <MenuItem onClick={openViewResources} >View Resources</MenuItem>
+                    <Menu
+                    id="simple-menu"
+                    anchorEl={viewResources}
+                    keepMounted
+                    open={Boolean(viewResources)}
+                    onClose={closeViewResources}
+                  >
+                    {roomResources?.docs.length === 0 ? (<MenuItem>No Resources added</MenuItem>)
+                    : ( <> {roomResources?.docs.map(resource => {
+                      const { name, url } = resource.data();
+                      return (
+                      <MenuItem onClick={() => openResourceLink(url)}>{name}</MenuItem>
+                      )
+                    })} </>) }
+                  
+                  </Menu>
+                  </Menu>
+              {addResource && 
+              <ClickAwayListener onClickAway={closeTextField} >
+                <TextField 
+                  className='text-field'
+                  id="standard-basic"
+                  label="Enter resource URL"
+                  variant='standard'
+                  inputProps={{style: {color: "white"}}}
+                  autoFocus={true}
+                  size='small'
+                  type="text"
+                  value={resource}
+                  onChange={event => setResource(event.target.value)}
+                  onKeyDown={addResourceToDb}
+                />
+              </ClickAwayListener>
+              }
            </LeftHeader>
  
            <RightHeader>
