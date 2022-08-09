@@ -14,6 +14,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
+import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import  TextField  from '@material-ui/core/TextField/TextField';
 
 
 function Chat() {
@@ -113,7 +115,7 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-
+              <NoteAddIcon />
            </LeftHeader>
  
            <RightHeader>
