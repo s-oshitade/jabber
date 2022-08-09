@@ -4,7 +4,6 @@ import styled from "styled-components";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CreateIcon from "@material-ui/icons/Create";
 import SidebarOption from './SidebarOption';
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DashboardIcon from "@material-ui/icons/Dashboard"
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AddIcon from "@material-ui/icons/Add";
