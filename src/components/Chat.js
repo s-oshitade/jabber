@@ -150,6 +150,10 @@ function Chat() {
     }
   }
 
+  const openResourceLink = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <ChatContainer className='scroller'>
       {roomDetails && roomMessages && (
@@ -196,7 +200,7 @@ function Chat() {
                     {roomResources?.docs.map(resource => {
                       const { name, url } = resource.data();
                       return (
-                      <MenuItem>{name}</MenuItem>
+                      <MenuItem onClick={() => openResourceLink(url)}>{name}</MenuItem>
                       )
                     })}
                   </Menu>
