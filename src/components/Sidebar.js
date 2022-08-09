@@ -50,18 +50,7 @@ function Sidebar({token}) {
       
 
        <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
-
-
-      
-      
-      <SidebarOption Icon={InsertCommentIcon} title="Threads" />
-      <SidebarOption Icon={InboxIcon} title="Mentions & Reactions" />
-      <SidebarOption Icon={DraftsIcon} title="Saved Items" />
-      <SidebarOption Icon={BookmarkBorderIcon} title="Channel Browser" />
-      <SidebarOption Icon={PeopleAltIcon} title="People & User Groups" />
-      <SidebarOption Icon={AppsIcon} title="Apps" />
-      <SidebarOption Icon={FileCopyIcon} title="File Browser" />
-      <SidebarOption Icon={ExpandLessIcon} title="Show Less" />
+       
       <hr />
       <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
       <hr />
