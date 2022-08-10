@@ -71,10 +71,10 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
             setShowPasswordField(true);
             if (event.key === 'Enter') {
               event.preventDefault();
-              // if (addPassword === isPrivate) {
-              //   dispatch(enterRoom({
-              //     roomId: id
-              //   }))
+              if (addPassword === isPrivate) {
+                dispatch(enterRoom({
+                  roomId: id
+                }))
               // } else {
               //     if (addPassword) {
               //     alert('Wrong password!');
