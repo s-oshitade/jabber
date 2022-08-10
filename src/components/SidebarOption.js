@@ -27,6 +27,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
   const handleClickAway = ( ) => {
     setAddingChannel(false);
+    setShowPasswordField(false);
   }
 
 
@@ -132,21 +133,22 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
            {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
            <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
            {showPasswordField &&
-            <TextField 
-              error
-              className='text-field'
-              id="standard-basic"
-              label="Enter Password"
-              variant='standard'
-              inputProps={{style: {color: "white"}}}
-              autoFocus={true}
-              size='small'
-              type="text" 
-              value={addPassword}
-              onChange={event => setAddPassword(event.target.value)}
-              onKeyDown={selectChannel}
-              
-            />
+           <ClickAwayListener onClickAway={handleClickAway} >
+              <TextField 
+                error
+                className='text-field'
+                id="standard-basic"
+                label="Enter Password"
+                variant='standard'
+                inputProps={{style: {color: "white"}}}
+                autoFocus={true}
+                size='small'
+                type="text" 
+                value={addPassword}
+                onChange={event => setAddPassword(event.target.value)}
+                onKeyDown={selectChannel}
+              />
+            </ClickAwayListener>
            }
            
            
