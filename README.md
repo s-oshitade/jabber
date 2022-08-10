@@ -1,46 +1,57 @@
-# Getting Started with Create React App and Redux
+# JABBER Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This project is a React app that was completed by [Dino Pranjic](https://github.com/DinoPranjic), [Mustapha Baltalji](https://github.com/mbbaltaji) and [Seun Oshitade](https://www.linkedin.com/in/seun-oshitade/). It presented an opportunity to learn new technologies and build a product in a collaborative and projectized environment.
+___
+## About
 
-## Available Scripts
+Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord](https://discord.com/), Jabber is a feature-rich messaging app. We set out to build a multi-user chat platform which includes features that could enhance personal and group/project productivity, with some elements of personalized entertainment. 
+___
+## Tech Stack
+* Frontend: React, Redux, Styled Components, Firebase Authentication, Material UI
+* Backend: Node, Express, Firebase Store
+* API Intergations: Video Chat, Spotify Music, React Uploader  
 
-In the project directory, you can run:
+___
+## Features
+* Secured user login (OAuth)
+* Text chat with optional private chat feature
+* Video Chat with complete set of related features
+* Spotify login with personalized playlist per loggedIn user
+* Project tracker, mapped to each chat room
+* Personal todo list, mapped to each loggedin user
+* Image drag and drop for sharing images/ screen shots
+* A Resources feature for storing urls relating to respective projects
+___
+## Minimum Viable Demo
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Insert demo video and selected images here]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+___
+## Dependencies
 
-### `npm test`
+  * @material-ui/core
+  * @material-ui/icons
+  * @reduxjs/toolkit
+  * emoji-picker-react
+  * firebase
+  * react
+  * react-dom
+  * react-firebase-hooks
+  * react-redux
+  * react-router-dom
+  * react-scripts
+  * react-spinkit
+  * react-spotify-web-playback
+  * react-uploader
+  * styled-components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Continuous Improvement
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+Selected aspects of this project may be subject to intellectual property rights.
