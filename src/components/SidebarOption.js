@@ -18,6 +18,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [channelName, setChannelName] = useState('');
   const [showPasswordField, setShowPasswordField] = useState(false)
   const [addPassword, setAddPassword] = useState('');
+  const [passwordEntered, setPasswordEntered] = useState(false);
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -67,28 +68,36 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           roomId: id
         }))
       } else {
-          if (isPrivate) {
-            setShowPasswordField(true);
+        if (isPrivate && !passwordEntered) {
+          setShowPasswordField(true);
             if (event.key === 'Enter') {
               event.preventDefault();
               if (addPassword === isPrivate) {
-                dispatch(enterRoom({
-                  roomId: id
-                }))
+                dispatch(enterRoom({ roomId: id }))
+                setPasswordEntered(true);
+                setShowPasswordField(false);
+                setAddPassword('');
               } else {
                   if (addPassword) {
-                  alert('Wrong password!');
+                    alert('Wrong password!');
+                    setShowPasswordField(false);
+                    setAddPassword('');
                   }
                 }  
-            } 
-          } else {
-          dispatch(enterRoom({
-            roomId: id
-          }))
+              } 
+            } else {
+              dispatch(enterRoom({
+                roomId: id
+              }))
+            }
+            // if(event.key === 'Escape' || !event.target){
+            //   event.preventDefault();
+            //   setShowPasswordField(false);
+            //   setAddPassword('');
+            // }
+          }
         }
-        }
-    }
-  };
+      };
 
   return (
     
