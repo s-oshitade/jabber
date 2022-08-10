@@ -16,7 +16,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [user] = useAuthState(auth);
   const [addingChannel, setAddingChannel] = useState(false);
   const [channelName, setChannelName] = useState('');
-  const [showPasswrodField, setShowPasswordField] = useState(false)
+  const [showPasswordField, setShowPasswordField] = useState(false)
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -67,6 +67,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         }))
       } else {
           if (isPrivate) {
+            setShowPasswordField(true);
             const userInput = prompt('This channel is private. Please enter a password');
 
             if (userInput === isPrivate) {
@@ -96,7 +97,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     >   
       {addingChannel && 
       <ClickAwayListener onClickAway={handleClickAway}>
-      <TextField 
+      {/* <TextField 
         className='text-field'
         id="standard-basic"
         label="Add Channel"
@@ -109,7 +110,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         onChange={event => setChannelName(event.target.value)}
         onKeyDown={addChannel}
 
-        />
+        /> */}
         </ClickAwayListener>}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
@@ -119,6 +120,22 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         className={userState} >
            {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
            <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
+           {showPasswordField &&
+            <TextField 
+              className='text-field'
+              id="standard-basic"
+              label="Add Channel"
+              variant='standard'
+              inputProps={{style: {color: "white"}}}
+              autoFocus={true}
+              size='small'
+              type="text" 
+              value={channelName}
+              onChange={event => setChannelName(event.target.value)}
+              onKeyDown={addChannel}
+              
+            />
+           }
            
            
         </SidebarOptionChannel>
