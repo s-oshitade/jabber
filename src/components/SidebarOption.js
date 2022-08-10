@@ -91,11 +91,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 roomId: id
               }))
             }
-            // if(event.key === 'Escape' || !event.target){
-            //   event.preventDefault();
-            //   setShowPasswordField(false);
-            //   setAddPassword('');
-            // }
+            if(event.key === 'Escape' || !event.target){
+              event.preventDefault();
+              setShowPasswordField(false);
+              setAddPassword('');
+            }
           }
         }
       };
