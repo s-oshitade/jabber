@@ -17,6 +17,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [addingChannel, setAddingChannel] = useState(false);
   const [channelName, setChannelName] = useState('');
   const [showPasswordField, setShowPasswordField] = useState(false)
+  const [addPassword, setAddPassword] = useState('');
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -130,9 +131,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
               autoFocus={true}
               size='small'
               type="text" 
-              value={channelName}
+              value={addPassword}
               onChange={event => setChannelName(event.target.value)}
-              onKeyDown={addChannel}
+              onKeyDown={selectChannel}
               
             />
            }
