@@ -12,7 +12,6 @@ import { ClickAwayListener } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog/Dialog';
 import DialogActions from '@material-ui/core/DialogActions/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
 import Button from '@material-ui/core/Button/Button';
 
@@ -22,24 +21,22 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [user] = useAuthState(auth);
   const [addingChannel, setAddingChannel] = useState(false);
   const [channelName, setChannelName] = useState('');
-  const [showPasswordField, setShowPasswordField] = useState(false)
+
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false)
   const [addPassword, setAddPassword] = useState('');
   const [passwordEntered, setPasswordEntered] = useState(false);
+
   const [errorText, setErrorText] = useState('');
   const [error, setError] = useState(false);
+
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
     id && db.collection('rooms').doc(id)
   )
 
-  const handleClickAway = ( ) => {
-    setAddingChannel(false);
-    setShowPasswordField(false);
-  }
+  const handleClickAway = ( ) => { setAddingChannel(false); }
 
-
- 
   const addChannel = async (event) => {
     
     if (event.key === 'Enter') {
@@ -78,20 +75,18 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         }))
       } else {
         if (isPrivate && !passwordEntered) {
-          setShowPasswordField(true);
+          setShowPasswordDialog(true);
             if (event.key === 'Enter') {
               event.preventDefault();
               if (addPassword === isPrivate) {
                 dispatch(enterRoom({ roomId: id }))
                 setPasswordEntered(true);
-                setShowPasswordField(false);
+                setShowPasswordDialog(false);
                 setAddPassword('');
               } else {
                   if (addPassword) {
                     setErrorText('Wrong Password');
                     setError(true);
-                    //alert('Wrong password!');
-                    //setShowPasswordField(false);
                     setAddPassword('');
                   }
                 }  
@@ -103,7 +98,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
             }
             if(event.key === 'Escape' || !event.target){
               event.preventDefault();
-              setShowPasswordField(false);
+              setShowPasswordDialog(false);
               setAddPassword('');
             }
           }
@@ -112,7 +107,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
   return (
   <>
-  {showPasswordField && 
+  {showPasswordDialog && 
     <Dialog open={true}>
       <DialogTitle>Please enter channel password</DialogTitle>
         <DialogContent>
@@ -132,7 +127,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setShowPasswordField(false)} >Cancel</Button> 
+          <Button onClick={() => setShowPasswordDialog(false)} >Cancel</Button> 
           <Button onClick={() => selectChannel } >Enter</Button>
         </DialogActions>
     </Dialog> }
@@ -145,21 +140,20 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     >   
       {addingChannel && 
       <ClickAwayListener onClickAway={handleClickAway}>
-      <TextField 
-        className='text-field'
-        id="standard-basic"
-        label="Add Channel"
-        variant='standard'
-        inputProps={{style: {color: "white"}}}
-        autoFocus={true}
-        size='small'
-        type="text" 
-        value={channelName}
-        onChange={event => setChannelName(event.target.value)}
-        onKeyDown={addChannel}
-
+        <TextField 
+          className='text-field'
+          id="standard-basic"
+          label="Add Channel"
+          variant='standard'
+          inputProps={{style: {color: "white"}}}
+          autoFocus={true}
+          size='small'
+          type="text" 
+          value={channelName}
+          onChange={event => setChannelName(event.target.value)}
+          onKeyDown={addChannel}
         />
-        </ClickAwayListener>}
+      </ClickAwayListener>}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
@@ -225,19 +219,4 @@ const SidebarOptionChannel = styled.h3`
   font-weight: 300;
   display: flex;
   align-items: center;
-
-
- > .text-field {
-    min-width: -webkit-fill-available;
-  }
- > .text-field  > label{
-    color: gray;
-    padding-top: 1em;
-  }
-
-> .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #90EE90;
-  }
-
-
 `;
