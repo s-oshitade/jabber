@@ -76,6 +76,7 @@ function Chat() {
 
   const closePasswordField = () => {
     setAddPassword(false);
+
   }
 
   const makeChannelPrivate = (event) => {
