@@ -9,6 +9,12 @@ import ForumIcon from '@material-ui/icons/Forum';
 import LockIcon from '@material-ui/icons/Lock';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog/Dialog';
+import DialogActions from '@material-ui/core/DialogActions/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
+import Button from '@material-ui/core/Button/Button';
 
 
 
@@ -20,6 +26,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [addPassword, setAddPassword] = useState('');
   const [passwordEntered, setPasswordEntered] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -81,7 +88,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 setAddPassword('');
               } else {
                   if (addPassword) {
-                    setErrorText('WrongPassword');
+                    setErrorText('Wrong Password');
+                    setError(true);
                     //alert('Wrong password!');
                     //setShowPasswordField(false);
                     setAddPassword('');
@@ -103,6 +111,32 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       };
 
   return (
+  <>
+  {showPasswordField && 
+    <Dialog open={true}>
+      <DialogTitle>Please enter channel password</DialogTitle>
+        <DialogContent>
+          <TextField
+            error={error}
+            helperText={errorText}
+            autoFocus
+            margin="dense"
+            id="name"
+            label="password"
+            type="password"
+            fullWidth
+            variant="standard"
+            value={addPassword}
+            onChange={event => setAddPassword(event.target.value)}
+            onKeyDown={selectChannel}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowPasswordField(false)} >Cancel</Button> 
+          <Button onClick={() => selectChannel } >Enter</Button>
+        </DialogActions>
+    </Dialog> }
+
     
     <SidebarOptionContainer
       
@@ -134,32 +168,13 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         className={userState} >
            {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
            <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
-           {showPasswordField &&
-           <ClickAwayListener onClickAway={handleClickAway} >
-              <TextField 
-                // error={errorText}
-                // helperText={errorText}
-                className='text-field'
-                id="standard-basic"
-                label="Enter Password"
-                variant='standard'
-                inputProps={{style: {color: "white"}}}
-                autoFocus={true}
-                size='small'
-                type="password" 
-                value={addPassword}
-                onChange={event => setAddPassword(event.target.value)}
-                onKeyDown={selectChannel}
-              />
-            </ClickAwayListener>
-           }
-           
-           
         </SidebarOptionChannel>
       )}
 
     </SidebarOptionContainer>
+    </>
   )
+  
 }
 
 export default SidebarOption;
@@ -212,14 +227,15 @@ const SidebarOptionChannel = styled.h3`
   align-items: center;
 
 
-    > .text-field {
+ > .text-field {
     min-width: -webkit-fill-available;
   }
-  > .text-field  > label{
+ > .text-field  > label{
     color: gray;
+    padding-top: 1em;
   }
 
-  > .text-field > .MuiInput-underline:after{
+> .text-field > .MuiInput-underline:after{
     border-bottom: 2px solid #90EE90;
   }
 
