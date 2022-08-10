@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { db } from '../firebase';
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 import styled from 'styled-components';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
@@ -6,8 +9,41 @@ import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 
 
-function ProjectGoal ({goal, status, id, update, edit, remove}) {
+function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   const [isHovering, setIsHovering] = useState(false);
+  const [currentGoal, setCurrentGoal] = useState(goal);
+  const [editGoal, setEditGoal] = useState(false);
+
+  const openEditGoal = () => {
+    setEditGoal(true)
+  }
+
+  const closeEditGoal = () => {
+    setEditGoal(false);
+  }
+
+  const submitEditGoal = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      if (currentGoal) {
+        db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+          goal: currentGoal,
+          complete: false
+        })
+      }
+      closeEditGoal();
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setCurrentGoal(goal);
+      closeEditGoal();
+
+    }
+
+
+
+  }
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -18,6 +54,8 @@ function ProjectGoal ({goal, status, id, update, edit, remove}) {
   }
 
   return(
+    <>
+    {editGoal === false ? (
     <ProjectGoalContainer
       onMouseOver={handleMouseOver} 
       onMouseOut={handleMouseOut}
@@ -26,11 +64,27 @@ function ProjectGoal ({goal, status, id, update, edit, remove}) {
       {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
       </ProjectGoalInfo>
       <ProjectGoalIcons>
-        {isHovering && <> <EditIcon onClick={() => {edit(id)}} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
+        {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
       </ProjectGoalIcons>
 
-    </ ProjectGoalContainer>
-  )
+    </ ProjectGoalContainer> )
+    : <ClickAwayListener onClickAway={closeEditGoal}>
+        <TextField
+          className='text-field'
+          id="standard-basic"
+          variant='standard'
+          inputProps={{style: {color: "white"}}}
+          autoFocus={true}
+          size='small'
+          type="text"
+          value={currentGoal}
+          onChange={event => setCurrentGoal(event.target.value)}
+          onKeyDown={submitEditGoal} />
+      </ClickAwayListener>}
+    </>
+  ) 
+
+  
 }
 
 export default ProjectGoal;

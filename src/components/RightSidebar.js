@@ -71,18 +71,6 @@ function RightSidebar () {
   
   }
 
-  const editGoal = (id) => {
-    const goal = prompt('Edit this goal:')
-
-    if (goal) {
-      db.collection("rooms").doc(roomId).collection("project").doc(id).update({
-        goal: goal,
-        complete: false
-      })
-    }
-
-  }
-
   const removeGoal = (id) => {
     db.collection("rooms").doc(roomId).collection("project").doc(id).delete();
   }
@@ -135,7 +123,7 @@ function RightSidebar () {
               status={complete}
               goal={goal}
               update={complete === false ? updateGoal : resetGoal}
-              edit={editGoal}
+              roomId={roomId}
               remove={removeGoal}
             />
           )
