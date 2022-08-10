@@ -58,7 +58,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
 
 
-  const selectChannel = () => {
+  const selectChannel = (event) => {
     const isPrivate = roomDetails?.data().password
 
     if (id) {
@@ -69,17 +69,18 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       } else {
           if (isPrivate) {
             setShowPasswordField(true);
-            const userInput = prompt('This channel is private. Please enter a password');
-
-            if (userInput === isPrivate) {
-              dispatch(enterRoom({
-                roomId: id
-              }))
-            } else {
-              if (userInput) {
-              alert('Wrong password!');
-              }
-            }
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              // if (addPassword === isPrivate) {
+              //   dispatch(enterRoom({
+              //     roomId: id
+              //   }))
+              // } else {
+              //     if (addPassword) {
+              //     alert('Wrong password!');
+              //     }
+              //   }  
+            } 
           } else {
           dispatch(enterRoom({
             roomId: id
@@ -107,9 +108,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         autoFocus={true}
         size='small'
         type="text" 
-        // value={channelName}
-        // onChange={event => setChannelName(event.target.value)}
-        // onKeyDown={addChannel}
+        value={channelName}
+        onChange={event => setChannelName(event.target.value)}
+        onKeyDown={addChannel}
 
         />
         </ClickAwayListener>}
@@ -123,16 +124,17 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
            <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
            {showPasswordField &&
             <TextField 
+              error
               className='text-field'
               id="standard-basic"
-              label="Add Channel"
+              label="Enter Password"
               variant='standard'
               inputProps={{style: {color: "white"}}}
               autoFocus={true}
               size='small'
               type="text" 
               value={addPassword}
-              onChange={event => setChannelName(event.target.value)}
+              onChange={event => setAddPassword(event.target.value)}
               onKeyDown={selectChannel}
               
             />
@@ -194,6 +196,18 @@ const SidebarOptionChannel = styled.h3`
   font-weight: 300;
   display: flex;
   align-items: center;
+
+
+    > .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #90EE90;
+  }
 
 
 `;
