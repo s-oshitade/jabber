@@ -146,7 +146,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 inputProps={{style: {color: "white"}}}
                 autoFocus={true}
                 size='small'
-                type="text" 
+                type="password" 
                 value={addPassword}
                 onChange={event => setAddPassword(event.target.value)}
                 onKeyDown={selectChannel}
