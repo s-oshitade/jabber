@@ -135,7 +135,7 @@ function RightSidebar () {
               status={complete}
               goal={goal}
               update={complete === false ? updateGoal : resetGoal}
-              edit={editGoal}
+              roomId={roomId}
               remove={removeGoal}
             />
           )
