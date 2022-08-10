@@ -18,6 +18,22 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
     setEditGoal(true)
   }
 
+  const closeEditGoal = () => {
+    setEditGoal(false);
+  }
+
+  const submitEditGoal = (event) => {
+    
+
+    if (goal) {
+      db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+        goal: goal,
+        complete: false
+      })
+    }
+
+  }
+
   const handleMouseOver = () => {
     setIsHovering(true);
   }
@@ -41,7 +57,19 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
       </ProjectGoalIcons>
 
     </ ProjectGoalContainer> )
-    : (<div></div>)}
+    : <ClickAwayListener onClickAway={closeEditGoal}>
+        <TextField
+          className='text-field'
+          id="standard-basic"
+          variant='standard'
+          inputProps={{style: {color: "white"}}}
+          autoFocus={true}
+          size='small'
+          type="text"
+          value={currentGoal}
+          onChange={event => setCurrentGoal(event.target.value)}
+          onKeyDown={submitEditGoal} />
+      </ClickAwayListener>}
     </>
   ) 
 
