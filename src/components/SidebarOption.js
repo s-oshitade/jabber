@@ -9,6 +9,11 @@ import ForumIcon from '@material-ui/icons/Forum';
 import LockIcon from '@material-ui/icons/Lock';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog/Dialog';
+import DialogActions from '@material-ui/core/DialogActions/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
+import Button from '@material-ui/core/Button/Button';
 
 
 
@@ -16,18 +21,22 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [user] = useAuthState(auth);
   const [addingChannel, setAddingChannel] = useState(false);
   const [channelName, setChannelName] = useState('');
+
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false)
+  const [addPassword, setAddPassword] = useState('');
+  const [passwordEntered, setPasswordEntered] = useState(false);
+
+  const [errorText, setErrorText] = useState('');
+  const [error, setError] = useState(false);
+
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
     id && db.collection('rooms').doc(id)
   )
 
-  const handleClickAway = ( ) => {
-    setAddingChannel(false);
-  }
+  const handleClickAway = ( ) => { setAddingChannel(false); }
 
-
- 
   const addChannel = async (event) => {
     
     if (event.key === 'Enter') {
@@ -56,7 +65,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
 
 
-  const selectChannel = () => {
+  const selectChannel = (event) => {
     const isPrivate = roomDetails?.data().password
 
     if (id) {
@@ -65,28 +74,64 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           roomId: id
         }))
       } else {
-          if (isPrivate) {
-            const userInput = prompt('This channel is private. Please enter a password');
-
-            if (userInput === isPrivate) {
+        if (isPrivate && !passwordEntered) {
+          setShowPasswordDialog(true);
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              if (addPassword === isPrivate) {
+                dispatch(enterRoom({ roomId: id }))
+                setPasswordEntered(true);
+                setShowPasswordDialog(false);
+                setAddPassword('');
+              } else {
+                  if (addPassword) {
+                    setErrorText('Wrong Password');
+                    setError(true);
+                    setAddPassword('');
+                  }
+                }  
+              } 
+            } else {
               dispatch(enterRoom({
                 roomId: id
               }))
-            } else {
-              if (userInput) {
-              alert('Wrong password!');
-              }
             }
-          } else {
-          dispatch(enterRoom({
-            roomId: id
-          }))
+            if(event.key === 'Escape' || !event.target){
+              event.preventDefault();
+              setShowPasswordDialog(false);
+              setAddPassword('');
+            }
+          }
         }
-        }
-    }
-  };
+      };
 
   return (
+  <>
+  {showPasswordDialog && 
+    <Dialog open={true}>
+      <DialogTitle>Please enter channel password</DialogTitle>
+        <DialogContent>
+          <TextField
+            error={error}
+            helperText={errorText}
+            autoFocus
+            margin="dense"
+            id="name"
+            label="password"
+            type="password"
+            fullWidth
+            variant="standard"
+            value={addPassword}
+            onChange={event => setAddPassword(event.target.value)}
+            onKeyDown={selectChannel}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowPasswordDialog(false)} >Cancel</Button> 
+          <Button onClick={() => selectChannel } >Enter</Button>
+        </DialogActions>
+    </Dialog> }
+
     
     <SidebarOptionContainer
       
@@ -95,35 +140,35 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     >   
       {addingChannel && 
       <ClickAwayListener onClickAway={handleClickAway}>
-      <TextField 
-        className='text-field'
-        id="standard-basic"
-        label="Add Channel"
-        variant='standard'
-        inputProps={{style: {color: "white"}}}
-        autoFocus={true}
-        size='small'
-        type="text" 
-        value={channelName}
-        onChange={event => setChannelName(event.target.value)}
-        onKeyDown={addChannel}
-
+        <TextField 
+          className='text-field'
+          id="standard-basic"
+          label="Add Channel"
+          variant='standard'
+          inputProps={{style: {color: "white"}}}
+          autoFocus={true}
+          size='small'
+          type="text" 
+          value={channelName}
+          onChange={event => setChannelName(event.target.value)}
+          onKeyDown={addChannel}
         />
-        </ClickAwayListener>}
+      </ClickAwayListener>}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
         <h3>{title}</h3>
       ): (
         <SidebarOptionChannel
         className={userState} >
-           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
-           
-           
+           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
+           <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
         </SidebarOptionChannel>
       )}
 
     </SidebarOptionContainer>
+    </>
   )
+  
 }
 
 export default SidebarOption;
@@ -174,6 +219,4 @@ const SidebarOptionChannel = styled.h3`
   font-weight: 300;
   display: flex;
   align-items: center;
-
-
 `;
