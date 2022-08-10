@@ -267,7 +267,7 @@ function Chat() {
               {addResource && 
                 <Dialog open={openDialog}>
                   <DialogContent>
-                    <DialogTitle>Please enter resource URL</DialogTitle>
+                    <DialogTitle>Please enter the resource's URL</DialogTitle>
                       <TextField
                         autoFocus
                         margin="dense"
@@ -275,7 +275,7 @@ function Chat() {
                         type="text"
                         fullWidth
                         variant="standard"
-                        label="Enter resource URL"
+                        label="Enter URL"
                         size='small'
                         value={resource}
                         onChange={event => setResource(event.target.value)}
