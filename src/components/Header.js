@@ -11,6 +11,9 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 function Header ({token}) {
   const [user] = useAuthState(auth);
 
+  const openGithub = () => {
+    window.open('https://github.com/s-oshitade/jabber', '_blank', 'noopener,noreferrer')
+  }
   return (
     <HeaderContainer>
       <HeaderLeft>
@@ -29,7 +32,7 @@ function Header ({token}) {
       </HeaderSearch> */}
 
       <HeaderRight token={token}>
-        <GitHubIcon />
+        <GitHubIcon onClick={openGithub}/>
       </HeaderRight>
         
 
@@ -103,5 +106,6 @@ const HeaderRight = styled.div`
   > .MuiSvgIcon-root {
     margin-left: auto;
     margin-right: 20px;
+    cursor: pointer;
   }
 `;
