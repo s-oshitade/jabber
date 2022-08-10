@@ -266,22 +266,22 @@ function Chat() {
                   </Menu>
               {addResource && 
                 <Dialog open={openDialog}>
-                  <DialogContent>
                     <DialogTitle>Please enter the resource's URL</DialogTitle>
-                      <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        label="Enter URL"
-                        size='small'
-                        value={resource}
-                        onChange={event => setResource(event.target.value)}
-                        onKeyDown={addResourceToDb}
-                      />
-                  </DialogContent>
+                      <DialogContent>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="name"
+                          type="text"
+                          fullWidth
+                          variant="standard"
+                          label="Enter URL"
+                          size='small'
+                          value={resource}
+                          onChange={event => setResource(event.target.value)}
+                          onKeyDown={addResourceToDb}
+                        />
+                     </DialogContent>
                   <DialogActions>
                     <Button onClick={handleDialogue} >Cancel</Button> 
                       {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
@@ -290,24 +290,24 @@ function Chat() {
               }
 
               {addPassword && 
-              
-              <ClickAwayListener onClickAway={closePasswordField}>
                 <Dialog open={true}>
                   <DialogTitle>Please enter the channel password</DialogTitle>
-                    <TextField 
-                      className='text-field'
-                      id='standard-basic'
-                      label='Enter a password'
-                      variant='standard'
-                      inputProps={{style: {color: 'white'}}}
-                      autoFocus={true}
-                      size='small'
-                      type='text'
-                      value={password}
-                      onChange={event => setPassword(event.target.value)}
-                      onKeyDown={makeChannelPrivate}/>
+                    <DialogContent>
+                      <TextField 
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                        label="Enter password"
+                        size='small'
+                        value={password}
+                        onChange={event => setPassword(event.target.value)}
+                        onKeyDown={makeChannelPrivate}
+                      />
+                    </DialogContent>
                 </Dialog>
-                </ClickAwayListener>
                 
                 }
            </LeftHeader>
