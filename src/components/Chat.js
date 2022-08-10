@@ -66,6 +66,9 @@ function Chat() {
     setMenu(null)
   }
 
+  const [password, setPassword] = useState('');
+  const [addPassword, setAddPassword] = useState(false);
+  
   const makeChannelPrivate = () => {
 
     const channelPassword = prompt('Please enter a password')
