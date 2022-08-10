@@ -66,15 +66,40 @@ function Chat() {
     setMenu(null)
   }
 
-  const makeChannelPrivate = () => {
+  const [password, setPassword] = useState('');
+  const [addPassword, setAddPassword] = useState(false);
 
-    const channelPassword = prompt('Please enter a password')
-
-    db.collection("rooms").doc(roomId).update({
-      password: channelPassword
-    });
-
+  const openPasswordField = () => {
+    setAddPassword(true);
     closeMenu();
+  }
+
+  const closePasswordField = () => {
+    setAddPassword(false);
+
+  }
+
+  const makeChannelPrivate = (event) => {
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (password) {
+        db.collection("rooms").doc(roomId).update({
+          password: password
+        });
+      }
+      setPassword('');
+      closePasswordField();
+    }
+
+    if (event.key === 'Escape' || !event.target) {
+      event.preventDefault()
+      setPassword('')
+      closePasswordField();
+    }
+
+
+
 
   }
 
@@ -182,7 +207,7 @@ function Chat() {
                     onClose={closeMenu}
                   >
                     {roomDetails?.data().password && <MenuItem onClick={makeChannelPublic}>Make Channel Public</MenuItem> }
-                    {!roomDetails?.data().password && <MenuItem onClick={makeChannelPrivate}>Make Channel Private</MenuItem>}
+                    {!roomDetails?.data().password && <MenuItem onClick={openPasswordField}>Make Channel Private</MenuItem>}
                     <MenuItem onClick={clearResources}>Clear Channel Resources</MenuItem>
                     <MenuItem onClick={deleteChannel}>Delete Channel</MenuItem>
                   </Menu>
@@ -235,6 +260,22 @@ function Chat() {
                 />
               </ClickAwayListener>
               }
+
+              {addPassword && 
+              <ClickAwayListener onClickAway={closePasswordField}>
+                <TextField 
+                className='text-field'
+                id='standard-basic'
+                label='Enter a password'
+                variant='standard'
+                inputProps={{style: {color: 'white'}}}
+                autoFocus={true}
+                size='small'
+                type='text'
+                value={password}
+                onChange={event => setPassword(event.target.value)}
+                onKeyDown={makeChannelPrivate}/>
+                </ClickAwayListener>}
            </LeftHeader>
  
            <RightHeader>
@@ -328,6 +369,10 @@ const LeftHeader = styled.div`
 
   > .MuiSvgIcon-root {
     cursor: pointer;
+  }
+
+  >.text-field {
+    margin-left: 10px;
   }
 `;
 

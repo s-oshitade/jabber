@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import SearchIcon from "@material-ui/icons/Search";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import SpotifyLogin from './SpotifyLogin';
 import MusicPlayer from './MusicPlayer';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Header ({token}) {
   const [user] = useAuthState(auth);
 
+  const openGithub = () => {
+    window.open('https://github.com/s-oshitade/jabber', '_blank', 'noopener,noreferrer')
+  }
   return (
     <HeaderContainer>
       <HeaderLeft>
@@ -30,7 +31,7 @@ function Header ({token}) {
       </HeaderSearch> */}
 
       <HeaderRight token={token}>
-        <HelpOutlineIcon />
+        <GitHubIcon onClick={openGithub}/>
       </HeaderRight>
         
 
@@ -104,5 +105,10 @@ const HeaderRight = styled.div`
   > .MuiSvgIcon-root {
     margin-left: auto;
     margin-right: 20px;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.8;
+    }
   }
 `;
