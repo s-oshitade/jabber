@@ -68,6 +68,14 @@ function Chat() {
 
   const [password, setPassword] = useState('');
   const [addPassword, setAddPassword] = useState(false);
+
+  const openPasswordField = () => {
+    setAddPassword(true);
+  }
+
+  const closePasswordField = () => {
+    setAddPassword(false);
+  }
   
   const makeChannelPrivate = () => {
 
