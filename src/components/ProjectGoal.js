@@ -7,8 +7,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 
 
-function ProjectGoal ({goal, status, id, update, edit, remove}) {
+function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   const [isHovering, setIsHovering] = useState(false);
+  const [currentGoal, setCurrentGoal] = useState(goal);
+  const [editGoal, setEditGoal] = useState(false);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -27,7 +29,7 @@ function ProjectGoal ({goal, status, id, update, edit, remove}) {
       {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
       </ProjectGoalInfo>
       <ProjectGoalIcons>
-        {isHovering && <> <EditIcon onClick={() => {edit(id)}} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
+        {isHovering && <> <EditIcon onClick={() => {}} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
       </ProjectGoalIcons>
 
     </ ProjectGoalContainer>
