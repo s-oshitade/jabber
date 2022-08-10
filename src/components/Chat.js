@@ -23,6 +23,7 @@ import DialogActions from '@material-ui/core/DialogActions/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
 import Button from '@material-ui/core/Button/Button';
+import Slide from '@material-ui/core/Slide/Slide';
 
 
 function Chat() {
@@ -131,6 +132,21 @@ function Chat() {
   const [resource, setResource] = useState('');
   const [viewResources, setViewResources] = useState(null);
 
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleDialogue = () => {
+    closeResourceMenu();
+    setOpenDialog(!openDialog);
+    
+  }
+
+
+  const handleOpenDialog = () => {
+    openTextField();
+    setOpenDialog(true);
+    closeResourceMenu();
+  }
+
   const openResourceMenu = (event) => {
     setResourceMenu(event.currentTarget)
   }
@@ -140,7 +156,6 @@ function Chat() {
   }
 
   const openTextField = () => {
-    setResourceMenu(null)
     setAddResource(true)
   }
 
@@ -222,7 +237,7 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-              {!addResource && <NoteAddIcon onClick={openResourceMenu}/>}
+                  <NoteAddIcon onClick={openResourceMenu}/>
                   <Menu
                     id="simple-menu"
                     anchorEl={resourceMenu}
@@ -230,7 +245,7 @@ function Chat() {
                     open={Boolean(resourceMenu)}
                     onClose={closeResourceMenu}
                   >
-                    <MenuItem onClick={openTextField} >Add Resource</MenuItem>
+                    <MenuItem onClick={handleOpenDialog} >Add Resource</MenuItem>
                     <MenuItem onClick={openViewResources} >View Resources</MenuItem>
                     <Menu
                     id="simple-menu"
@@ -250,21 +265,28 @@ function Chat() {
                   </Menu>
                   </Menu>
               {addResource && 
-              <ClickAwayListener onClickAway={closeTextField} >
-                <TextField 
-                  className='text-field'
-                  id="standard-basic"
-                  label="Enter resource URL"
-                  variant='standard'
-                  inputProps={{style: {color: "white"}}}
-                  autoFocus={true}
-                  size='small'
-                  type="text"
-                  value={resource}
-                  onChange={event => setResource(event.target.value)}
-                  onKeyDown={addResourceToDb}
-                />
-              </ClickAwayListener>
+                // <Dialog open={openDialog}>
+                //   <DialogContent>
+                //     <DialogTitle>Please enter resource URL</DialogTitle>
+                //       <TextField
+                //         autoFocus={true}
+                //         margin="dense"
+                //         id="name"
+                //         type="text"
+                //         fullWidth
+                //         variant="standard"
+                //         label="Enter resource URL"
+                //         size='small'
+                //         value={resource}
+                //         onChange={event => setResource(event.target.value)}
+                //         onKeyDown={addResourceToDb}
+                //       />
+                //   </DialogContent>
+                //   <DialogActions>
+                //     <Button onClick={handleDialogue} >Cancel</Button> 
+                //       {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
+                //     </DialogActions>    
+                // </Dialog>
               }
 
               {addPassword && 
