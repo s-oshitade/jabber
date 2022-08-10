@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import SpotifyLogin from './SpotifyLogin';
