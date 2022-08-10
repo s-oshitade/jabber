@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import SpotifyLogin from './SpotifyLogin';
 import MusicPlayer from './MusicPlayer';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Header ({token}) {
   const [user] = useAuthState(auth);
@@ -28,7 +29,7 @@ function Header ({token}) {
       </HeaderSearch> */}
 
       <HeaderRight token={token}>
-        <HelpOutlineIcon />
+        <GitHubIcon />
       </HeaderRight>
         
 
