@@ -265,28 +265,28 @@ function Chat() {
                   </Menu>
                   </Menu>
               {addResource && 
-                // <Dialog open={openDialog}>
-                //   <DialogContent>
-                //     <DialogTitle>Please enter resource URL</DialogTitle>
-                //       <TextField
-                //         autoFocus={true}
-                //         margin="dense"
-                //         id="name"
-                //         type="text"
-                //         fullWidth
-                //         variant="standard"
-                //         label="Enter resource URL"
-                //         size='small'
-                //         value={resource}
-                //         onChange={event => setResource(event.target.value)}
-                //         onKeyDown={addResourceToDb}
-                //       />
-                //   </DialogContent>
-                //   <DialogActions>
-                //     <Button onClick={handleDialogue} >Cancel</Button> 
-                //       {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
-                //     </DialogActions>    
-                // </Dialog>
+                <Dialog open={openDialog}>
+                  <DialogContent>
+                    <DialogTitle>Please enter resource URL</DialogTitle>
+                      <TextField
+                        autoFocus={true}
+                        margin="dense"
+                        id="name"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        label="Enter resource URL"
+                        size='small'
+                        value={resource}
+                        onChange={event => setResource(event.target.value)}
+                        onKeyDown={addResourceToDb}
+                      />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleDialogue} >Cancel</Button> 
+                      {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
+                    </DialogActions>    
+                </Dialog>
               }
 
               {addPassword && 
