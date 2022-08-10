@@ -23,14 +23,25 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   }
 
   const submitEditGoal = (event) => {
-    
-
-    if (goal) {
-      db.collection("rooms").doc(roomId).collection("project").doc(id).update({
-        goal: goal,
-        complete: false
-      })
+    if (event.key === "Enter") {
+      event.preventDefault()
+      if (currentGoal) {
+        db.collection("rooms").doc(roomId).collection("project").doc(id).update({
+          goal: currentGoal,
+          complete: false
+        })
+      }
+      closeEditGoal();
     }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setCurrentGoal(goal);
+      closeEditGoal();
+
+    }
+
+
 
   }
 
