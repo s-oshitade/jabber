@@ -75,11 +75,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 dispatch(enterRoom({
                   roomId: id
                 }))
-              // } else {
-              //     if (addPassword) {
-              //     alert('Wrong password!');
-              //     }
-              //   }  
+              } else {
+                  if (addPassword) {
+                  alert('Wrong password!');
+                  }
+                }  
             } 
           } else {
           dispatch(enterRoom({
