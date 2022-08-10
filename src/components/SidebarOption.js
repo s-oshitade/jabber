@@ -97,7 +97,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     >   
       {addingChannel && 
       <ClickAwayListener onClickAway={handleClickAway}>
-      {/* <TextField 
+      <TextField 
         className='text-field'
         id="standard-basic"
         label="Add Channel"
@@ -106,11 +106,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         autoFocus={true}
         size='small'
         type="text" 
-        value={channelName}
-        onChange={event => setChannelName(event.target.value)}
-        onKeyDown={addChannel}
+        // value={channelName}
+        // onChange={event => setChannelName(event.target.value)}
+        // onKeyDown={addChannel}
 
-        /> */}
+        />
         </ClickAwayListener>}
       {Icon && <Icon fontSize='small' style={{ padding: 10 }}/>}
       {Icon ? (
