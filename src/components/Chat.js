@@ -269,7 +269,7 @@ function Chat() {
                   <DialogContent>
                     <DialogTitle>Please enter resource URL</DialogTitle>
                       <TextField
-                        autoFocus={true}
+                        autoFocus
                         margin="dense"
                         id="name"
                         type="text"
