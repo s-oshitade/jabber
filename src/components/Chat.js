@@ -133,7 +133,7 @@ function Chat() {
   const [viewResources, setViewResources] = useState(null);
 
   const [openDialog, setOpenDialog] = useState(false);
-
+  const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
   const handleDialogue = () => {
     closeResourceMenu();
     setOpenDialog(!openDialog);
@@ -290,20 +290,26 @@ function Chat() {
               }
 
               {addPassword && 
+              
               <ClickAwayListener onClickAway={closePasswordField}>
-                <TextField 
-                className='text-field'
-                id='standard-basic'
-                label='Enter a password'
-                variant='standard'
-                inputProps={{style: {color: 'white'}}}
-                autoFocus={true}
-                size='small'
-                type='text'
-                value={password}
-                onChange={event => setPassword(event.target.value)}
-                onKeyDown={makeChannelPrivate}/>
-                </ClickAwayListener>}
+                <Dialog open={true}>
+                  <DialogTitle>Please enter the channel password</DialogTitle>
+                    <TextField 
+                      className='text-field'
+                      id='standard-basic'
+                      label='Enter a password'
+                      variant='standard'
+                      inputProps={{style: {color: 'white'}}}
+                      autoFocus={true}
+                      size='small'
+                      type='text'
+                      value={password}
+                      onChange={event => setPassword(event.target.value)}
+                      onKeyDown={makeChannelPrivate}/>
+                </Dialog>
+                </ClickAwayListener>
+                
+                }
            </LeftHeader>
  
            <RightHeader>
