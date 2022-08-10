@@ -12,6 +12,10 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [editGoal, setEditGoal] = useState(false);
 
+  const openEditGoal = () => {
+    setEditGoal(true)
+  }
+
   const handleMouseOver = () => {
     setIsHovering(true);
   }
@@ -21,6 +25,8 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   }
 
   return(
+    <>
+    {editGoal === false ? (
     <ProjectGoalContainer
       onMouseOver={handleMouseOver} 
       onMouseOut={handleMouseOut}
@@ -29,11 +35,15 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
       {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
       </ProjectGoalInfo>
       <ProjectGoalIcons>
-        {isHovering && <> <EditIcon onClick={() => {}} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
+        {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
       </ProjectGoalIcons>
 
-    </ ProjectGoalContainer>
-  )
+    </ ProjectGoalContainer> )
+    : (<div></div>)}
+    </>
+  ) 
+
+  
 }
 
 export default ProjectGoal;
