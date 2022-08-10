@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button/Button';
 
 
 
+
 function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic, openSpotifyLogin}) {
   const [user] = useAuthState(auth);
   const [addingChannel, setAddingChannel] = useState(false);
@@ -76,7 +77,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       } else {
         if (isPrivate && !passwordEntered) {
           setShowPasswordDialog(true);
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' ) {
               event.preventDefault();
               if (addPassword === isPrivate) {
                 dispatch(enterRoom({ roomId: id }))
@@ -107,8 +108,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
   return (
   <>
-  {showPasswordDialog && 
-    <Dialog open={true}>
+  {
+    <Dialog open={showPasswordDialog} >
       <DialogTitle>Please enter channel password</DialogTitle>
         <DialogContent>
           <TextField
@@ -128,7 +129,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setShowPasswordDialog(false)} >Cancel</Button> 
-          <Button onClick={() => selectChannel } >Enter</Button>
+          {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
         </DialogActions>
     </Dialog> }
 
