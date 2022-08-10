@@ -19,6 +19,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [showPasswordField, setShowPasswordField] = useState(false)
   const [addPassword, setAddPassword] = useState('');
   const [passwordEntered, setPasswordEntered] = useState(false);
+  const [errorText, setErrorText] = useState('');
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -80,8 +81,9 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
                 setAddPassword('');
               } else {
                   if (addPassword) {
-                    alert('Wrong password!');
-                    setShowPasswordField(false);
+                    setErrorText('WrongPassword');
+                    //alert('Wrong password!');
+                    //setShowPasswordField(false);
                     setAddPassword('');
                   }
                 }  
@@ -135,7 +137,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
            {showPasswordField &&
            <ClickAwayListener onClickAway={handleClickAway} >
               <TextField 
-                error
+                // error={errorText}
+                // helperText={errorText}
                 className='text-field'
                 id="standard-basic"
                 label="Enter Password"
