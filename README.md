@@ -4,7 +4,7 @@ This project is a React app that was completed by [Dino Pranjic](https://github.
 ___
 ## About
 
-Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord](https://discord.com/), Jabber is a feature-rich messaging app. We set out to build a multi-user chat platform that includes features that could enhance personal and group/project productivity, with some subtle element of personalized entertainment. 
+Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord](https://discord.com/), Jabber is a feature-rich messaging app. We set out to build a multi-user chat platform which includes features that could enhance personal and group/project productivity, with some elements of personalized entertainment. 
 ___
 ## Tech Stack
 * Frontend: React, Redux, Styled Components, Firebase Authentication, Material UI
@@ -18,7 +18,7 @@ ___
 * Video Chat with complete set of related features
 * Spotify login with personalized playlist per loggedIn user
 * Project tracker, mapped to each chat room
-* Personal todo list, mapped to loggedin each user
+* Personal todo list, mapped to each loggedin user
 * Image drag and drop for sharing images/ screen shots
 * A Resources feature for storing urls relating to respective projects
 ___
@@ -35,7 +35,6 @@ ___
   * @reduxjs/toolkit
   * emoji-picker-react
   * firebase
-  * morgan
   * react
   * react-dom
   * react-firebase-hooks
@@ -46,8 +45,6 @@ ___
   * react-spotify-web-playback
   * react-uploader
   * styled-components
-
-
 
 ## Continuous Improvement
 
