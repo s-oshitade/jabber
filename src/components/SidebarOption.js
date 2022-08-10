@@ -16,6 +16,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
   const [user] = useAuthState(auth);
   const [addingChannel, setAddingChannel] = useState(false);
   const [channelName, setChannelName] = useState('');
+  const [showPasswrodField, setShowPasswordField] = useState(false)
   const dispatch = useDispatch();
 
   const [roomDetails] = useDocument(
@@ -116,7 +117,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       ): (
         <SidebarOptionChannel
         className={userState} >
-           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
+           {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
+           <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
            
            
         </SidebarOptionChannel>
