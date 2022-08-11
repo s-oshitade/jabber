@@ -7,6 +7,7 @@ import SidebarOption from './SidebarOption';
 import DashboardIcon from "@material-ui/icons/Dashboard"
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AddIcon from "@material-ui/icons/Add";
+import { Avatar } from "@material-ui/core";
 import { auth, db } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -62,6 +63,14 @@ function Sidebar({token}) {
 }
 
 export default Sidebar;
+
+const HeaderAvatar = styled(Avatar)`
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
 
 const SidebarContainer = styled.div`
   background-color: #2F3136;
