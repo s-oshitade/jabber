@@ -156,7 +156,7 @@ const RightSidebarContainer = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 10px;
-    border: 1px solid #202225;
+    border: 0.5px solid #202225;
   }
 
 `;
@@ -170,7 +170,7 @@ const RightSidebarUpper = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 1px solid #202225;
+    border: 0.5px solid #202225;
   }
 
 
