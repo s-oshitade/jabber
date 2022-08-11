@@ -16,7 +16,11 @@ import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import  TextField  from '@material-ui/core/TextField/TextField';
-import { ClickAwayListener } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog/Dialog';
+import DialogActions from '@material-ui/core/DialogActions/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
+import Button from '@material-ui/core/Button/Button';
 
 
 function Chat() {
@@ -76,7 +80,6 @@ function Chat() {
 
   const closePasswordField = () => {
     setAddPassword(false);
-
   }
 
   const makeChannelPrivate = (event) => {
@@ -125,6 +128,30 @@ function Chat() {
   const [resource, setResource] = useState('');
   const [viewResources, setViewResources] = useState(null);
 
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
+  
+  const handleDialogue = () => {
+    closeResourceMenu();
+    setOpenDialog(!openDialog);
+    
+  }
+
+  const handleOpenDialog = () => {
+    openTextField();
+    setOpenDialog(true);
+    closeResourceMenu();
+  }
+
+  const handleOpenPasswordDialog = () => {
+    setOpenPasswordDialog(true);
+  }
+
+  const handleClosePasswordDialog = () => {
+    setAddPassword(false);
+    setOpenPasswordDialog(false);
+  }
+
   const openResourceMenu = (event) => {
     setResourceMenu(event.currentTarget)
   }
@@ -134,7 +161,6 @@ function Chat() {
   }
 
   const openTextField = () => {
-    setResourceMenu(null)
     setAddResource(true)
   }
 
@@ -216,7 +242,7 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-              {!addResource && <NoteAddIcon onClick={openResourceMenu}/>}
+                  <NoteAddIcon onClick={openResourceMenu}/>
                   <Menu
                     id="simple-menu"
                     anchorEl={resourceMenu}
@@ -224,7 +250,7 @@ function Chat() {
                     open={Boolean(resourceMenu)}
                     onClose={closeResourceMenu}
                   >
-                    <MenuItem onClick={openTextField} >Add Resource</MenuItem>
+                    <MenuItem onClick={handleOpenDialog} >Add Resource</MenuItem>
                     <MenuItem onClick={openViewResources} >View Resources</MenuItem>
                     <Menu
                     id="simple-menu"
@@ -244,38 +270,53 @@ function Chat() {
                   </Menu>
                   </Menu>
               {addResource && 
-              <ClickAwayListener onClickAway={closeTextField} >
-                <TextField 
-                  className='text-field'
-                  id="standard-basic"
-                  label="Enter resource URL"
-                  variant='standard'
-                  inputProps={{style: {color: "white"}}}
-                  autoFocus={true}
-                  size='small'
-                  type="text"
-                  value={resource}
-                  onChange={event => setResource(event.target.value)}
-                  onKeyDown={addResourceToDb}
-                />
-              </ClickAwayListener>
+                <Dialog open={openDialog}>
+                    <DialogTitle>Please enter the resource's URL</DialogTitle>
+                      <DialogContent>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="name"
+                          type="text"
+                          fullWidth
+                          variant="standard"
+                          label="Enter URL"
+                          size='small'
+                          value={resource}
+                          onChange={event => setResource(event.target.value)}
+                          onKeyDown={addResourceToDb}
+                        />
+                     </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleDialogue} >Cancel</Button> 
+                    </DialogActions>    
+                </Dialog>
               }
 
               {addPassword && 
-              <ClickAwayListener onClickAway={closePasswordField}>
-                <TextField 
-                className='text-field'
-                id='standard-basic'
-                label='Enter a password'
-                variant='standard'
-                inputProps={{style: {color: 'white'}}}
-                autoFocus={true}
-                size='small'
-                type='text'
-                value={password}
-                onChange={event => setPassword(event.target.value)}
-                onKeyDown={makeChannelPrivate}/>
-                </ClickAwayListener>}
+                <Dialog open={handleOpenPasswordDialog}>
+                  <DialogTitle>Please enter the channel password</DialogTitle>
+                    <DialogContent>
+                      <TextField 
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                        label="Enter password"
+                        size='small'
+                        value={password}
+                        onChange={event => setPassword(event.target.value)}
+                        onKeyDown={makeChannelPrivate}
+                      />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClosePasswordDialog} >Cancel</Button> 
+                    </DialogActions>    
+                </Dialog>
+                
+                }
            </LeftHeader>
  
            <RightHeader>
