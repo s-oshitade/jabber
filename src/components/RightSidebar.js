@@ -219,7 +219,7 @@ const PowerListContainer = styled.div`
     margin-left: 2px;
     :hover {
       opacity: 0.9;
-      background-color: #154c79;
+      background-color: #43474D;
       >#cancel-icon {
         visibility: visible;
       }
@@ -245,7 +245,7 @@ const RightSidebarOption = styled.div`
 
   :hover {
     opacity: 0.9;
-    background-color: #154c79;
+    background-color: #43474D;
   }
 
   > .text-field {
