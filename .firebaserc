@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "jabber-chat-b1b57"
-  }
+    "default": "jabber-cd1e1"
+  },
+  "targets": {},
+  "etags": {}
 }
