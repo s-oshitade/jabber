@@ -37,7 +37,12 @@ function Sidebar({token}) {
           </h3>
 
         </SidebarInfo>
-          <CreateIcon />
+        <HeaderAvatar
+        onClick={() => auth.signOut()}
+         src={user?.photoURL}
+         alt={user?.displayName}
+        />
+          {/* <CreateIcon /> */}
       </SidebarHeader>
       
 
