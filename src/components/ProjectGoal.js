@@ -90,6 +90,10 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 export default ProjectGoal;
 
 const ProjectGoalContainer = styled.div`
+    margin-left: 6px;
+    margin-right: 6px;
+    border-radius: 8px;
+    padding: 4px;
   display: flex;
   justify-content: space-between;
   padding-left: 5px;
@@ -97,7 +101,7 @@ const ProjectGoalContainer = styled.div`
 
 :hover {
   opacity: 0.9;
-  background-color: #154c79;
+  background-color: #43474D;
 }
 
 

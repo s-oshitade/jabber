@@ -7,13 +7,11 @@ import SidebarOption from './SidebarOption';
 import DashboardIcon from "@material-ui/icons/Dashboard"
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AddIcon from "@material-ui/icons/Add";
+import { Avatar } from "@material-ui/core";
 import { auth, db } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getFirestore, collection } from 'firebase/firestore';
-import SpotifyLogin from './SpotifyLogin';
-import MusicPlayer from './MusicPlayer';
-import { DragHandle } from '@material-ui/icons';
+
 
 
 
@@ -30,14 +28,19 @@ function Sidebar({token}) {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Jabber</h2>
-          <h3>
-            <FiberManualRecordIcon />
-            {user?.displayName}
-          </h3>
-
+          <NameContainer>
+            <h2>Jabber</h2>
+            <h3>
+              <FiberManualRecordIcon />
+              {user?.displayName}
+            </h3>
+          </NameContainer>
+          <HeaderAvatar
+            onClick={() => auth.signOut()}
+            src={user?.photoURL}
+            alt={user?.displayName}
+            />
         </SidebarInfo>
-          <CreateIcon />
       </SidebarHeader>
       
 
@@ -57,6 +60,39 @@ function Sidebar({token}) {
 }
 
 export default Sidebar;
+
+const NameContainer = styled.div`
+  
+
+  > h2 {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 5px;
+  }
+
+  > h3 {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    align-items: center;
+  }
+
+  > h3 > .MuiSvgIcon-root {
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: 2px;
+    color: green;
+  }
+`
+
+
+const HeaderAvatar = styled(Avatar)`
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
 
 const SidebarContainer = styled.div`
   background-color: #2F3136;
@@ -85,9 +121,9 @@ const SidebarContainer = styled.div`
 
 const SidebarHeader = styled.div`
   display: flex;
-  border-bottom: 1px solid #202225;
-  padding-bottom: 10px;
-  padding: 13px;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #202225;
+  padding: 11.5px;
   margin-top: 1em;
 
   > .MuiSvgIcon-root {
@@ -101,26 +137,8 @@ const SidebarHeader = styled.div`
 `;
 
 const SidebarInfo = styled.div`
+display: flex;
+justify-content: space-between;
   margin-top: 1em;
   flex: 1;
-
-  > h2 {
-    font-size: 15px;
-    font-weight: 900;
-    margin-bottom: 5px;
-  }
-
-  > h3 {
-    display: flex;
-    font-size: 13px;
-    font-weight: 400;
-    align-items: center;
-  }
-
-  > h3 > .MuiSvgIcon-root {
-    font-size: 14px;
-    margin-top: 1px;
-    margin-right: 2px;
-    color: green;
-  }
 `;

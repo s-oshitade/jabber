@@ -156,7 +156,7 @@ const RightSidebarContainer = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 10px;
-    border: 1px solid #202225;
+    border: 0.5px solid #202225;
   }
 
 `;
@@ -170,7 +170,7 @@ const RightSidebarUpper = styled.div`
   > hr {
     margin-top: 1px;
     margin-bottom: 1px;
-    border: 1px solid #202225;
+    border: 0.5px solid #202225;
   }
 
 
@@ -219,7 +219,7 @@ const PowerListContainer = styled.div`
     margin-left: 2px;
     :hover {
       opacity: 0.9;
-      background-color: #154c79;
+      background-color: #43474D;
       >#cancel-icon {
         visibility: visible;
       }
@@ -237,6 +237,9 @@ const PowerListContainer = styled.div`
 `;
 
 const RightSidebarOption = styled.div`
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 8px;
   display: flex;
   font-size: 12px;
   align-items: center;
@@ -245,7 +248,7 @@ const RightSidebarOption = styled.div`
 
   :hover {
     opacity: 0.9;
-    background-color: #154c79;
+    background-color: #43474D;
   }
 
   > .text-field {

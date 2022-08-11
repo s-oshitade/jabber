@@ -84,6 +84,8 @@ function PowerItem({id, task, done, edit}) {
 export default PowerItem;
 
 const PowerListContainer = styled.div`
+  margin-right: 6px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   padding-left: 2px;
@@ -91,7 +93,7 @@ const PowerListContainer = styled.div`
 
   :hover {
   opacity: 0.9;
-  background-color: #154c79;
+  background-color: #43474D;
 }
 `
 
