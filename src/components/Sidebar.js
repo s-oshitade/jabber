@@ -31,18 +31,20 @@ function Sidebar({token}) {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Jabber</h2>
-          <h3>
-            <FiberManualRecordIcon />
-            {user?.displayName}
-          </h3>
-
+          <NameContainer>
+            <h2>Jabber</h2>
+            <h3>
+              <FiberManualRecordIcon />
+              {user?.displayName}
+            </h3>
+          </NameContainer>
+          <HeaderAvatar
+            onClick={() => auth.signOut()}
+            src={user?.photoURL}
+            alt={user?.displayName}
+            />
         </SidebarInfo>
-        <HeaderAvatar
-        onClick={() => auth.signOut()}
-         src={user?.photoURL}
-         alt={user?.displayName}
-        />
+        
           {/* <CreateIcon /> */}
       </SidebarHeader>
       
@@ -63,6 +65,31 @@ function Sidebar({token}) {
 }
 
 export default Sidebar;
+
+const NameContainer = styled.div`
+  
+
+  > h2 {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 5px;
+  }
+
+  > h3 {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    align-items: center;
+  }
+
+  > h3 > .MuiSvgIcon-root {
+    font-size: 14px;
+    margin-top: 1px;
+    margin-right: 2px;
+    color: green;
+  }
+`
+
 
 const HeaderAvatar = styled(Avatar)`
   cursor: pointer;
@@ -99,6 +126,7 @@ const SidebarContainer = styled.div`
 
 const SidebarHeader = styled.div`
   display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #202225;
   padding-bottom: 10px;
   padding: 13px;
@@ -115,26 +143,10 @@ const SidebarHeader = styled.div`
 `;
 
 const SidebarInfo = styled.div`
+display: flex;
+justify-content: space-between;
   margin-top: 1em;
   flex: 1;
 
-  > h2 {
-    font-size: 15px;
-    font-weight: 900;
-    margin-bottom: 5px;
-  }
-
-  > h3 {
-    display: flex;
-    font-size: 13px;
-    font-weight: 400;
-    align-items: center;
-  }
-
-  > h3 > .MuiSvgIcon-root {
-    font-size: 14px;
-    margin-top: 1px;
-    margin-right: 2px;
-    color: green;
-  }
+  
 `;
