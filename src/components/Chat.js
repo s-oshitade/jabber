@@ -83,7 +83,6 @@ function Chat() {
 
   const closePasswordField = () => {
     setAddPassword(false);
-
   }
 
   const makeChannelPrivate = (event) => {
@@ -145,6 +144,15 @@ function Chat() {
     openTextField();
     setOpenDialog(true);
     closeResourceMenu();
+  }
+
+  const handleOpenPasswordDialog = () => {
+    setOpenPasswordDialog(true);
+  }
+
+  const handleClosePasswordDialog = () => {
+    setAddPassword(false);
+    setOpenPasswordDialog(false);
   }
 
   const openResourceMenu = (event) => {
@@ -284,13 +292,12 @@ function Chat() {
                      </DialogContent>
                   <DialogActions>
                     <Button onClick={handleDialogue} >Cancel</Button> 
-                      {/* <Button type='submit' onClick={selectChannel} >Enter</Button> */}
                     </DialogActions>    
                 </Dialog>
               }
 
               {addPassword && 
-                <Dialog open={true}>
+                <Dialog open={handleOpenPasswordDialog}>
                   <DialogTitle>Please enter the channel password</DialogTitle>
                     <DialogContent>
                       <TextField 
@@ -307,6 +314,9 @@ function Chat() {
                         onKeyDown={makeChannelPrivate}
                       />
                     </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClosePasswordDialog} >Cancel</Button> 
+                    </DialogActions>    
                 </Dialog>
                 
                 }
