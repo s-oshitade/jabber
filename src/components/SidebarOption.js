@@ -176,6 +176,9 @@ export default SidebarOption;
 
 const SidebarOptionContainer = styled.div`
   display: flex;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 8px;
   font-size: 12px;
   align-items: center;
   padding-left: 2px;
