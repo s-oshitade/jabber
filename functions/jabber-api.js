@@ -13,7 +13,7 @@ const auth = FirebaseConfig.auth;
 const firestore = FirebaseConfig.firestore;
 
 const app = express();
-app.use(cors({ origin: false }));
+app.use(cors({ origin: true }));
 app.use(morgan("dev"));
 
 global.access_token = ''
@@ -23,6 +23,13 @@ dotenv.config();
 
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
+
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 const spotify_redirect_uri = 'https://us-central1-jabber-cd1e1.cloudfunctions.net/api/auth/callback';
 const production_react_uri = 'https://jabber-cd1e1.web.app/';
