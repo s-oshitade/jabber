@@ -198,7 +198,7 @@ const SidebarOptionContainer = styled.div`
   }
 
   > .owner {
-    color: lightgreen;
+    color: #3674d1;
   }
 
   > .guest {
