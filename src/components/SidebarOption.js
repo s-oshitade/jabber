@@ -40,7 +40,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
   const addChannel = async (event) => {
     
-    if (event.key === 'Enter') {
+    if (event.keyCode == 13) {
       event.preventDefault();
       if (channelName){
         // const response = await fetch(`${process.env.REACT_APP_EXPRESS_URL}/whereby/meeting`);
@@ -78,7 +78,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       } else {
         if (isPrivate && !passwordEntered) {
           setShowPasswordDialog(true);
-            if (event.key === 'Enter' ) {
+            if (event.keyCode == 13 ) {
               event.preventDefault();
               if (addPassword === isPrivate) {
                 dispatch(enterRoom({ roomId: id }))
@@ -125,7 +125,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
             variant="standard"
             value={addPassword}
             onChange={event => setAddPassword(event.target.value)}
-            onKeyDown={selectChannel}
+            onKeyPress={selectChannel}
           />
         </DialogContent>
         <DialogActions>
