@@ -46,8 +46,9 @@ function Sidebar({token}) {
 
        
        
-      
+      <ChannelContainer>
       <SidebarOption Icon={DashboardIcon} title="Channels" />
+      </ChannelContainer>
       <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
@@ -61,8 +62,15 @@ function Sidebar({token}) {
 
 export default Sidebar;
 
+
+const ChannelContainer = styled.div`
+  pointer-events: none;
+  > .bofZRC > h3  {
+    font-weight: 900;
+    font-size: 12px;
+  }
+`
 const NameContainer = styled.div`
-  
 
   > h2 {
     font-size: 15px;
