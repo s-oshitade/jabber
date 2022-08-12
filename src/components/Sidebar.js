@@ -41,7 +41,7 @@ function Sidebar({token}) {
       </SidebarHeader>
       
 
-       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
+       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin(`${process.env.REACT_APP_EXPRESS_URL}/auth/login`)}/>
        
       <hr />
       <SidebarOption Icon={DashboardIcon} title="Channels" />
