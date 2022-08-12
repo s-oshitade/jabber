@@ -159,7 +159,7 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       {Icon ? (
         <h3>{title}</h3>
       ): (
-        <SidebarOptionChannel
+        <SidebarOptionChannel 
         className={userState} >
            {isPublic? <ForumIcon fontSize='small' style={{ padding: 10 }}/> : 
            <LockIcon fontSize='small' style={{ padding: 10 }} />} {title} 
@@ -183,8 +183,8 @@ const SidebarOptionContainer = styled.div`
   align-items: center;
   padding-left: 2px;
   cursor: pointer;
-
-  :hover {
+  
+  :hover{
     opacity: 0.9;
     background-color: #43474D;
   }
@@ -219,6 +219,7 @@ const SidebarOptionContainer = styled.div`
 `;
 
 const SidebarOptionChannel = styled.h3`
+
   padding: 10px 0;
   font-weight: 300;
   display: flex;

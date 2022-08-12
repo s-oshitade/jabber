@@ -65,8 +65,7 @@ export default Sidebar;
 
 const ChannelContainer = styled.div`
   pointer-events: none;
-  padding-top: 2em;
-  > .bofZRC > h3  {
+  >div > h3  {
     font-weight: 900;
     font-size: 12px;
   }
