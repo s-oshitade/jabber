@@ -44,16 +44,16 @@ function Sidebar({token}) {
       </SidebarHeader>
       
 
-       <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
        
-      <hr />
+       
+      
       <SidebarOption Icon={DashboardIcon} title="Channels" />
       <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
       ))}
-     
-      
+     <hr />
+     <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
 
     </SidebarContainer>
   )
