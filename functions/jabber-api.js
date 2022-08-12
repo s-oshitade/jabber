@@ -24,7 +24,7 @@ dotenv.config();
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
-const spotify_redirect_uri = 'http://localhost:3000/auth/callback'
+const spotify_redirect_uri = 'https://us-central1-jabber-cd1e1.cloudfunctions.net/api/auth/callback'
 
 const generateRandomString = function (length) {
   let text = '';
