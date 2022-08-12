@@ -57,11 +57,11 @@ const wherebyData = {
 
   app.get('/whereby/meeting', async (req, res) => {
     getResponse().then(async result => {
-      console.log("Status code:", res.status);
+      // console.log("Status code:", res.status);
       const data = await result.json();
       res.send(data);
-      console.log("Room URL:", data.roomUrl);
-      console.log("Host room URL:", data.hostRoomUrl);
+      // console.log("Room URL:", data.roomUrl);
+      // console.log("Host room URL:", data.hostRoomUrl);
     });
     })
 
