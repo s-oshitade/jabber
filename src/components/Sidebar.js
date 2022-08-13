@@ -25,7 +25,7 @@ function Sidebar({token}) {
   if (process.env.NODE_ENV !== "production") {
     spotifyURL = '/auth/login';
  } else {
-    spotifyURL = `${process.env.REACT_APP_EXPRESS_URL}/auth/login}`
+    spotifyURL = `${process.env.REACT_APP_EXPRESS_URL}/auth/login`
  }
 
   const openSpotifyLogin = url => () => {
