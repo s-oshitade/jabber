@@ -20,6 +20,14 @@ function Sidebar({token}) {
   const [showPlayer, setShowPlayer] = useState(false);
   const [channels, loading, error] = useCollection(db.collection("rooms"));
 
+  let spotifyURL = '';
+
+  if (process.env.NODE_ENV !== "production") {
+    spotifyURL = '/auth/login';
+ } else {
+    spotifyURL = `${process.env.REACT_APP_EXPRESS_URL}/auth/login}`
+ }
+
   const openSpotifyLogin = url => () => {
     window.open(url, '_self', 'noopener,noreferrer');
   }
@@ -52,7 +60,7 @@ function Sidebar({token}) {
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
       ))}
      <hr />
-     <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin(`${process.env.REACT_APP_EXPRESS_URL}/auth/login`)}/>
+     <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin(spotifyURL)}/>
 
     </SidebarContainer>
   )
