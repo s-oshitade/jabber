@@ -42,8 +42,6 @@ function Sidebar({token}) {
             />
         </SidebarInfo>
       </SidebarHeader>
-      
-
        
        
       <ChannelContainer>
@@ -54,7 +52,7 @@ function Sidebar({token}) {
         <SidebarOption key={doc.id} title={doc.data().name} id={doc.id} userState={user.email === doc.data().owner ? "owner" : "guest"} isPublic={!doc.data().password ? true : false}/>
       ))}
      <hr />
-     <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin('/auth/login')}/>
+     <SidebarOption Icon={LibraryMusicIcon} title="Music Player" openSpotifyLogin={openSpotifyLogin(`${process.env.REACT_APP_EXPRESS_URL}/auth/login`)}/>
 
     </SidebarContainer>
   )
