@@ -4,7 +4,11 @@ const dotenv = require('dotenv')
 const morgan = require('morgan');
 const fetch = require('cross-fetch');
 const cors = require("cors");
+const https = require('https');
+const http = require('http');
 const port = 5002;
+const fs = require('fs');
+
 
 const FirebaseConfig = require('./FirebaseConfig');
 const Utilities = require('./utilities.js');
@@ -149,11 +153,27 @@ app.get('/auth/token', (req, res) => {
 
 })
 
+const path = require('path');
+
+// Generate Open SSL Certificate
+// const options = {
+//   key: fs.readFileSync(path.join(__dirname, '/Jabber-Chat.key')),
+//   cert: fs.readFileSync('/path/to/cert.pem'),
+//   ca: fs.readFileSync('/path/to/ca.pem')
+// };
+
+// http.createServer(app).listen(80)
+// https.createServer(options, app).listen(443)
+
 if(process.env.NODE_ENV !== "production"){ //conditional to esure that this only prints in dev mode
   app.listen(port, () => {
     // console.log(`Listening at http://localhost:${port}`)
     console.log('api started');
   })
+  // app.listen = function () {
+  //   var server = http.createServer(this)
+  //   return server.listen.apply(server, arguments)
+  // }
 }
 
 module.exports = app;
