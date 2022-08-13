@@ -43,8 +43,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
     if (event.keyCode == 13) {
       event.preventDefault();
       if (channelName){
-        // const response = await fetch(`${process.env.REACT_APP_EXPRESS_URL}/whereby/meeting`);
-        const response = await fetch(`/whereby/meeting`);
+        const response = await fetch(`${process.env.REACT_APP_EXPRESS_URL}/whereby/meeting`);
+        // const response = await fetch(`/whereby/meeting`);
         const body = await response.json();
         db.collection("rooms").add({
           name: channelName,
