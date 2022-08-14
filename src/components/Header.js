@@ -6,7 +6,7 @@ import { auth } from "../firebase";
 import SpotifyLogin from './SpotifyLogin';
 import MusicPlayer from './MusicPlayer';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import jabberLogo from '../logo/jabber-small.png'
+import jabberLogo from '../logo/jabber.png'
 
 function Header ({token}) {
   const [user] = useAuthState(auth);
