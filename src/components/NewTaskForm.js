@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import AddIcon from "@material-ui/icons/Add";
+import  TextField from '@material-ui/core/TextField/TextField';
 
 
 function NewTaskForm({editInput, id}) {
@@ -41,19 +42,24 @@ function NewTaskForm({editInput, id}) {
 
   return (
     <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
-
-    <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
-    { showTodoInput && <Input>
+{ showTodoInput && 
       <form onSubmit={handleSubmit}>
-        <input
-          type="text" 
-          autoFocus={true}
-          value={task}  
-          onChange={e => setTask(e.target.value)}
-          placeholder={"Enter a todo"}>
-        </input>
+      <TextField
+        className='text-field'
+        id="standard-basic"
+        label="Enter TODO"
+        variant='standard'
+        inputProps={{style: {color: "white"}}}
+        autoFocus={true}
+        size='small'
+        type="text" 
+        value={task}  
+        onChange={e => setTask(e.target.value)}
+      />
       </form>
-    </Input>}
+    }
+    <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
+    
     </RightSidebarOption>
     
     
@@ -78,43 +84,43 @@ const RightSidebarOption = styled.div`
     background-color: #43474D;
   }
 
-  > .text-field {
-    min-width: -webkit-fill-available;
+ > form > .text-field {
+    min-width: 70px;
   }
-  > .text-field  > label{
+ > form >.text-field  > label{
     color: gray;
   }
 
-  > .text-field > .MuiInput-underline:after{
+ > form .text-field > .MuiInput-underline:after{
     border-bottom: 2px solid #0175FE;
   }
   `
 
-const Input = styled.div`
- > form {
-    position: relative;
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: center;
-      > button {
-      background-color: darkgray;
-      color: white;
-      font-weight: 600;
-      visibility: hidden;
-    }
-  }
+// const Input = styled.div`
+//  > form {
+//     position: relative;
+//     display: flex;
+//     margin-bottom: 10px;
+//     justify-content: center;
+//       > button {
+//       background-color: darkgray;
+//       color: white;
+//       font-weight: 600;
+//       visibility: hidden;
+//     }
+//   }
 
-  > form > input {
-    bottom: 30px;
-    width: 100%;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 10px;
-    outline: none;
-    background-color: #40444a;
-    color: gray;
-  }
+//   > form > input {
+//     bottom: 30px;
+//     width: 100%;
+//     border: 1px solid gray;
+//     border-radius: 5px;
+//     padding: 10px;
+//     outline: none;
+//     background-color: #40444a;
+//     color: gray;
+//   }
 
-  margin-left: 10px;
-  width: 90%;
-`
+//   margin-left: 10px;
+//   width: 90%;
+// `
