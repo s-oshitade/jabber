@@ -9,6 +9,7 @@ function NewTaskForm({editInput, id}) {
   const [task, setTask] = useState("");
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
+  const [showTodoInput, setShowTodoInput] = useState(false);
   // const [inputState, setInputState] = useState(editInput)
   const userEmail = user?.email
 
@@ -37,7 +38,7 @@ function NewTaskForm({editInput, id}) {
   }, [editInput])
 
   return (
-    <RightSidebarOption>
+    <RightSidebarOption onClick={}>
 
     <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
     </RightSidebarOption>
