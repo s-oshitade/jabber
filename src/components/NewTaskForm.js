@@ -15,6 +15,7 @@ function NewTaskForm({editInput, id}) {
 
   console.log(editInput)
   function handleSubmit(e) {
+    setShowTodoInput(true)
     e.preventDefault();
     //Handle empty submisison
     if(!task){
@@ -31,6 +32,7 @@ function NewTaskForm({editInput, id}) {
 
     //Clear newtask input
     setTask("");
+    setShowTodoInput(false)
   }
 
   useEffect(() => {
@@ -38,22 +40,23 @@ function NewTaskForm({editInput, id}) {
   }, [editInput])
 
   return (
-    <RightSidebarOption onClick={}>
+    <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
 
     <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
+    { showTodoInput && <Input>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text" 
+          autoFocus={true}
+          value={task}  
+          onChange={e => setTask(e.target.value)}
+          placeholder={"Enter a todo"}>
+        </input>
+      </form>
+    </Input>}
     </RightSidebarOption>
     
-    // <Input>
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       type="text" 
-    //       autoFocus={true}
-    //       value={task}  
-    //       onChange={e => setTask(e.target.value)}
-    //       placeholder={"Enter a todo"}>
-    //     </input>
-    //   </form>
-    // </Input>
+    
   )
 }
 
