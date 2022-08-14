@@ -377,7 +377,7 @@ const Header = styled.div`
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 16px;
   border-bottom: 1px solid #202225;
   margin-top: 1em;
   `;

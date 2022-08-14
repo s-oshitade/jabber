@@ -151,7 +151,7 @@ const RightSidebarContainer = styled.div`
   flex: 0.3;
   border-top: 1px solid #202225;
   max-width: 260px;
-  margin-top: 64px;
+  margin-top: 56px;
  
   > hr {
     margin-top: 1px;

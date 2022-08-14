@@ -220,7 +220,7 @@ const SidebarOptionContainer = styled.div`
   }
 
   > .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #90EE90;
+    border-bottom: 2px solid #0175FE;
   }
 
 `;

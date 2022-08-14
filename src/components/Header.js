@@ -6,7 +6,7 @@ import { auth } from "../firebase";
 import SpotifyLogin from './SpotifyLogin';
 import MusicPlayer from './MusicPlayer';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import jabberLogo from '../logo/jabber-small.png'
+import jabberLogo from '../logo/jabber.png'
 
 function Header ({token}) {
   const [user] = useAuthState(auth);
@@ -46,7 +46,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 2px 0;
+  padding: px 0;
   background-color: #202225;
   color: white;
   border-bottom: 1px solid #202225;
@@ -66,7 +66,8 @@ const HeaderLeft = styled.div`
 
   > img {
     max-height: 80px;
-    max-width: 60px;
+    max-width: 97px;
+    padding: 1em 1em 1em 0;
   }
 `;
 

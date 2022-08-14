@@ -68,7 +68,9 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
       </ProjectGoalIcons>
 
     </ ProjectGoalContainer> )
-    : <ClickAwayListener onClickAway={closeEditGoal}>
+    : 
+    <EditGoalContainer>
+    <ClickAwayListener onClickAway={closeEditGoal}>
         <TextField
           className='text-field'
           id="standard-basic"
@@ -80,7 +82,9 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
           value={currentGoal}
           onChange={event => setCurrentGoal(event.target.value)}
           onKeyDown={submitEditGoal} />
-      </ClickAwayListener>}
+      </ClickAwayListener>
+      </EditGoalContainer>
+      }
     </>
   ) 
 
@@ -88,6 +92,21 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 }
 
 export default ProjectGoal;
+
+const EditGoalContainer = styled.div`
+
+ .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #0175FE;
+  }
+
+`
 
 const ProjectGoalContainer = styled.div`
     margin-left: 6px;
