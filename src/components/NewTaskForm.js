@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
+import AddIcon from "@material-ui/icons/Add";
+
 
 function NewTaskForm({editInput, id}) {
   const [task, setTask] = useState("");
@@ -35,21 +37,54 @@ function NewTaskForm({editInput, id}) {
   }, [editInput])
 
   return (
-    <Input>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text" 
-          autoFocus={true}
-          value={task}  
-          onChange={e => setTask(e.target.value)}
-          placeholder={"Enter a todo"}>
-        </input>
-      </form>
-    </Input>
+    <RightSidebarOption>
+
+    <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
+    </RightSidebarOption>
+    
+    // <Input>
+    //   <form onSubmit={handleSubmit}>
+    //     <input
+    //       type="text" 
+    //       autoFocus={true}
+    //       value={task}  
+    //       onChange={e => setTask(e.target.value)}
+    //       placeholder={"Enter a todo"}>
+    //     </input>
+    //   </form>
+    // </Input>
   )
 }
 
 export default NewTaskForm;
+
+
+const RightSidebarOption = styled.div`
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 8px;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  padding-left: 2px;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.9;
+    background-color: #43474D;
+  }
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #0175FE;
+  }
+  `
 
 const Input = styled.div`
  > form {
