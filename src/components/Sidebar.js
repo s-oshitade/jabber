@@ -37,7 +37,7 @@ function Sidebar({token}) {
       <SidebarHeader>
         <SidebarInfo>
           <NameContainer>
-            <h2>Jabber</h2>
+            <h2>ABC Inc.</h2>
             <h3>
               <FiberManualRecordIcon />
               {user?.displayName}
@@ -137,7 +137,7 @@ const SidebarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid #202225;
-  padding: 11.5px;
+  padding: 7.5px;
   margin-top: 1em;
 
   > .MuiSvgIcon-root {
