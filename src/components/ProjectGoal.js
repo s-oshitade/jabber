@@ -95,6 +95,17 @@ export default ProjectGoal;
 
 const EditGoalContainer = styled.div`
 
+ .text-field {
+    min-width: -webkit-fill-available;
+  }
+  > .text-field  > label{
+    color: gray;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #0175FE;
+  }
+
 `
 
 const ProjectGoalContainer = styled.div`
