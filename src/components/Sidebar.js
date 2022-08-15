@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import styled from "styled-components";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import CreateIcon from "@material-ui/icons/Create";
 import SidebarOption from './SidebarOption';
 import DashboardIcon from "@material-ui/icons/Dashboard"
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
