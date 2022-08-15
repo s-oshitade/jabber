@@ -4,17 +4,16 @@ import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import  TextField from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
-function NewTaskForm({editInput, id}) {
+function NewTaskForm() {
   const [task, setTask] = useState("");
-  const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
   const [showTodoInput, setShowTodoInput] = useState(false);
-  // const [inputState, setInputState] = useState(editInput)
   const userEmail = user?.email
 
-  console.log(editInput)
+
   function handleSubmit(e) {
     setShowTodoInput(true)
     e.preventDefault();
@@ -24,11 +23,10 @@ function NewTaskForm({editInput, id}) {
       return;
     }
 
-    //Submit task to firebease store with a default "done" state being false
-    setDone(false)
+
     db.collection("users").doc("todoLists").collection(userEmail).add({
       task: task,
-      done: done
+      done: false
     }) 
 
     //Clear newtask input
@@ -36,13 +34,11 @@ function NewTaskForm({editInput, id}) {
     setShowTodoInput(false)
   }
 
-  useEffect(() => {
-    setTask(editInput);
-  }, [editInput])
 
   return (
     <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
-{ showTodoInput && 
+{ showTodoInput &&
+      <ClickAwayListener onClickAway={() => {setShowTodoInput(false)}}>
       <form onSubmit={handleSubmit}>
       <TextField
         className='text-field'
@@ -57,8 +53,9 @@ function NewTaskForm({editInput, id}) {
         onChange={e => setTask(e.target.value)}
       />
       </form>
+      </ClickAwayListener>
     }
-    <AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span>
+    {!showTodoInput && <><AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span></>}
     
     </RightSidebarOption>
     

@@ -79,26 +79,26 @@ const HeaderAvatar = styled(Avatar)`
   }
 `;
 
-const HeaderSearch = styled.div`
-  flex: 0.4;
-  opacity: 1;
-  border-radius: 6px;
-  background-color: #154c79;
-  text-align: center;
-  display: flex;
-  padding: 0 50px;
-  color: gray;
-  border: 1px gray solid;
+// const HeaderSearch = styled.div`
+//   flex: 0.4;
+//   opacity: 1;
+//   border-radius: 6px;
+//   background-color: #154c79;
+//   text-align: center;
+//   display: flex;
+//   padding: 0 50px;
+//   color: gray;
+//   border: 1px gray solid;
 
-  > input {
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    min-width: 30vw;
-    outline: none;
-    color: white;
-  }
-`;
+//   > input {
+//     background-color: transparent;
+//     border: none;
+//     text-align: center;
+//     min-width: 30vw;
+//     outline: none;
+//     color: white;
+//   }
+// `;
 
 const HeaderRight = styled.div`
   flex: 0.3;

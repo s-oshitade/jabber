@@ -5,16 +5,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
-import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
-import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 function PowerItem({id, task, done, edit}) {
   const [user] = useAuthState(auth);
   const userEmail = user?.email;
   const [isHovering, setIsHovering] = useState(false);
+  const [currentTask, setCurrentTask] = useState(task);
+  const [editTask, setEditTask] = useState(false);
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -22,6 +25,34 @@ function PowerItem({id, task, done, edit}) {
 
   const handleMouseOut = () => {
     setIsHovering(false);
+  }
+
+  const openTextField = () => {
+    setEditTask(true);
+  }
+
+  const closeTextField = () => {
+    setEditTask(false);
+  }
+
+  const submitEditTask = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      if (currentTask) {
+        db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
+          task: currentTask,
+          done: false
+        })
+      }
+      closeTextField();
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setCurrentTask(task);
+      closeTextField();
+
+    }
   }
 
   function handleFinish(e) {
@@ -39,11 +70,7 @@ function PowerItem({id, task, done, edit}) {
     }
   }
 
-  function editClicked() {
-    console.log("Someone clicked EditIcon")
-    edit(task, id)
-    handleRemove()
-  }
+
   // function handleEdit(e) {
   //   console.log("Someone just clicked the edit button!")
   //   const updatedTask = prompt('Update the selected task')
@@ -64,26 +91,45 @@ function PowerItem({id, task, done, edit}) {
   }
 
   return (
-    <PowerListContainer
-      onMouseOver={handleMouseOver} 
-      onMouseOut={handleMouseOut}
-    >
-      <PowerListInfo>
-        {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
-          {task}
+    <>
+      {!editTask ? (
+      <PowerListContainer
+        onMouseOver={handleMouseOver} 
+        onMouseOut={handleMouseOut}
+      >
+        <PowerListInfo>
+          {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
+            {task}
+          
+        </PowerListInfo>
         
-      </PowerListInfo>
-      
-      
-      <PowerListIcons>
-        {isHovering && 
-        <>
-        <EditIcon onClick={editClicked} />
-        <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
-        </>}
-      </PowerListIcons>
-    </PowerListContainer>
-      
+        
+        <PowerListIcons>
+          {isHovering && 
+          <>
+          <EditIcon onClick={openTextField} />
+          <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
+          </>}
+        </PowerListIcons>
+      </PowerListContainer>
+      ) : 
+          (<EditGoalContainer>
+          <ClickAwayListener onClickAway={closeTextField}>
+            <TextField
+            className='text-field'
+            id="standard-basic"
+            variant='standard'
+            inputProps={{style: {color: "white"}}}
+            autoFocus={true}
+            size='small'
+            type="text"
+            value={currentTask}
+            onChange={event => setCurrentTask(event.target.value)}
+            onKeyDown={submitEditTask}>
+            </TextField>
+          </ClickAwayListener>
+          </EditGoalContainer>)}
+    </>   
   )
 }
 
@@ -122,3 +168,5 @@ const PowerListIcons = styled.div`
 
 `;
 
+const EditGoalContainer =  styled.div`
+`;
