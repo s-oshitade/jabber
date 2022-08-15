@@ -110,31 +110,31 @@ function ChatInput({channelName, channelId, chatRef}) {
         onEmojiClick={onEmojiClick} 
       />} 
     <ChatInputBackground>
-    <ChatInputContainer>
-      <UploadButton 
-        uploader={uploader} 
-        options={{multi: true}}
-        onComplete={e => {handleFilePickerSubmit(e)}}>
-        {({onClick}) =>
-          <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
-        }
-      </UploadButton>
-      <form>
-        <input type="text"
-          onChange={e => setInput(e.target.value)}
-          value={input}  
-          placeholder={`Message #${channelName}`}>
-        </input>
-        
-        <Button hidden type='submit' onClick={sendMessage}>
-          SEND
-        </Button>
-      </form>
-      <IconsContainer>
-        {user?.email === roomDetails?.data().owner ? <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().hostUrl)}/> : <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>}
-        <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
-      </IconsContainer>
-    </ChatInputContainer>
+      <ChatInputContainer>
+        <UploadButton 
+          uploader={uploader} 
+          options={{multi: true}}
+          onComplete={e => {handleFilePickerSubmit(e)}}>
+          {({onClick}) =>
+            <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
+          }
+        </UploadButton>
+        <form>
+          <input type="text"
+            onChange={e => setInput(e.target.value)}
+            value={input}  
+            placeholder={`Message #${channelName}`}>
+          </input>
+          
+          <Button hidden type='submit' onClick={sendMessage}>
+            SEND
+          </Button>
+        </form>
+        <IconsContainer>
+          {user?.email === roomDetails?.data().owner ? <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().hostUrl)}/> : <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>}
+          <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+        </IconsContainer>
+      </ChatInputContainer>
     </ChatInputBackground>
   </ChatContainer>
   )
@@ -173,8 +173,11 @@ const ChatContainer = styled.div`
 `
 
 const ChatInputBackground = styled.div`
+  height: 90px;
+  width: 62%;
+  background-color: rgb(54,57,63);
   position: fixed;
-  bottom: 30px;
+  bottom: 0px;
 `
 
 const ChatInputContainer = styled.div`
