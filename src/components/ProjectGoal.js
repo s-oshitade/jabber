@@ -152,7 +152,7 @@ const ProjectGoalInfo = styled.div`
   }
 
   > .complete {
-    color: lightgreen;
+    color: rgb(2,213,160);
   }
 
   > .incomplete {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
-import AddIcon from "@material-ui/icons/Add";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import  TextField from '@material-ui/core/TextField/TextField';
 
 
@@ -58,7 +58,7 @@ function NewTaskForm({editInput, id}) {
       />
       </form>
     }
-    <AddIcon fontSize='small' title="Add TODO" style={{ padding: 10 }}/><span>Add TODO</span>
+    <AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span>
     
     </RightSidebarOption>
     
@@ -70,6 +70,7 @@ export default NewTaskForm;
 
 
 const RightSidebarOption = styled.div`
+  font-weight: 800;
   margin-left: 4px;
   margin-right: 4px;
   border-radius: 8px;

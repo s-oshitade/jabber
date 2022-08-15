@@ -236,6 +236,7 @@ const PowerListContainer = styled.div`
 `;
 
 const RightSidebarOption = styled.div`
+  font-weight: 800;
   margin-left: 4px;
   margin-right: 4px;
   border-radius: 8px;
