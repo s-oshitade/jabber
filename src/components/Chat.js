@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/counter/appSlice";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import Dialog from '@material-ui/core/Dialog/Dialog';
 import DialogActions from '@material-ui/core/DialogActions/DialogActions';
@@ -242,7 +243,7 @@ function Chat() {
              <h4>
                <strong>#{roomDetails?.data().name}</strong>
              </h4>
-                  <NoteAddIcon onClick={openResourceMenu}/>
+                  <PostAddIcon onClick={openResourceMenu}/>
                   <Menu
                     id="simple-menu"
                     anchorEl={resourceMenu}
@@ -424,6 +425,7 @@ const RightHeader = styled.div`
   }
 
   > p > span {
+    font-weight: 600;
     font-size: 12px;
   }
 
