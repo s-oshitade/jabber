@@ -24,6 +24,14 @@ function PowerItem({id, task, done, edit}) {
     setIsHovering(false);
   }
 
+  const openTextField = () => {
+    setEditTask(true);
+  }
+
+  const closeTextField = () => {
+    setEditTask(false);
+  }
+
   function handleFinish(e) {
    console.log("I got clicked!")
    console.log(id)
