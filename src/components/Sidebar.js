@@ -39,8 +39,8 @@ function Sidebar({token}) {
           <NameContainer>
             <h2>ABC Inc.</h2>
             <h3>
-              <FiberManualRecordIcon />
               {user?.displayName}
+              <FiberManualRecordIcon />
             </h3>
           </NameContainer>
           <HeaderAvatar
@@ -79,12 +79,14 @@ const ChannelContainer = styled.div`
 const NameContainer = styled.div`
 
   > h2 {
+    padding-left: 12px;
     font-size: 15px;
     font-weight: 900;
     margin-bottom: 5px;
   }
 
   > h3 {
+    padding-left: 12px;
     display: flex;
     font-size: 13px;
     font-weight: 400;
