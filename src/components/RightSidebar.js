@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { selectRoomId } from '../features/counter/appSlice';
 import { db } from '../firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import AddIcon from "@material-ui/icons/Add";
 import PowerListApp from './PowerListApp';
 import ProgressBar from './ProgressBar';
 import ProjectGoal from './ProjectGoal';
