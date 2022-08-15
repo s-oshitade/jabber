@@ -11,20 +11,12 @@ function PowerListApp() {
   const [user] = useAuthState(auth);
   const userEmail = user?.email
   const[todos] = useCollection(db.collection("users").doc("todoLists").collection(userEmail).orderBy('done','asc'))
-  const[editText, setEditText] = useState("");
-  const[id, setId] = useState("");
 
-  function editItem (text, id) {
-    console.log("Received edit ping")
-    console.log(text)
-    setEditText(text)
-    setId(id)
-  }
 
   return (
     <div className="PowerListApp">
       <span>{user.displayName}'s List</span>
-      <NewTaskForm editInput={editText} id={id}/>
+      <NewTaskForm />
       <ul >
         {todos?.docs.map((doc) => (
           <>
@@ -33,7 +25,6 @@ function PowerListApp() {
               id={doc.id}
               task={doc.data().task}
               done={doc.data().done}
-              edit={editItem}
               >
             </PowerItem>
             </PowerItemContainer>
