@@ -35,6 +35,26 @@ function PowerItem({id, task, done, edit}) {
     setEditTask(false);
   }
 
+  const submitEditTask = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      if (currentTask) {
+        db.collection("users").doc("todoLists").collection(userEmail).doc(id).update({
+          task: currentTask,
+          done: false
+        })
+      }
+      closeTextField();
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setCurrentTask(task);
+      closeTextField();
+
+    }
+  }
+
   function handleFinish(e) {
    console.log("I got clicked!")
    console.log(id)
@@ -95,8 +115,17 @@ function PowerItem({id, task, done, edit}) {
       ) : 
           (<EditGoalContainer>
           <ClickAwayListener onClickAway={closeTextField}>
-            <TextField>
-
+            <TextField
+            className='text-field'
+            id="standard-basic"
+            variant='standard'
+            inputProps={{style: {color: "white"}}}
+            autoFocus={true}
+            size='small'
+            type="text"
+            value={currentTask}
+            onChange={event => setCurrentTask(event.target.value)}
+            onKeyDown={submitEditTask}>
             </TextField>
           </ClickAwayListener>
           </EditGoalContainer>)}
