@@ -173,7 +173,7 @@ const ChatContainer = styled.div`
 `
 
 const ChatInputBackground = styled.div`
-  height: 90px;
+  height: 91px;
   width: 62%;
   background-color: rgb(54,57,63);
   position: fixed;
