@@ -174,4 +174,12 @@ const PowerListIcons = styled.div`
 `;
 
 const EditGoalContainer =  styled.div`
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 1px solid #0175FE;
+  }
 `;
