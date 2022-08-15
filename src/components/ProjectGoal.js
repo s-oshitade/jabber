@@ -7,7 +7,8 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
-
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   const [isHovering, setIsHovering] = useState(false);
@@ -63,7 +64,7 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
     > 
     
     <ProjectGoalInfo>
-      {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
+      {status ? <CheckBoxIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <CheckBoxOutlineBlankIcon onClick={() => {update(id)}} fontsize="smallest" className="incomplete" /> } {goal}
       </ProjectGoalInfo>
       <ProjectGoalIcons>
         {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
@@ -142,6 +143,10 @@ const ProjectGoalInfo = styled.div`
   display: flex;
   align-items: center;
 
+
+  > svg {
+    font-size: large;
+  }
   > .complete {
     color: lightgreen;
 }
