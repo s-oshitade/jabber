@@ -109,15 +109,15 @@ const GoalHr = styled.div`
 const EditGoalContainer = styled.div`
   padding-left: 5px;
   margin-left: 15px;
- /* .text-field {
+ .text-field {
     min-width: -webkit-fill-available;
-  } */
+  }
   > .text-field  > label{
     color: gray;
   }
 
   > .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #0175FE;
+    border-bottom: 1px solid #0175FE;
   }
 
 `
