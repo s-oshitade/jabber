@@ -8,6 +8,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 
+import  TextField  from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
+
 
 function PowerItem({id, task, done, edit}) {
   const [user] = useAuthState(auth);
