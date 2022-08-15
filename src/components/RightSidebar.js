@@ -25,7 +25,7 @@ function RightSidebar () {
   )
 
   const [projectPlan] = useCollection(
-    roomId && db.collection('rooms').doc(roomId).collection("project")
+    roomId && db.collection('rooms').doc(roomId).collection("project").orderBy('complete', 'asc')
   )
 
   const [finishedGoals] = useCollection(
