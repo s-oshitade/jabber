@@ -7,6 +7,8 @@ import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
 import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 
 
 function PowerItem({id, task, done, edit}) {
@@ -67,9 +69,12 @@ function PowerItem({id, task, done, edit}) {
       onMouseOut={handleMouseOut}
     >
       <PowerListInfo>
-        {!done ? <LensOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckCircleOutlinedIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
+        {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
           {task}
+        
       </PowerListInfo>
+      
+      
       <PowerListIcons>
         {isHovering && 
         <>
@@ -78,12 +83,14 @@ function PowerItem({id, task, done, edit}) {
         </>}
       </PowerListIcons>
     </PowerListContainer>
+      
   )
 }
 
 export default PowerItem;
 
 const PowerListContainer = styled.div`
+  padding-left: 4px;
   margin-right: 6px;
   border-radius: 8px;
   display: flex;
@@ -95,6 +102,8 @@ const PowerListContainer = styled.div`
   opacity: 0.9;
   background-color: #43474D;
 }
+
+
 `
 
 const PowerListInfo = styled.div`
@@ -103,7 +112,7 @@ const PowerListInfo = styled.div`
   align-items: center;
 
   .checked {
-    color: lightgreen;
+    color: rgb(2,213,160);
   }
   
 `

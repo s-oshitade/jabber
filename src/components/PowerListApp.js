@@ -5,6 +5,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 
 import PowerItem from "./PowerItem";
 import NewTaskForm from "./NewTaskForm.js";
+import styled from 'styled-components';
 
 function PowerListApp() {
   const [user] = useAuthState(auth);
@@ -23,22 +24,47 @@ function PowerListApp() {
   return (
     <div className="PowerListApp">
       <span>{user.displayName}'s List</span>
-      <hr />
       <NewTaskForm editInput={editText} id={id}/>
-      <ul>
+      <ul >
         {todos?.docs.map((doc) => (
-          <PowerItem key={doc.id} 
-            id={doc.id}
-            task={doc.data().task}
-            done={doc.data().done}
-            edit={editItem}
-            >
-          </PowerItem>
+          <>
+          <PowerItemContainer>
+            <PowerItem key={doc.id} 
+              id={doc.id}
+              task={doc.data().task}
+              done={doc.data().done}
+              edit={editItem}
+              >
+            </PowerItem>
+            </PowerItemContainer>
+            <GoalHr>
+              <hr></hr> 
+            </GoalHr>
+          </>  
+          
           ))}
       </ul>
+      
     </div>
   )
 }
 
 export default PowerListApp;
+
+const PowerItemContainer = styled.div`
+  > div {
+    padding-left: 12px;
+  }
+  
+`
+
+const GoalHr = styled.div`
+  > hr {
+    border: 0;
+    height: 0.8px;
+    background-image: linear-gradient(to right,rgba(0,0,0,0),#e0e0e0,rgba(0,0,0,0));;
+}
+`
+
+
 

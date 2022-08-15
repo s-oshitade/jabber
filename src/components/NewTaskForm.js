@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import  TextField from '@material-ui/core/TextField/TextField';
+
 
 function NewTaskForm({editInput, id}) {
   const [task, setTask] = useState("");
   const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
+  const [showTodoInput, setShowTodoInput] = useState(false);
   // const [inputState, setInputState] = useState(editInput)
   const userEmail = user?.email
 
   console.log(editInput)
   function handleSubmit(e) {
+    setShowTodoInput(true)
     e.preventDefault();
     //Handle empty submisison
     if(!task){
@@ -28,6 +33,7 @@ function NewTaskForm({editInput, id}) {
 
     //Clear newtask input
     setTask("");
+    setShowTodoInput(false)
   }
 
   useEffect(() => {
@@ -35,47 +41,87 @@ function NewTaskForm({editInput, id}) {
   }, [editInput])
 
   return (
-    <Input>
+    <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
+{ showTodoInput && 
       <form onSubmit={handleSubmit}>
-        <input
-          type="text" 
-          autoFocus={true}
-          value={task}  
-          onChange={e => setTask(e.target.value)}
-          placeholder={"Enter a todo"}>
-        </input>
+      <TextField
+        className='text-field'
+        id="standard-basic"
+        label="Enter TODO"
+        variant='standard'
+        inputProps={{style: {color: "white"}}}
+        autoFocus={true}
+        size='small'
+        type="text" 
+        value={task}  
+        onChange={e => setTask(e.target.value)}
+      />
       </form>
-    </Input>
+    }
+    <AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span>
+    
+    </RightSidebarOption>
+    
+    
   )
 }
 
 export default NewTaskForm;
 
-const Input = styled.div`
- > form {
-    position: relative;
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: center;
-      > button {
-      background-color: darkgray;
-      color: white;
-      font-weight: 600;
-      visibility: hidden;
-    }
+
+const RightSidebarOption = styled.div`
+  font-weight: 800;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 8px;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  padding-left: 2px;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.9;
+    background-color: #43474D;
   }
 
-  > form > input {
-    bottom: 30px;
-    width: 100%;
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 10px;
-    outline: none;
-    background-color: #40444a;
+ > form > .text-field {
+    min-width: 70px;
+  }
+ > form >.text-field  > label{
     color: gray;
   }
 
-  margin-left: 10px;
-  width: 90%;
-`
+ > form .text-field > .MuiInput-underline:after{
+    border-bottom: 2px solid #0175FE;
+  }
+  `
+
+// const Input = styled.div`
+//  > form {
+//     position: relative;
+//     display: flex;
+//     margin-bottom: 10px;
+//     justify-content: center;
+//       > button {
+//       background-color: darkgray;
+//       color: white;
+//       font-weight: 600;
+//       visibility: hidden;
+//     }
+//   }
+
+//   > form > input {
+//     bottom: 30px;
+//     width: 100%;
+//     border: 1px solid gray;
+//     border-radius: 5px;
+//     padding: 10px;
+//     outline: none;
+//     background-color: #40444a;
+//     color: gray;
+//   }
+
+//   margin-left: 10px;
+//   width: 90%;
+// `

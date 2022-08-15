@@ -7,7 +7,8 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
-
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 function ProjectGoal ({goal, status, id, update, roomId, remove}) {
   const [isHovering, setIsHovering] = useState(false);
@@ -55,18 +56,20 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 
   return(
     <>
+    
     {editGoal === false ? (
     <ProjectGoalContainer
       onMouseOver={handleMouseOver} 
       onMouseOut={handleMouseOut}
     > 
+    
     <ProjectGoalInfo>
-      {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
+      {status ? <CheckBoxIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <CheckBoxOutlineBlankIcon onClick={() => {update(id)}} fontsize="smallest" className="incomplete" /> } <span>{goal}</span>
       </ProjectGoalInfo>
       <ProjectGoalIcons>
         {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
       </ProjectGoalIcons>
-
+      
     </ ProjectGoalContainer> )
     : 
     <EditGoalContainer>
@@ -85,6 +88,9 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
       </ClickAwayListener>
       </EditGoalContainer>
       }
+      <GoalHr>
+        <hr /> 
+      </GoalHr>  
     </>
   ) 
 
@@ -92,6 +98,15 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 }
 
 export default ProjectGoal;
+
+const GoalHr = styled.div`
+
+> hr {
+    border: 0;
+    height: 0.8px;
+    background-image: linear-gradient(to right,rgba(0,0,0,0),#e0e0e0,rgba(0,0,0,0));;
+}
+`
 
 const EditGoalContainer = styled.div`
 
@@ -109,7 +124,7 @@ const EditGoalContainer = styled.div`
 `
 
 const ProjectGoalContainer = styled.div`
-    margin-left: 6px;
+    margin-left: 15px;
     margin-right: 6px;
     border-radius: 8px;
     padding: 4px;
@@ -122,17 +137,23 @@ const ProjectGoalContainer = styled.div`
   opacity: 0.9;
   background-color: #43474D;
 }
-
-
 `;
 
 const ProjectGoalInfo = styled.div`
   display: flex;
   align-items: center;
 
+  > span {
+    padding-left: 5px;
+  }
+
+  > svg {
+    font-size: large;
+  }
+
   > .complete {
-    color: lightgreen;
-}
+    color: rgb(2,213,160);
+  }
 
   > .incomplete {
     color: white;

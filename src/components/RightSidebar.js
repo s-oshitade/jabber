@@ -10,7 +10,7 @@ import ProgressBar from './ProgressBar';
 import ProjectGoal from './ProjectGoal';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
-
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
 
@@ -107,8 +107,7 @@ function RightSidebar () {
                 />
               </ClickAwayListener>
             }
-          
-          <AddIcon fontSize='small' style={{ padding: 10 }}/> <span>Add a project goal</span>
+            <AddCircleOutlineIcon className='add-icon' fontSize='small' style={{ padding: 10 }}/><span>Add a project goal</span>
         </RightSidebarOption>
         {/* <hr /> */}
 
@@ -125,7 +124,7 @@ function RightSidebar () {
               update={complete === false ? updateGoal : resetGoal}
               roomId={roomId}
               remove={removeGoal}
-            />
+            /> 
           )
         })}
 
@@ -237,6 +236,7 @@ const PowerListContainer = styled.div`
 `;
 
 const RightSidebarOption = styled.div`
+  font-weight: 800;
   margin-left: 4px;
   margin-right: 4px;
   border-radius: 8px;
@@ -245,6 +245,10 @@ const RightSidebarOption = styled.div`
   align-items: center;
   padding-left: 2px;
   cursor: pointer;
+
+  > .MuiSvgIcon-root > div {
+    padding: 10px 0 10px 0;
+  }
 
   :hover {
     opacity: 0.9;

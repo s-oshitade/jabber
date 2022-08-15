@@ -28,7 +28,10 @@ const ProgressBarContainer = styled.div`
   padding-left: 10px;
 
   > progress {
-    height: 2em;
+    border-radius: 5px;
+    height: 1em;
     width: 95%;
   }
+  > progress::-webkit-progress-value { background: rgb(2,213,160); }
+
 `;
