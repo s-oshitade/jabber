@@ -103,7 +103,7 @@ const GoalHr = styled.div`
 
 > hr {
     border: 0;
-    height: 1px;
+    height: 0.8px;
     background-image: linear-gradient(to right,rgba(0,0,0,0),#e0e0e0,rgba(0,0,0,0));;
 }
 `
@@ -124,7 +124,7 @@ const EditGoalContainer = styled.div`
 `
 
 const ProjectGoalContainer = styled.div`
-    margin-left: 6px;
+    margin-left: 15px;
     margin-right: 6px;
     border-radius: 8px;
     padding: 4px;
