@@ -109,10 +109,11 @@ const GoalHr = styled.div`
 `
 
 const EditGoalContainer = styled.div`
-
- .text-field {
+  padding-left: 5px;
+  margin-left: 15px;
+ /* .text-field {
     min-width: -webkit-fill-available;
-  }
+  } */
   > .text-field  > label{
     color: gray;
   }
