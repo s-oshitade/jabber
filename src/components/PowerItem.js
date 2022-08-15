@@ -64,26 +64,27 @@ function PowerItem({id, task, done, edit}) {
   }
 
   return (
-    <PowerListContainer
-      onMouseOver={handleMouseOver} 
-      onMouseOut={handleMouseOut}
-    >
-      <PowerListInfo>
-        {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
-          {task}
+    <>
+      <PowerListContainer
+        onMouseOver={handleMouseOver} 
+        onMouseOut={handleMouseOut}
+      >
+        <PowerListInfo>
+          {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
+            {task}
+          
+        </PowerListInfo>
         
-      </PowerListInfo>
-      
-      
-      <PowerListIcons>
-        {isHovering && 
-        <>
-        <EditIcon onClick={editClicked} />
-        <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
-        </>}
-      </PowerListIcons>
-    </PowerListContainer>
-      
+        
+        <PowerListIcons>
+          {isHovering && 
+          <>
+          <EditIcon onClick={editClicked} />
+          <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
+          </>}
+        </PowerListIcons>
+      </PowerListContainer>
+    </>   
   )
 }
 
