@@ -83,6 +83,7 @@ const RightSidebarOption = styled.div`
   }
 
  > form > .text-field {
+    width: 17em;
     min-width: 70px;
   }
  > form >.text-field  > label{
