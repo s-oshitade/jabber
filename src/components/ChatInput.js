@@ -184,7 +184,7 @@ const ChatInputContainer = styled.div`
   position: fixed;
   bottom: 30px;
   border: 1px solid gray;
-  margin-left: 1.5em;
+  margin-left: 2.5em;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
