@@ -13,6 +13,7 @@ function PowerItem({id, task, done, edit}) {
   const [user] = useAuthState(auth);
   const userEmail = user?.email;
   const [isHovering, setIsHovering] = useState(false);
+  const [currentTask, setCurrentTask] = useState(task);
 
   const handleMouseOver = () => {
     setIsHovering(true);
