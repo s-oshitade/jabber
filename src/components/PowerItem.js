@@ -96,7 +96,14 @@ function PowerItem({id, task, done, edit}) {
           </>}
         </PowerListIcons>
       </PowerListContainer>
-      ) : (<div></div>)}
+      ) : 
+          (<EditGoalContainer>
+          <ClickAwayListener onClickAway={closeTextField}>
+            <TextField>
+              
+            </TextField>
+          </ClickAwayListener>
+          </EditGoalContainer>)}
     </>   
   )
 }
@@ -136,3 +143,5 @@ const PowerListIcons = styled.div`
 
 `;
 
+const EditGoalContainer =  styled.div`
+`;
