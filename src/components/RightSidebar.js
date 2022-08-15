@@ -125,7 +125,7 @@ function RightSidebar () {
               update={complete === false ? updateGoal : resetGoal}
               roomId={roomId}
               remove={removeGoal}
-            />
+            /> 
           )
         })}
 

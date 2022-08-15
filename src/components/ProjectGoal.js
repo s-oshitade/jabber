@@ -55,18 +55,20 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 
   return(
     <>
+    
     {editGoal === false ? (
     <ProjectGoalContainer
       onMouseOver={handleMouseOver} 
       onMouseOut={handleMouseOut}
     > 
+    
     <ProjectGoalInfo>
       {status ? <CheckIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <ArrowRightIcon onClick={() => {update(id)}} fontsize="small" className="incomplete" /> } {goal}
       </ProjectGoalInfo>
       <ProjectGoalIcons>
         {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
       </ProjectGoalIcons>
-
+      
     </ ProjectGoalContainer> )
     : 
     <EditGoalContainer>
@@ -85,6 +87,9 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
       </ClickAwayListener>
       </EditGoalContainer>
       }
+      <GoalHr>
+        <hr /> 
+      </GoalHr>  
     </>
   ) 
 
@@ -92,6 +97,15 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
 }
 
 export default ProjectGoal;
+
+const GoalHr = styled.div`
+
+> hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right,rgba(0,0,0,0),#e0e0e0,rgba(0,0,0,0));;
+}
+`
 
 const EditGoalContainer = styled.div`
 
@@ -122,8 +136,6 @@ const ProjectGoalContainer = styled.div`
   opacity: 0.9;
   background-color: #43474D;
 }
-
-
 `;
 
 const ProjectGoalInfo = styled.div`
