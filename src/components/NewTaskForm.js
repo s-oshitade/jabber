@@ -58,7 +58,7 @@ function NewTaskForm({editInput, id}) {
       />
       </form>
     }
-    <AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span>
+    {!showTodoInput && <><AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span></>}
     
     </RightSidebarOption>
     
