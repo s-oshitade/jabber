@@ -50,11 +50,7 @@ function PowerItem({id, task, done, edit}) {
     }
   }
 
-  function editClicked() {
-    console.log("Someone clicked EditIcon")
-    edit(task, id)
-    handleRemove()
-  }
+
   // function handleEdit(e) {
   //   console.log("Someone just clicked the edit button!")
   //   const updatedTask = prompt('Update the selected task')
@@ -100,7 +96,7 @@ function PowerItem({id, task, done, edit}) {
           (<EditGoalContainer>
           <ClickAwayListener onClickAway={closeTextField}>
             <TextField>
-              
+
             </TextField>
           </ClickAwayListener>
           </EditGoalContainer>)}
