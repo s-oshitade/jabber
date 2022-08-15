@@ -64,7 +64,7 @@ function ProjectGoal ({goal, status, id, update, roomId, remove}) {
     > 
     
     <ProjectGoalInfo>
-      {status ? <CheckBoxIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <CheckBoxOutlineBlankIcon onClick={() => {update(id)}} fontsize="smallest" className="incomplete" /> } {goal}
+      {status ? <CheckBoxIcon onClick={() => {update(id)}} fontsize="small" className="complete" /> : <CheckBoxOutlineBlankIcon onClick={() => {update(id)}} fontsize="smallest" className="incomplete" /> } <span>{goal}</span>
       </ProjectGoalInfo>
       <ProjectGoalIcons>
         {isHovering && <> <EditIcon onClick={openEditGoal} /> <ClearIcon onClick={() => {remove(id)}} style={{color: "red"}} /> </>}
@@ -143,13 +143,17 @@ const ProjectGoalInfo = styled.div`
   display: flex;
   align-items: center;
 
+  > span {
+    padding-left: 5px;
+  }
 
   > svg {
     font-size: large;
   }
+
   > .complete {
     color: lightgreen;
-}
+  }
 
   > .incomplete {
     color: white;
