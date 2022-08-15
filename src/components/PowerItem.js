@@ -73,6 +73,7 @@ function PowerItem({id, task, done, edit}) {
 
   return (
     <>
+      {!editTask ? (
       <PowerListContainer
         onMouseOver={handleMouseOver} 
         onMouseOut={handleMouseOut}
@@ -87,11 +88,12 @@ function PowerItem({id, task, done, edit}) {
         <PowerListIcons>
           {isHovering && 
           <>
-          <EditIcon onClick={editClicked} />
+          <EditIcon onClick={openTextField} />
           <ClearIcon id="clear-icon" onClick={handleRemove} style={{color: "red"}}/>
           </>}
         </PowerListIcons>
       </PowerListContainer>
+      ) : (<div></div>)}
     </>   
   )
 }
