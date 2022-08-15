@@ -25,7 +25,12 @@ function ProgressBar ({ projectName, goalTotal, completed }) {
 export default ProgressBar;
 
 const ProgressBarContainer = styled.div`
+
+  > label {
+    font-weight: 900;
+  }
   padding-left: 10px;
+  padding-bottom: 12px;
 
   > progress {
     border-radius: 5px;

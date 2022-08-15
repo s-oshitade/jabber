@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-
 import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
 import VideoCallRoundedIcon from '@material-ui/icons/VideoCallRounded'
 import EmojiEmotionRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded'
@@ -111,31 +110,31 @@ function ChatInput({channelName, channelId, chatRef}) {
         onEmojiClick={onEmojiClick} 
       />} 
     <ChatInputBackground>
-    <ChatInputContainer>
-      <UploadButton 
-        uploader={uploader} 
-        options={{multi: true}}
-        onComplete={e => {handleFilePickerSubmit(e)}}>
-        {({onClick}) =>
-          <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
-        }
-      </UploadButton>
-      <form>
-        <input type="text"
-          onChange={e => setInput(e.target.value)}
-          value={input}  
-          placeholder={`Message #${channelName}`}>
-        </input>
-        
-        <Button hidden type='submit' onClick={sendMessage}>
-          SEND
-        </Button>
-      </form>
-      <IconsContainer>
-        {user?.email === roomDetails?.data().owner ? <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().hostUrl)}/> : <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>}
-        <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
-      </IconsContainer>
-    </ChatInputContainer>
+      <ChatInputContainer>
+        <UploadButton 
+          uploader={uploader} 
+          options={{multi: true}}
+          onComplete={e => {handleFilePickerSubmit(e)}}>
+          {({onClick}) =>
+            <AddPhotoAlternateIcon fontSize='30px' className='add-photo-icon' onClick={onClick}></AddPhotoAlternateIcon>
+          }
+        </UploadButton>
+        <form>
+          <input type="text"
+            onChange={e => setInput(e.target.value)}
+            value={input}  
+            placeholder={`Message #${channelName}`}>
+          </input>
+          
+          <Button hidden type='submit' onClick={sendMessage}>
+            SEND
+          </Button>
+        </form>
+        <IconsContainer>
+          {user?.email === roomDetails?.data().owner ? <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().hostUrl)}/> : <VideoCallRoundedIcon className='video-icon' fontSize='medium' onClick={() => openVideoCall(roomDetails?.data().roomUrl)}/>}
+          <EmojiEmotionRoundedIcon className='emoji-icon' onClick={handleEmojiButtonClick} />
+        </IconsContainer>
+      </ChatInputContainer>
     </ChatInputBackground>
   </ChatContainer>
   )
@@ -152,6 +151,10 @@ const IconsContainer = styled.div`
     //display: flex;
     align-items: center;
     cursor: pointer;
+
+    :hover {
+    opacity: 0.8;
+  }
   }
 
   > .video-icon {
@@ -159,6 +162,9 @@ const IconsContainer = styled.div`
     font-size: 30px;
     color: rgb(185,187,190);
     cursor: pointer;
+    :hover {
+    opacity: 0.8;
+  }
   }
 `
 
@@ -167,8 +173,11 @@ const ChatContainer = styled.div`
 `
 
 const ChatInputBackground = styled.div`
+  height: 91px;
+  width: 62%;
+  background-color: rgb(54,57,63);
   position: fixed;
-  bottom: 30px;
+  bottom: 0px;
 `
 
 const ChatInputContainer = styled.div`
@@ -178,7 +187,7 @@ const ChatInputContainer = styled.div`
   position: fixed;
   bottom: 30px;
   border: 1px solid gray;
-  margin-left: 1.5em;
+  margin-left: 2.5em;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
@@ -205,5 +214,8 @@ const ChatInputContainer = styled.div`
   > .add-photo-icon {
     color: rgb(185,187,190);
     cursor: pointer;
+    :hover {
+    opacity: 0.8;
+  }
   }
 `;

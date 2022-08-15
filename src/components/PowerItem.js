@@ -98,7 +98,7 @@ function PowerItem({id, task, done, edit}) {
         onMouseOut={handleMouseOut}
       >
         <PowerListInfo>
-          {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} fontSize='small' style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
+          {!done ? <CheckBoxOutlineBlankIcon onClick={handleFinish} style={{ padding: 5, paddingLeft: 0 }}/> : <CheckBoxIcon onClick={handleFinish} style={{ padding: 5, paddingLeft: 0,}} className="checked"/> }
             {task}
           
         </PowerListInfo>
@@ -157,9 +157,14 @@ const PowerListInfo = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  > svg {
+    font-size: 1.25rem;
+  }
+
   .checked {
     color: rgb(2,213,160);
   }
+
   
 `
 
@@ -169,4 +174,12 @@ const PowerListIcons = styled.div`
 `;
 
 const EditGoalContainer =  styled.div`
+
+  > .text-field {
+    min-width: -webkit-fill-available;
+  }
+
+  > .text-field > .MuiInput-underline:after{
+    border-bottom: 1px solid #0175FE;
+  }
 `;
