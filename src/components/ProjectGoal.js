@@ -3,8 +3,6 @@ import { db } from '../firebase';
 import  TextField  from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
 import styled from 'styled-components';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import CheckIcon from '@material-ui/icons/Check';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
