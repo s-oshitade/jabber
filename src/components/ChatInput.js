@@ -6,7 +6,6 @@ import firebase from 'firebase';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import { useAuthState } from "react-firebase-hooks/auth";
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
-
 import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
 import VideoCallRoundedIcon from '@material-ui/icons/VideoCallRounded'
 import EmojiEmotionRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded'
@@ -152,6 +151,10 @@ const IconsContainer = styled.div`
     //display: flex;
     align-items: center;
     cursor: pointer;
+
+    :hover {
+    opacity: 0.8;
+  }
   }
 
   > .video-icon {
@@ -159,6 +162,9 @@ const IconsContainer = styled.div`
     font-size: 30px;
     color: rgb(185,187,190);
     cursor: pointer;
+    :hover {
+    opacity: 0.8;
+  }
   }
 `
 
@@ -205,5 +211,8 @@ const ChatInputContainer = styled.div`
   > .add-photo-icon {
     color: rgb(185,187,190);
     cursor: pointer;
+    :hover {
+    opacity: 0.8;
+  }
   }
 `;
