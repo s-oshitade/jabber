@@ -13,12 +13,12 @@ function Login() {
     <LoginContainer>
       <LoginInnerContainer className="login__container">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7nd0lN3bn0IkYRKOx1RaWzWgLVPQ4WRC0Q&usqp=CAU"
+          src="https://raw.githubusercontent.com/s-oshitade/jabber/ededa51e508f98bd0bfd03ca26c28b3af7351f1f/docs/logo-asset49.png"
           alt=""
         />
         <div className="login__text">
-          <h1>Sign in to Jabber!</h1>
-          <p>www.jabber.com</p>
+          <h1>Log in here!</h1>
+          <p>https://jabber-cd1e1.web.app/</p>
         </div>
 
         <Button type="submit" onClick={signIn}>
@@ -55,7 +55,7 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 > button {
     margin-top: 50px;
     text-transform: inherit !important;
-    background-color: #1456d3 !important;
+    background-color: #6a31ea !important;
     color: white;
   }
 `
