@@ -4,6 +4,7 @@ import { auth, db } from '../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import  TextField from '@material-ui/core/TextField/TextField';
+import { ClickAwayListener } from '@material-ui/core';
 
 
 function NewTaskForm({editInput, id}) {
