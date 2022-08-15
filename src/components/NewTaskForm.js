@@ -43,7 +43,8 @@ function NewTaskForm({editInput, id}) {
 
   return (
     <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
-{ showTodoInput && 
+{ showTodoInput &&
+      <ClickAwayListener onClickAway={() => {setShowTodoInput(false)}}>
       <form onSubmit={handleSubmit}>
       <TextField
         className='text-field'
@@ -58,6 +59,7 @@ function NewTaskForm({editInput, id}) {
         onChange={e => setTask(e.target.value)}
       />
       </form>
+      </ClickAwayListener>
     }
     {!showTodoInput && <><AddCircleOutlineIcon fontSize='small' style={{ padding: 10 }}/><span>Add TODO</span></>}
     
