@@ -7,15 +7,13 @@ import  TextField from '@material-ui/core/TextField/TextField';
 import { ClickAwayListener } from '@material-ui/core';
 
 
-function NewTaskForm({editInput, id}) {
+function NewTaskForm() {
   const [task, setTask] = useState("");
-  const [done, setDone] = useState(false);
   const [user] = useAuthState(auth);
   const [showTodoInput, setShowTodoInput] = useState(false);
-  // const [inputState, setInputState] = useState(editInput)
   const userEmail = user?.email
 
-  console.log(editInput)
+
   function handleSubmit(e) {
     setShowTodoInput(true)
     e.preventDefault();
@@ -25,11 +23,10 @@ function NewTaskForm({editInput, id}) {
       return;
     }
 
-    //Submit task to firebease store with a default "done" state being false
-    setDone(false)
+
     db.collection("users").doc("todoLists").collection(userEmail).add({
       task: task,
-      done: done
+      done: false
     }) 
 
     //Clear newtask input
@@ -37,9 +34,6 @@ function NewTaskForm({editInput, id}) {
     setShowTodoInput(false)
   }
 
-  useEffect(() => {
-    setTask(editInput);
-  }, [editInput])
 
   return (
     <RightSidebarOption onClick={() => {setShowTodoInput(true)}}>
