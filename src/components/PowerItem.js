@@ -5,8 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
-import CheckCircleOutlinedIcon from '@material-ui/icons/CheckCircleOutlined';
-import LensOutlinedIcon from '@material-ui/icons/LensOutlined';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 
