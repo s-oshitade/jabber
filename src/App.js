@@ -46,7 +46,7 @@ function App() {
       <AppLoading>
         <AppLoadingContents>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7nd0lN3bn0IkYRKOx1RaWzWgLVPQ4WRC0Q&usqp=CAU"
+            src="https://github.com/s-oshitade/jabber/blob/main/docs/logo-asset49.png?raw=true"
             alt=""
           />
 
