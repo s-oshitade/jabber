@@ -30,8 +30,13 @@ You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is c
 ![](./docs/login.png)
 
 `Overview`
+![](./docs/overview.png)
 
+`Private Channel`
+![](./docs/private-channel.png)
 
+`Drag-and-drop file`
+![](./docs/drag-and-drop.png)
 
 
 ## Dependencies
