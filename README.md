@@ -58,11 +58,17 @@ You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is c
   * styled-components
 
 ## Continuous Improvement
+Future iterations of Jabber will include the following developments:
+* Ability to register organizations for dedicated instances of the app
+* Responsive view on all screen sizes
+* Fuzzy search and additional features that will leverage on the fuzzy search feature
 
+The above list is not exhaustive.
 
 
 
 ## Usage
+Access [Jabber](https://jabber-cd1e1.web.app/) from your desktop your desktop at https://jabber-cd1e1.web.app/. Sign in securely with your Google account and explore the features. This version of the app is optimized for full screen view. The music player is accessible only to premium users of Spotify.
 
 ## License
 Selected aspects of this project may be subject to intellectual property rights.
