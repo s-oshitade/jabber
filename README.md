@@ -26,16 +26,16 @@ Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord
 You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported subsequent versions.
 
 ## Screenshots
-`Login`
+* Login
 ![](./docs/login.png)
 
-`Overview`
+* Overview
 ![](./docs/overview.png)
 
-`Private Channel`
+* Private Channel
 ![](./docs/private-channel.png)
 
-`Drag-and-drop file`
+* Drag-and-drop file
 ![](./docs/drag-and-drop.png)
 
 
