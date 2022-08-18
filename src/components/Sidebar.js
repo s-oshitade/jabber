@@ -17,7 +17,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 function Sidebar({token}) {
   const [user] = useAuthState(auth);
   const [showPlayer, setShowPlayer] = useState(false);
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
+  const [channels, loading, error] = useCollection(db.collection("rooms").orderBy('owner', 'asc'));
 
   let spotifyURL = '';
 

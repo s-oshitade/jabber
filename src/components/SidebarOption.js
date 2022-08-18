@@ -56,7 +56,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           owner: user.email,
           roomUrl: body.roomUrl,
           hostUrl: body.hostRoomUrl
-        });
+        })
+        ;
       } 
       setChannelName('');
       setAddingChannel(false);
