@@ -23,7 +23,7 @@ Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord
 * A Resources feature for storing urls relating to respective projects
 
 ## Live Demo
-You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported subsequent versions.
+You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported in subsequent versions.
 
 ## Screenshots
 * Login
