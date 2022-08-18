@@ -1,17 +1,17 @@
 # JABBER Project
 
 This project is a React app that was completed by [Dino Pranjic](https://github.com/DinoPranjic), [Mustapha Baltalji](https://github.com/mbbaltaji) and [Seun Oshitade](https://www.linkedin.com/in/seun-oshitade/). It presented an opportunity to learn new technologies and build a product in a collaborative and projectized environment.
-___
+
 ## About
 
 Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord](https://discord.com/), Jabber is a feature-rich messaging app. We set out to build a multi-user chat platform which includes features that could enhance personal and group/project productivity, with some elements of personalized entertainment. 
-___
+
 ## Tech Stack
 * Frontend: React, Redux, Styled Components, Firebase Authentication, Material UI
 * Backend: Node, Express, Firebase Store
 * API Intergations: Video Chat, Spotify Music, React Uploader  
 
-___
+
 ## Features
 * Secured user login (OAuth)
 * Text chat with optional private chat feature
@@ -21,13 +21,14 @@ ___
 * Personal todo list, mapped to each loggedin user
 * Image drag and drop for sharing images/ screen shots
 * A Resources feature for storing urls relating to respective projects
-___
-## Minimum Viable Demo
+
+## Live Demo
+You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported subsequent versions.
 
 
 [Insert demo video and selected images here]
 
-___
+
 ## Dependencies
 
   * @material-ui/core
