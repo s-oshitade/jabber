@@ -33,7 +33,7 @@ padding: 20px;
 
 > img {
   height: 50px;
-  border-radius: 8px;
+  border-radius: 30px;
 }
 
 `;

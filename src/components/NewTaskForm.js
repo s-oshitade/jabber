@@ -91,7 +91,7 @@ const RightSidebarOption = styled.div`
   }
 
  > form .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #0175FE;
+    border-bottom: 2px solid #2B97D5;
   }
   `
 

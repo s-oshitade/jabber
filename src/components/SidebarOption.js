@@ -44,13 +44,11 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       let response = '';
       event.preventDefault();
       if (channelName){
-
         if (process.env.NODE_ENV !== "production") {
            response = await fetch(`/whereby/meeting`);
         } else {
            response = await fetch(`${process.env.REACT_APP_EXPRESS_URL}/whereby/meeting`);
         }
-        // const response = await fetch(`${process.env.REACT_APP_EXPRESS_URL}/whereby/meeting`);
         const body = await response.json();
         db.collection("rooms").add({
           name: channelName,
@@ -58,7 +56,8 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
           owner: user.email,
           roomUrl: body.roomUrl,
           hostUrl: body.hostRoomUrl
-        });
+        })
+        ;
       } 
       setChannelName('');
       setAddingChannel(false);
@@ -75,7 +74,6 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
 
   const selectChannel = (event) => {
     const isPrivate = roomDetails?.data().password
-
     if (id) {
       if (user.email === roomDetails?.data().owner){
         dispatch(enterRoom({
@@ -84,9 +82,10 @@ function SidebarOption ({ Icon, title, addChannelOption, id, userState, isPublic
       } else {
         if (isPrivate && !passwordEntered) {
           setShowPasswordDialog(true);
-            if (event.keyCode == 13 ) {
+            if (event.key === 'Enter') {
               event.preventDefault();
               if (addPassword === isPrivate) {
+                console.log('CORRECT')
                 dispatch(enterRoom({ roomId: id }))
                 setPasswordEntered(true);
                 setShowPasswordDialog(false);
@@ -220,7 +219,7 @@ const SidebarOptionContainer = styled.div`
   }
 
   > .text-field > .MuiInput-underline:after{
-    border-bottom: 2px solid #0175FE;
+    border-bottom: 2px solid #2B97D5;
   }
 
 `;
