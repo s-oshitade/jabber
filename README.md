@@ -25,8 +25,13 @@ Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord
 ## Live Demo
 You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported subsequent versions.
 
+## Screenshots
+`Login`
+![](./docs/login.png)
 
-[Insert demo video and selected images here]
+`Overview`
+
+
 
 
 ## Dependencies
