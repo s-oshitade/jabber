@@ -28,7 +28,7 @@ You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is c
 
 ## Video recording
 
-<video src="./docs/jabber-clip2.mp4" width=1018 controls> </video>
+<video src="./docs/jabber1min3-mov.mov" width=1018 controls> </video>
 
 ## Screenshots
 * Login
