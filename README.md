@@ -22,8 +22,13 @@ Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord
 * Image drag and drop for sharing images/ screen shots
 * A Resources feature for storing urls relating to respective projects
 
-## Live Demo
+## Live Url
+
 You can access the live demo [here](https://jabber-cd1e1.web.app/). The app is currently set up for standard-size/ large screen views. Mobile and touchscreen views will be supported in subsequent versions.
+
+## Video recording
+
+<video src="./docs/jabber-clip.mp4" width=1018 controls> </video>
 
 ## Screenshots
 * Login
