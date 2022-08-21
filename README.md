@@ -7,8 +7,8 @@ This project is a React app that was completed by [Dino Pranjic](https://github.
 Inpsired by popular messaging apps like [Slack](https://slack.com/) and [Discord](https://discord.com/), Jabber is a feature-rich messaging app. We set out to build a multi-user chat platform which includes features that could enhance personal and group/project productivity, with some elements of personalized entertainment. 
 
 ## Tech Stack
-* Frontend: React, Redux, Styled Components, Firebase Authentication, Material UI
-* Backend: Node, Express, Firebase Store
+* Frontend: React, Redux, Styled Components, Material UI
+* Backend: Node, Express, Firebase (Firestore Database, Cloud Functions, Authentication)
 * API Intergations: Video Chat, Spotify Music, React Uploader  
 
 
@@ -74,7 +74,7 @@ The above list is not exhaustive.
 
 
 ## Usage
-Access [Jabber](https://jabber-cd1e1.web.app/) from your desktop your desktop at https://jabber-cd1e1.web.app/. Sign in securely with your Google account and explore the features. This version of the app is optimized for full screen view. The music player is accessible only to premium users of Spotify.
+Access [Jabber](https://jabber-cd1e1.web.app/) from your desktop at https://jabber-cd1e1.web.app/. Sign in securely with your Google account and explore the features. This version of the app is optimized for full screen view. The music player is accessible only to premium users of Spotify.
 
 ## License
 Selected aspects of this project may be subject to intellectual property rights.
